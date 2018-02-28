@@ -11,6 +11,10 @@
 
 ### Biblioteki
 ~~- Box2D -pobrac Winodws 8.1 SDK~~
+
 ~~- Physics React - nie umiem skompilować~~
-- SFML - ez, ale mało funkcji - K, WYBRALIŚMY TO
+
 ~~- QT - ???~~
+
+- SFML - ez, ale mało funkcji - K, WYBRALIŚMY TO
+
