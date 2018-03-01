@@ -16,6 +16,7 @@
 #define FRAME_TIME 1.0/60.0
 
 #include <iostream>
+#include "headers/GameEngine.h"
 
 enum DIRECTION {
 	LEFT = -1,
@@ -89,6 +90,14 @@ class Plane : public sf::Drawable {
 
 int main()
 {
+	GameEngine game;
+	game.pole();
+	game.pole();
+	game.lyse();
+	game.pole();
+
+
+	return 0;
 	sf::Time FrameTime = sf::seconds(FRAME_TIME);
 	sf::Clock gameClock;   
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!");
