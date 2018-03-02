@@ -1,8 +1,5 @@
+#include "constants.h"
 #include "headers/GameObject.h"
-
-
-#define BULLET_SPEED 5
-#define BULLET_SIZE 3.f
 
 #define DEG_2_RAD 0.0174532925
 

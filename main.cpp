@@ -1,12 +1,7 @@
+#include "constants.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <math.h>
-
-#define WINDOW_HEIGHT 700
-#define WINDOW_WIDTH 1000
-
-
-#define FRAME_TIME 1.0/60.0
 
 #include <iostream>
 #include "headers/Plane.h"
