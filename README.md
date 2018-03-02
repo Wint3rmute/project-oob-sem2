@@ -1,20 +1,36 @@
-# Projekt OOB
+# TODO
 
-### Pomysły:
-- Algorytm genetyczny
-- Fizyka (symulacja)
-- RPG
-- Użyteczne
-- `suicide.exe`
-- Coś przydatnego do życia
-- GUI
+## Controller
+ - Controller base abstract class
+    - `controll(Plane &plane, /* TODO referencja do listy obiektów z silnika gry */)`
 
-### Biblioteki
-~~- Box2D -pobrac Winodws 8.1 SDK~~
+ - Human controller -> Controller
+    - controll uses inputs from keyboard
 
-~~- Physics React - nie umiem skompilować~~
+ - NNController -> Controller
+    - controll works AI magically
 
-~~- QT - ???~~
+## Class skill - a base class for each skill, eg. shoot, boost, EMP
+ - `activate()` - fucking do this
+ - `float cooldown` - cooldown time
+ - `bool isOnCooldown()`
+ - `startCooldown()`
+ - `stopCooldown()`
 
-- SFML - ez, ale mało funkcji - K, WYBRALIŚMY TO
+## GameObject enhancements
+ - property enum CollisionLoop
 
+## Game engine
+ - GameEngine class
+    - Has a **dynamic list** of objects currently in scene - objectsList
+    - addObject(GameObject & object)
+    - removeOjbect(GameObject & object)
+    - performStep() - simulates each object in objectsList
+    - Has to count time in some way
+    - Needs some gamestates eg blue_won, red_won, blue_crashed etc
+
+ ## Plane enhancements
+ 
+  - New skills
+    -  Boost
+    -  EMP
