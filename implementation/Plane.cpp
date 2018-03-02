@@ -3,6 +3,7 @@
 #include <SFML/System.hpp>
 #include <math.h>
 
+
 Plane::Plane (int pos_x, int pos_y, float rotation) {
 
 	speed = PLANE_SPEED;
@@ -19,7 +20,7 @@ Plane::Plane (int pos_x, int pos_y, float rotation) {
 
 
 	shape.setPosition(pos_x, pos_y);
-	shape.setRotation(rotation);	
+	shape.setRotation(rotation);
 	shape.setOrigin(25,10);
 }
 
@@ -35,6 +36,15 @@ void Plane :: simulate() {
 		shape.move(cos(angle_rad) * speed , sin(angle_rad) * speed);
 		speed+=sin(angle_rad) * ACCELERATION_MULTIPLIER;
 
+		if( shape.getPosition().y <= 0 - 20)
+			shape.move(0,WINDOW_HEIGHT + 20);
+		if( shape.getPosition().y >= WINDOW_HEIGHT + 20)
+				shape.move(0,-WINDOW_HEIGHT - 20);
+		if( shape.getPosition().x <= 0 - 20)
+			 	shape.move(WINDOW_WIDTH + 20,0);
+		if( shape.getPosition().x >= WINDOW_WIDTH + 20)
+						shape.move(-WINDOW_WIDTH - 20,0);
+
 		if (speed > MAX_SPEED)
 			speed = MAX_SPEED;
 		else if (speed < MIN_SPEED)
@@ -47,14 +57,14 @@ void Plane :: simulate() {
 
 void Plane :: steer() {
 
-		if (sf::Keyboard::isKeyPressed (sf::Keyboard::Left)) {	
+		if (sf::Keyboard::isKeyPressed (sf::Keyboard::Left)) {
 	    	turn(LEFT);
-		
+
 		} else if (sf::Keyboard::isKeyPressed (sf::Keyboard::Right)) {
 
 			turn(RIGHT);
-		}	
-	
+		}
+
 }
 
 void Plane :: turn(DIRECTION direction) {
