@@ -13,17 +13,17 @@ enum DIRECTION {
 class Plane : public GameObject {
 
 
-	public:	
+	public:
 	float speed;
 	sf::ConvexShape shape;
-	
+
 	public:
 	Plane (int pos_x, int pos_y, float rotation);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	void simulate ();
-	
+
 	void steer ();
 
 	void turn (DIRECTION direction);

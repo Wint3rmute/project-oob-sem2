@@ -11,3 +11,8 @@
 
 #define DEG_2_RAD 0.0174532925
 #define ROTATION_SPEED 1
+
+
+
+#define BULLET_SPEED 5
+#define BULLET_SIZE 3.f
