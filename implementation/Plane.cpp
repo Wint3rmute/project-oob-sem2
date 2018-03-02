@@ -32,8 +32,10 @@ void Plane :: simulate() {
 
 
 		float angle_rad = shape.getRotation() * DEG_2_RAD;
+
 		shape.move(cos(angle_rad) * speed , sin(angle_rad) * speed);
-		speed+=sin(angle_rad) * ACCELERATION_MULTIPLIER;
+
+		speed += sin(angle_rad) * ACCELERATION_MULTIPLIER;
 
 		if (speed > MAX_SPEED)
 			speed = MAX_SPEED;
