@@ -1,12 +1,6 @@
+#include "constants.h"
 #include "headers/GameObject.h"
 
-#define PLANE_SPEED 2
-#define ACCELERATION_MULTIPLIER 0.03
-#define MAX_SPEED 7
-#define MIN_SPEED 1
-
-#define DEG_2_RAD 0.0174532925
-#define ROTATION_SPEED 1
 
 enum DIRECTION {
 
