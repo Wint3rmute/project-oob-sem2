@@ -1,7 +1,5 @@
-#include "constants.h"
+#include "utils/constants.h"
 #include "headers/GameObject.h"
-
-#define DEG_2_RAD 0.0174532925
 
 
 class Bullet : public GameObject {

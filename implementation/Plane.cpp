@@ -1,9 +1,11 @@
-#include "constants.h"
+#include "utils/constants.h"
 #include "headers/Plane.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <math.h>
 #include <iostream>
+
+#define TELEPORTATION_TRIGGER_OFFSET 20
 
 using namespace std;
 
@@ -42,18 +44,18 @@ void Plane :: simulate() {
 
 		speed += sin(angle_rad) * ACCELERATION_MULTIPLIER;
 
-		if( shape.getPosition().y <= -20)
-			shape.move(0,WINDOW_HEIGHT + 20);
-		if( shape.getPosition().y >= WINDOW_HEIGHT + 20)
+		if( shape.getPosition().y <= -TELEPORTATION_TRIGGER_OFFSET)
+			shape.move(0, GAME_WINDOW_HEIGHT + TELEPORTATION_TRIGGER_OFFSET);
+		if( shape.getPosition().y >= GAME_WINDOW_HEIGHT + TELEPORTATION_TRIGGER_OFFSET)
 		{
 
-				cout << shape.getPosition().y << " " << WINDOW_HEIGHT << " BOOM" << endl;
-				shape.move(0,-WINDOW_HEIGHT - 20);
+				cout << shape.getPosition().y << " " << GAME_WINDOW_HEIGHT << " BOOM" << endl;
+				shape.move(0, -GAME_WINDOW_HEIGHT - TELEPORTATION_TRIGGER_OFFSET);
 		}
-		if( shape.getPosition().x <= -20)
-			 	shape.move(WINDOW_WIDTH + 20,0);
-		if( shape.getPosition().x >= WINDOW_WIDTH + 20)
-						shape.move(-WINDOW_WIDTH - 20,0);
+		if( shape.getPosition().x <= -TELEPORTATION_TRIGGER_OFFSET)
+			 	shape.move(GAME_WINDOW_WIDTH + TELEPORTATION_TRIGGER_OFFSET,0);
+		if( shape.getPosition().x >= GAME_WINDOW_WIDTH + TELEPORTATION_TRIGGER_OFFSET)
+						shape.move(-GAME_WINDOW_WIDTH - TELEPORTATION_TRIGGER_OFFSET, 0);
 
 		if (speed > MAX_SPEED)
 			speed = MAX_SPEED;

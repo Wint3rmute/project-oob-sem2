@@ -1,4 +1,4 @@
-#include "constants.h"
+#include "utils/constants.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <math.h>
@@ -10,10 +10,9 @@
 int main()
 {
 
-    std::cout << "DEBUG " << WINDOW_HEIGHT << std::endl;
-	sf::Time FrameTime = sf::seconds(FRAME_TIME);
+   sf::Time FrameTime = sf::seconds(FRAME_TIME);
 	sf::Clock gameClock;   
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT), "SFML works!");
     
 
     Plane plane(50, 50, 90);

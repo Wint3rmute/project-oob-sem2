@@ -1,0 +1,18 @@
+#define GAME_WINDOW_HEIGHT 1000
+#define GAME_WINDOW_WIDTH 1600
+
+
+#define FRAME_TIME 1.0/60.0
+
+#define PLANE_SPEED 2
+#define ACCELERATION_MULTIPLIER 0.03
+#define MAX_SPEED 7
+#define MIN_SPEED 1
+
+#define DEG_2_RAD 0.0174532925
+#define ROTATION_SPEED 1
+
+
+
+#define BULLET_SPEED 5
+#define BULLET_SIZE 3.f
