@@ -1,4 +1,4 @@
-#define WINDOW_HEIGHT 700
+#define WINDOW_HEIGHT 1000
 #define WINDOW_WIDTH 1000
 
 

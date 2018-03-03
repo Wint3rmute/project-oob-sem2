@@ -10,7 +10,7 @@
 int main()
 {
 
-
+    std::cout << "DEBUG " << WINDOW_HEIGHT << std::endl;
 	sf::Time FrameTime = sf::seconds(FRAME_TIME);
 	sf::Clock gameClock;   
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!");

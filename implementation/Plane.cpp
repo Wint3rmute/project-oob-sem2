@@ -1,7 +1,11 @@
+#include "constants.h"
 #include "headers/Plane.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <math.h>
+#include <iostream>
+
+using namespace std;
 
 
 Plane::Plane (int pos_x, int pos_y, float rotation) {
@@ -38,11 +42,15 @@ void Plane :: simulate() {
 
 		speed += sin(angle_rad) * ACCELERATION_MULTIPLIER;
 
-		if( shape.getPosition().y <= 0 - 20)
+		if( shape.getPosition().y <= -20)
 			shape.move(0,WINDOW_HEIGHT + 20);
 		if( shape.getPosition().y >= WINDOW_HEIGHT + 20)
+		{
+
+				cout << shape.getPosition().y << " " << WINDOW_HEIGHT << " BOOM" << endl;
 				shape.move(0,-WINDOW_HEIGHT - 20);
-		if( shape.getPosition().x <= 0 - 20)
+		}
+		if( shape.getPosition().x <= -20)
 			 	shape.move(WINDOW_WIDTH + 20,0);
 		if( shape.getPosition().x >= WINDOW_WIDTH + 20)
 						shape.move(-WINDOW_WIDTH - 20,0);
