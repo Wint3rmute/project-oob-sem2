@@ -4,13 +4,13 @@
 
 class GameEngine{
 
-	std::vector <GameObject *> gameObjects;
+	static std::vector <GameObject *> gameObjects;
 
 public:
 
-	void addObject(GameObject * newObject);
-	void removeObject (GameObject * objectToRemove);
-	void simulateAndRender (sf::RenderWindow & window);
-	void play();
+	static void addObject(GameObject * newObject);
+	static void removeObject (GameObject * objectToRemove);
+	static void simulateAndRender (sf::RenderWindow & window);
+	static void play();
 
 };

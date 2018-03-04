@@ -12,11 +12,11 @@ int main()
 {
 
    
-	GameEngine engine;
+	//GameEngine engine;
    	Plane *plane = new Plane(50, 50, 90);
 
-   	engine.addObject(plane);
-   	engine.play();
+   	GameEngine::addObject(plane);
+   	GameEngine::play();
    
     return 0;
 }

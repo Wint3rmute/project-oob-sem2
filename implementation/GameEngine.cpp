@@ -3,6 +3,9 @@
 #include <iostream>
 using namespace std;
 
+// This makes the gameObjects vector visible in the file
+std::vector <GameObject *> GameEngine :: gameObjects;
+
 
 void GameEngine :: addObject (GameObject * newObject) {
 
@@ -59,12 +62,8 @@ void GameEngine :: play() {
         }
 
     	
-
-        this -> simulateAndRender(window);
+        simulateAndRender(window);
 	
-
-
-        
 
         sf::sleep(FrameTime - gameClock.getElapsedTime());
         gameClock.restart();
