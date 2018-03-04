@@ -5,6 +5,7 @@
 #include <math.h>
 #include <iostream>
 
+
 #define TELEPORTATION_TRIGGER_OFFSET 20
 
 using namespace std;
@@ -34,7 +35,7 @@ Plane::Plane (int pos_x, int pos_y, float rotation) {
 void Plane :: draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 	target.draw(shape, states);
-	
+
 }
 
 void Plane :: simulate() {
@@ -51,9 +52,9 @@ void Plane :: simulate() {
 
 	if ( shape.getPosition().y >= GAME_WINDOW_HEIGHT + TELEPORTATION_TRIGGER_OFFSET)
 		shape.move(0, -GAME_WINDOW_HEIGHT - TELEPORTATION_TRIGGER_OFFSET);
-	
+
 	if ( shape.getPosition().x <= -TELEPORTATION_TRIGGER_OFFSET )
-	 	shape.move(GAME_WINDOW_WIDTH + TELEPORTATION_TRIGGER_OFFSET,0);	
+	 	shape.move(GAME_WINDOW_WIDTH + TELEPORTATION_TRIGGER_OFFSET,0);
 
 	if ( shape.getPosition().x >= GAME_WINDOW_WIDTH + TELEPORTATION_TRIGGER_OFFSET)
 		shape.move(-GAME_WINDOW_WIDTH - TELEPORTATION_TRIGGER_OFFSET, 0) ;
@@ -73,11 +74,15 @@ void Plane :: simulate() {
 
 void Plane :: steer() {
 
-	if (sf::Keyboard::isKeyPressed (sf::Keyboard::Left)) 
+	if (sf::Keyboard::isKeyPressed (sf::Keyboard::Left))
     	turn(LEFT);
 
 	else if (sf::Keyboard::isKeyPressed (sf::Keyboard::Right))
 		turn(RIGHT);
+
+	else if (sf::Keyboard::isKeyPressed (sf::Keyboard::Space))
+			gun.activate(this);
+
 
 }
 

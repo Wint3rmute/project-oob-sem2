@@ -1,5 +1,7 @@
+#pragma once
 #include "headers/Skill.h"
 #include "headers/Bullet.h"
+#include "headers/Plane.h"
 
 class Gun : public Skill
 {
@@ -10,7 +12,7 @@ private:
 
 public:
 
-  void activate(Plane);
+  void activate(Plane & plane);
 
 
 };

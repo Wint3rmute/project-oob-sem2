@@ -1,3 +1,4 @@
+#pragma once
 #include "utils/constants.h"
 #include "headers/GameObject.h"
 #include "headers/GameEngine.h"
@@ -17,6 +18,6 @@ class Bullet : public GameObject {
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	void simulate ();
-	
+
 	~Bullet();
 };

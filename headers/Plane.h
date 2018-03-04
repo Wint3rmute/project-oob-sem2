@@ -1,4 +1,7 @@
+#pragma once
+
 #include "headers/GameObject.h"
+#include "headers/skills/Gun.h"
 
 
 enum DIRECTION {
@@ -15,6 +18,7 @@ class Plane : public GameObject {
 	public:
 	float speed;
 	sf::ConvexShape shape;
+	Gun gun;
 
 	public:
 	Plane (int pos_x, int pos_y, float rotation);
