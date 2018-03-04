@@ -29,6 +29,8 @@ Plane::Plane (int pos_x, int pos_y, float rotation) {
 	shape.setPosition(pos_x, pos_y);
 	shape.setRotation(rotation);
 	shape.setOrigin(25,10);
+
+	gun= new Gun();
 }
 
 
@@ -81,7 +83,7 @@ void Plane :: steer() {
 		turn(RIGHT);
 
 	else if (sf::Keyboard::isKeyPressed (sf::Keyboard::Space))
-			gun.activate(this);
+			(*gun).activate(*this);
 
 
 }

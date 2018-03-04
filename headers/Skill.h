@@ -1,6 +1,8 @@
+#pragma once
 #include "utils/constants.h"
-#include "headers/Plane.h"
+//#include "headers/Plane.h"
 #include <ctime>
+class Plane;
 
 using namespace std;
 
