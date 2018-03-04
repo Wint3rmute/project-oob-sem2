@@ -2,18 +2,19 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <math.h>
+#include "headers/Plane.h"
 
 #include <iostream>
-#include "headers/Plane.h"
+
 
 
 int main()
 {
 
    sf::Time FrameTime = sf::seconds(FRAME_TIME);
-	sf::Clock gameClock;   
+	sf::Clock gameClock;
     sf::RenderWindow window(sf::VideoMode(GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT), "SFML works!");
-    
+
 
     Plane plane(50, 50, 90);
 
@@ -26,10 +27,10 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-	
-	
+
+
     	plane.simulate();
-	
+
         window.clear();
         window.draw(plane);
         window.display();
