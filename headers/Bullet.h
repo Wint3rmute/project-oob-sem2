@@ -1,5 +1,6 @@
 #include "utils/constants.h"
 #include "headers/GameObject.h"
+#include "headers/GameEngine.h"
 
 
 class Bullet : public GameObject {
@@ -17,4 +18,5 @@ class Bullet : public GameObject {
 
 	void simulate ();
 	
+	~Bullet();
 };

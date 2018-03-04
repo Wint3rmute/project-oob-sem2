@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <math.h>
+#include <iostream>
 
 Bullet :: Bullet (int pos_x, int pos_y, float rotation) : shape(BULLET_SIZE) {
 
@@ -20,7 +21,21 @@ void Bullet :: draw(sf::RenderTarget & target, sf::RenderStates states) const {
 
 void Bullet :: simulate() {
 
+	if (
+		shape.getPosition().x > GAME_WINDOW_WIDTH ||
+		shape.getPosition().x < 0 ||
+		shape.getPosition().y > GAME_WINDOW_HEIGHT ||
+		shape.getPosition().y < 0
+		) {
+		GameEngine::removeObject(this);
+		//delete this;
+		return;
+	}
+
 	shape.move(direction_x, direction_y);
 
-	
+}
+
+Bullet :: ~Bullet() {
+	std::cout << "removed!" << std::endl;
 }

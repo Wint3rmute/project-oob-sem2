@@ -5,6 +5,7 @@ using namespace std;
 
 // This makes the gameObjects vector visible in the file
 std::vector <GameObject *> GameEngine :: gameObjects;
+std::vector <GameObject *> GameEngine :: gameObjectsToRemove;
 
 
 void GameEngine :: addObject (GameObject * newObject) {
@@ -15,14 +16,16 @@ void GameEngine :: addObject (GameObject * newObject) {
 
 void GameEngine :: removeObject (GameObject * objectToRemove) {
 
+	gameObjectsToRemove.push_back(objectToRemove);
+
+	//delete objectToRemove;
 	gameObjects.erase(
 		std::remove(
 			gameObjects.begin(),
 			gameObjects.end(),
 			objectToRemove),
 		gameObjects.end());
-
-	delete objectToRemove;
+		 
 }
 
 
@@ -38,6 +41,15 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 	}
 
 	window.display();
+
+}
+
+void GameEngine :: clearRemoveQueue () {
+
+	while (gameObjectsToRemove.size() != 0) {
+		delete gameObjectsToRemove.back();
+		gameObjectsToRemove.pop_back();
+	}
 
 }
 
@@ -67,6 +79,7 @@ void GameEngine :: play() {
 
         sf::sleep(FrameTime - gameClock.getElapsedTime());
         gameClock.restart();
+        clearRemoveQueue();
     }
 
 }
