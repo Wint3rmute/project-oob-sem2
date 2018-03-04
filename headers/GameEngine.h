@@ -1,9 +1,16 @@
+#include "utils/constants.h"
+#include "headers/GameObject.h"
+#include <vector>
+
 class GameEngine{
+
+	std::vector <GameObject *> gameObjects;
+
 public:
-	int a = 0;
 
-	void pole();
-	void lyse();
-
+	void addObject(GameObject * newObject);
+	void removeObject (GameObject * objectToRemove);
+	void simulateAndRender (sf::RenderWindow & window);
+	void play();
 
 };
