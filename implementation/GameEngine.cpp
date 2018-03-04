@@ -31,7 +31,6 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 
 		gameObject -> simulate();
 		window.draw(*gameObject);
-		std::cout << "done" << std::endl;
 	
 	}
 
