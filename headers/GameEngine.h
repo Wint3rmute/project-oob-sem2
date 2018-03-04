@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GAME_ENGINE_H
+#define GAME_ENGINE_H
+
 #include "utils/constants.h"
 #include "headers/GameObject.h"
 #include <vector>
@@ -17,3 +19,5 @@ public:
 	static void play();
 
 };
+
+#endif

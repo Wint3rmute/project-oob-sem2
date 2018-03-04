@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAME_OBJECT_H
+#define GAME_OBJECT_H
 #include <SFML/Graphics.hpp>
 
 
@@ -10,3 +11,5 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 	
 };
+
+#endif
