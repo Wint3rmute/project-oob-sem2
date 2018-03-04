@@ -16,3 +16,6 @@
 
 #define BULLET_SPEED 5
 #define BULLET_SIZE 3.f
+
+#define PISTOL_AMMO 8
+#define PISTOL_COOLDOWN_TIME 4.5f

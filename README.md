@@ -10,7 +10,7 @@
 
  - `NNController` -> `Controller`
     - controls the plane with *AI wizardry*
- 
+
  - `DummyController`
     - Spins around and keeps shooting
     - *wins anyway*
@@ -24,13 +24,13 @@
 
 #
 ### `GameObject` enhancements
- - property enum CollisionsAffected - True is objects is a plane - and is affected by collisions
+ - property enum CollisionsAffected - True if objects is a plane - and is affected by collisions
 
 #
 ### create a `GameEngine`
  - `GameEngine` class
     - Has a **dynamic list** of objects currently in scene - objectsList
-        - ***TODO*** - ask someone who knows cpp well what is the base choice for this structure 
+        - ***TODO*** - ask someone who knows cpp well what is the base choice for this structure
     - `addObject(GameObject & object)`
     - `removeOjbect(GameObject & object)`
     - `performStep()` - simulates each object in objectsList
@@ -38,7 +38,7 @@
     - Needs some gamestates eg `blue_won`, `red_won`, `blue_crashed`, `menu_show` etc
 #
  ### Plane enhancements
- 
+
   - New skills
     -  Boost - put speed to max for some time
     -  EMP - put speed to minimum for anyone that enters the EMP field
