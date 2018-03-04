@@ -2,42 +2,25 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <math.h>
-#include "headers/Plane.h"
 
 #include <iostream>
-
+#include "headers/Plane.h"
+#include "headers/GameEngine.h"
+#include "headers/Bullet.h"
 
 
 int main()
 {
 
-   sf::Time FrameTime = sf::seconds(FRAME_TIME);
-	sf::Clock gameClock;
-    sf::RenderWindow window(sf::VideoMode(GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT), "SFML works!");
 
+	//GameEngine engine;
+   	Plane *plane = new Plane(50, 50, 90);
+   	Bullet * bullet = new Bullet(50,50,45);
 
-    Plane plane(50, 50, 90);
-
-    while (window.isOpen())
-    {
-
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-
-    	plane.simulate();
-
-        window.clear();
-        window.draw(plane);
-        window.display();
-
-        sf::sleep(FrameTime - gameClock.getElapsedTime());
-        gameClock.restart();
-    }
+   	GameEngine::addObject(plane);
+   	GameEngine::addObject(bullet);
+   	//GameEngine::removeObject(bullet);
+   	GameEngine::play();
 
     return 0;
 }
