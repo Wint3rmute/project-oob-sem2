@@ -1,6 +1,8 @@
+#pragma once
 #include "utils/constants.h"
-#include "headers/Plane.h"
+//#include "headers/Plane.h"
 #include <ctime>
+class Plane;
 
 using namespace std;
 
@@ -18,9 +20,9 @@ public:
 
   clock_t getActualCooldown();
 
-  void setActualCooldown(clock_t);
+  void setActualCooldown(clock_t t);
 
-  void setCooldownTime(float);
+  void setCooldownTime(float t);
 
   bool isOnCooldown();
 
@@ -28,5 +30,5 @@ public:
 
   void resetCooldown();
 
-  void activate(Plane);
+  virtual void activate(Plane & plane) = 0;
 };

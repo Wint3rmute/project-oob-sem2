@@ -1,4 +1,6 @@
 clear
+find -name *.gch -delete  # Removes the old precompiled headers, that might cause bugs
+
 g++ \
 	-I .  \
 	main.cpp \
@@ -10,4 +12,4 @@ g++ \
 	-lsfml-graphics -lsfml-window -lsfml-system \
 	-o build/app \
 	&& \
-       ./build/app
+	./build/app
