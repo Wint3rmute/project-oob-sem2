@@ -16,6 +16,9 @@ void GameEngine :: addObject (GameObject * newObject) {
 
 void GameEngine :: removeObject (GameObject * objectToRemove) {
 
+	if(objectToRemove->wasRemoved)
+		return;
+
 	gameObjectsToRemove.push_back(objectToRemove);
 
 	//delete objectToRemove;
@@ -25,6 +28,9 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 			gameObjects.end(),
 			objectToRemove),
 		gameObjects.end());
+
+	objectToRemove->wasRemoved = true;
+
 		 
 }
 
@@ -46,10 +52,21 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 
 void GameEngine :: clearRemoveQueue () {
 
+	//cout << "Garbage collection start" << endl;
+
+	if(gameObjectsToRemove.size() !=0) 
+    	cout << "Removing.." << endl;
+    
+
 	while (gameObjectsToRemove.size() != 0) {
+		cout << gameObjectsToRemove.size() << endl;
 		delete gameObjectsToRemove.back();
 		gameObjectsToRemove.pop_back();
+		cout << "A.R. " << gameObjectsToRemove.size() << endl;
 	}
+
+
+	//cout << "Garbate collection over" << endl;
 
 }
 
@@ -75,11 +92,11 @@ void GameEngine :: play() {
 
     	
         simulateAndRender(window);
-	
+		clearRemoveQueue();
 
         sf::sleep(FrameTime - gameClock.getElapsedTime());
         gameClock.restart();
-        clearRemoveQueue();
+        
     }
 
 }

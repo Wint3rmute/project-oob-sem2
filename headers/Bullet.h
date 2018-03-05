@@ -7,7 +7,6 @@
 
 class Bullet : public GameObject {
 
-
 	public:
 	sf::CircleShape shape;
 	float direction_x; // will be set only once, not per each frame.. so we save it globally
