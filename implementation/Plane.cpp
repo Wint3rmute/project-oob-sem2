@@ -68,8 +68,6 @@ void Plane :: simulate() {
 	else if (speed < MIN_SPEED)
 		speed = MIN_SPEED;
 
-
-	//std::cout << speed << std::endl;
 	steer();
 
 }

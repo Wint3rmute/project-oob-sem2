@@ -51,22 +51,13 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 }
 
 void GameEngine :: clearRemoveQueue () {
-
-	//cout << "Garbage collection start" << endl;
-
-	if(gameObjectsToRemove.size() !=0) 
-    	cout << "Removing.." << endl;
     
 
 	while (gameObjectsToRemove.size() != 0) {
-		cout << gameObjectsToRemove.size() << endl;
 		delete gameObjectsToRemove.back();
 		gameObjectsToRemove.pop_back();
-		cout << "A.R. " << gameObjectsToRemove.size() << endl;
 	}
 
-
-	//cout << "Garbate collection over" << endl;
 
 }
 
