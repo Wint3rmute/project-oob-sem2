@@ -39,5 +39,5 @@ void Bullet :: simulate() {
 }
 
 Bullet :: ~Bullet() {
-	std::cout << "removed!" << std::endl;
+
 }

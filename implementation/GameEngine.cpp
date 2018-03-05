@@ -16,6 +16,9 @@ void GameEngine :: addObject (GameObject * newObject) {
 
 void GameEngine :: removeObject (GameObject * objectToRemove) {
 
+	if(objectToRemove->wasRemoved)
+		return;
+
 	gameObjectsToRemove.push_back(objectToRemove);
 
 	//delete objectToRemove;
@@ -25,6 +28,9 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 			gameObjects.end(),
 			objectToRemove),
 		gameObjects.end());
+
+	objectToRemove->wasRemoved = true;
+
 		 
 }
 
@@ -45,11 +51,13 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 }
 
 void GameEngine :: clearRemoveQueue () {
+    
 
 	while (gameObjectsToRemove.size() != 0) {
 		delete gameObjectsToRemove.back();
 		gameObjectsToRemove.pop_back();
 	}
+
 
 }
 
@@ -75,11 +83,11 @@ void GameEngine :: play() {
 
     	
         simulateAndRender(window);
-	
+		clearRemoveQueue();
 
         sf::sleep(FrameTime - gameClock.getElapsedTime());
         gameClock.restart();
-        clearRemoveQueue();
+        
     }
 
 }
