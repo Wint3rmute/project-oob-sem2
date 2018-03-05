@@ -80,7 +80,7 @@ void Plane :: steer() {
 	else if (sf::Keyboard::isKeyPressed (sf::Keyboard::Right))
 		turn(RIGHT);
 
-	else if (sf::Keyboard::isKeyPressed (sf::Keyboard::Space))
+	if (sf::Keyboard::isKeyPressed (sf::Keyboard::Space))
 			(*gun).activate(*this);
 
 
