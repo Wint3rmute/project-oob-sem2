@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SKILL_H
+#define SKILL_H
+
 #include "utils/constants.h"
 //#include "headers/Plane.h"
 #include <ctime>
@@ -32,3 +34,5 @@ public:
 
   virtual void activate(Plane & plane) = 0;
 };
+
+#endif

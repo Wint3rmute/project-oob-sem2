@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BULLET_H
+#define BULLET_H
 #include "utils/constants.h"
 #include "headers/GameObject.h"
 #include "headers/GameEngine.h"
@@ -21,3 +22,5 @@ class Bullet : public GameObject {
 
 	~Bullet();
 };
+
+#endif

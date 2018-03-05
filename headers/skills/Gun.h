@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GUN_H
+#define GUN_H
+
 #include "headers/Skill.h"
 #include "headers/Bullet.h"
 #include "headers/Plane.h"
@@ -15,3 +17,5 @@ public:
 
 
 };
+
+#endif

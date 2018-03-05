@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLANE_H
+#define PLANE_H
 
 #include "headers/GameObject.h"
 #include "headers/skills/Gun.h"
@@ -35,3 +36,6 @@ class Plane : public GameObject {
 	float getRotation();
 
 };
+
+
+#endif
