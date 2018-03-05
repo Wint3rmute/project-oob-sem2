@@ -31,4 +31,7 @@ class Plane : public GameObject {
 
 	void turn (DIRECTION direction);
 
+	sf::Vector2f getPosition();
+	float getRotation();
+
 };

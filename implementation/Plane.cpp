@@ -93,3 +93,11 @@ void Plane :: turn(DIRECTION direction) {
 	shape.rotate(direction * ROTATION_SPEED * speed);
 
 }
+
+sf::Vector2f Plane :: getPosition() {
+	return shape.getPosition();
+}
+
+float Plane :: getRotation() {
+	return shape.getRotation();
+}
