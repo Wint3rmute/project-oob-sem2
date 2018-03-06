@@ -20,6 +20,5 @@ int main()
     GameEngine::addObject(plane2);
     //GameEngine::removeObject(bullet);
     GameEngine::play();
-
     return 0;
 }
