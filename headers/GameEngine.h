@@ -1,23 +1,27 @@
-#ifndef GAME_ENGINE_H
-#define GAME_ENGINE_H
+//
+// Created by wint3rmute on 3/6/18.
+//
 
-#include "utils/constants.h"
-#include "headers/GameObject.h"
+#ifndef PROJECT_GAME_ENGINE_H
+#define PROJECT_GAME_ENGINE_H
+
+
 #include <vector>
+#include "GameObject.h"
 
 class GameEngine{
 
-	static std::vector <GameObject *> gameObjects;
-	static std::vector <GameObject *> gameObjectsToRemove;
+    static std::vector <GameObject *> gameObjects;
+    static std::vector <GameObject *> gameObjectsToRemove;
 
 public:
 
-	static void addObject(GameObject * newObject);
-	static void removeObject (GameObject * objectToRemove);
-	static void simulateAndRender (sf::RenderWindow & window);
-	static void clearRemoveQueue();
-	static void play();
+    static void addObject(GameObject * newObject);
+    static void removeObject (GameObject * objectToRemove);
+    static void simulateAndRender (sf::RenderWindow & window);
+    static void clearRemoveQueue();
+    static void play();
 
 };
 
-#endif
+#endif //PROJECT_GAME_ENGINE_H

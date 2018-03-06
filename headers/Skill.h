@@ -1,38 +1,41 @@
-#ifndef SKILL_H
-#define SKILL_H
+//
+// Created by wint3rmute on 3/6/18.
+//
 
-#include "utils/constants.h"
-//#include "headers/Plane.h"
-#include <ctime>
+#ifndef PROJECT_SKILL_H
+#define PROJECT_SKILL_H
+
+
+#include "Plane.h"
 class Plane;
-
-using namespace std;
 
 class Skill {
 
 protected:
 
 
-  float cooldownTime;
-  clock_t actualCooldown;
+    float cooldownTime;
+    clock_t actualCooldown;
 
 public:
 
-  float getCooldownTime();
+    float getCooldownTime();
 
-  clock_t getActualCooldown();
+    clock_t getActualCooldown();
 
-  void setActualCooldown(clock_t t);
+    void setActualCooldown(clock_t t);
 
-  void setCooldownTime(float t);
+    void setCooldownTime(float t);
 
-  bool isOnCooldown();
+    bool isOnCooldown();
 
-  void startCooldown();
+    void startCooldown();
 
-  void resetCooldown();
+    void resetCooldown();
 
-  virtual void activate(Plane & plane) = 0;
+    virtual void activate(Plane & plane) = 0;
 };
 
-#endif
+
+
+#endif //PROJECT_SKILL_H

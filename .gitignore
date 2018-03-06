@@ -1,4 +1,2 @@
-*.out
-*.exe
-build/app
-*.gch
+.idea/
+cmake-build-debug/
