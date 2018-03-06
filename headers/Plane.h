@@ -36,6 +36,7 @@ public:
     void steer ();
 
     void turn (DIRECTION direction);
+    void shoot();
 
     sf::Vector2f getPosition();
     float getRotation();

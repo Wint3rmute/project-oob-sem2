@@ -3,7 +3,7 @@ project(project)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp headers/GameObject.h implementations/Bullet.cpp headers/Bullet.h utils/constants.h implementations/GameEngine.cpp headers/GameEngine.h implementations/Plane.cpp headers/Plane.h implementations/Skill.cpp headers/Skill.h implementations/Gun.cpp headers/Gun.h)
+set(SOURCE_FILES main.cpp headers/GameObject.h implementations/Bullet.cpp headers/Bullet.h utils/constants.h implementations/GameEngine.cpp headers/GameEngine.h implementations/Plane.cpp headers/Plane.h implementations/Skill.cpp headers/Skill.h implementations/Gun.cpp headers/Gun.h implementations/Controller.cpp headers/Controller.h implementations/KeyboardController.cpp headers/KeyboardController.h)
 add_executable(project ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
