@@ -1,14 +1,19 @@
-#ifndef PLANE_H
-#define PLANE_H
+//
+// Created by wint3rmute on 3/6/18.
+//
 
-#include "headers/GameObject.h"
-#include "headers/skills/Gun.h"
+#ifndef PROJECT_PLANE_H
+#define PROJECT_PLANE_H
+
+
+#include "GameObject.h"
+
 class Gun;
 
 enum DIRECTION {
 
-	LEFT = -1,
-	RIGHT = 1
+    LEFT = -1,
+    RIGHT = 1
 
 };
 
@@ -16,26 +21,27 @@ enum DIRECTION {
 class Plane : public GameObject {
 
 
-	public:
-	float speed;
-	sf::ConvexShape shape;
-	Gun *gun;
+public:
+    float speed;
+    sf::ConvexShape shape;
+    Gun *gun;
 
-	public:
-	Plane (int pos_x, int pos_y, float rotation);
+public:
+    Plane (int pos_x, int pos_y, float rotation);
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	void simulate ();
+    void simulate ();
 
-	void steer ();
+    void steer ();
 
-	void turn (DIRECTION direction);
+    void turn (DIRECTION direction);
 
-	sf::Vector2f getPosition();
-	float getRotation();
+    sf::Vector2f getPosition();
+    float getRotation();
 
 };
 
 
-#endif
+
+#endif //PROJECT_PLANE_H

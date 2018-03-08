@@ -1,3 +1,11 @@
+//
+// Created by wint3rmute on 3/6/18.
+//
+
+#ifndef PROJECT_CONSTANTS_H
+#define PROJECT_CONSTANTS_H
+
+
 #define GAME_WINDOW_HEIGHT 1000
 #define GAME_WINDOW_WIDTH 1600
 
@@ -19,3 +27,6 @@
 
 #define PISTOL_AMMO 8
 #define PISTOL_COOLDOWN_TIME 4.5f
+#define TELEPORTATION_TRIGGER_OFFSET 20
+
+#endif //PROJECT_CONSTANTS_H
