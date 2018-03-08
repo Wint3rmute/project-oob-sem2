@@ -12,6 +12,7 @@ using namespace std;
 // This makes the gameObjects vector visible in the file
 std::vector <GameObject *> GameEngine :: gameObjects;
 std::vector <GameObject *> GameEngine :: gameObjectsToRemove;
+std::vector <Controller *> GameEngine :: controllers;
 
 
 void GameEngine :: addObject (GameObject * newObject) {
@@ -44,6 +45,11 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 
     window.clear();
+
+    for (auto controller : controllers )
+    {
+        controller->control();
+    }
 
     for (auto gameObject : gameObjects) {
 
@@ -96,4 +102,8 @@ void GameEngine :: play() {
 
     }
 
+}
+
+void GameEngine::addController(Controller *newController) {
+    controllers.push_back(newController);
 }

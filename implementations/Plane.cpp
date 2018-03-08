@@ -67,28 +67,16 @@ void Plane :: simulate() {
     else if (speed < MIN_SPEED)
         speed = MIN_SPEED;
 
-    steer();
 
 }
 
-void Plane :: steer() {
-
-    if (sf::Keyboard::isKeyPressed (sf::Keyboard::Left))
-        turn(LEFT);
-
-    else if (sf::Keyboard::isKeyPressed (sf::Keyboard::Right))
-        turn(RIGHT);
-
-    if (sf::Keyboard::isKeyPressed (sf::Keyboard::Space))
-        gun->activate(*this);
-
-
-}
 
 void Plane :: turn(DIRECTION direction) {
-
     shape.rotate(direction * ROTATION_SPEED * speed);
+}
 
+void Plane :: shoot() {
+    gun->activate(*this);
 }
 
 sf::Vector2f Plane :: getPosition() {
