@@ -16,7 +16,7 @@ class Gun : public Skill {
 private:
 
     int ammunition = PISTOL_AMMO;
-    float cooldownTime = PISTOL_COOLDOWN_TIME;
+    double cooldownTime = PISTOL_COOLDOWN_TIME;
 
 public:
     void activate(Plane & plane);

@@ -5,7 +5,7 @@
 #include <ctime>
 #include "../headers/Skill.h"
 
-float Skill :: getCooldownTime()
+double Skill :: getCooldownTime()
 {
     return  cooldownTime;
 }
@@ -20,14 +20,14 @@ void Skill :: setActualCooldown(clock_t t)
     actualCooldown = t;
 }
 
-void Skill :: setCooldownTime(float t)
+void Skill :: setCooldownTime(double t)
 {
     cooldownTime = t;
 }
 
 bool Skill :: isOnCooldown()
 {
-    return (((float) getActualCooldown() / CLOCKS_PER_SEC ) - getCooldownTime()) > 0;
+    return (((double) getActualCooldown() / CLOCKS_PER_SEC ) - getCooldownTime()) > 0;
 }
 
 void Skill :: startCooldown()

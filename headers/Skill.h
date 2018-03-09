@@ -14,18 +14,18 @@ class Skill {
 protected:
 
 
-    float cooldownTime;
+    double cooldownTime;
     clock_t actualCooldown;
 
 public:
 
-    float getCooldownTime();
+    double getCooldownTime();
 
     clock_t getActualCooldown();
 
     void setActualCooldown(clock_t t);
 
-    void setCooldownTime(float t);
+    void setCooldownTime(double t);
 
     bool isOnCooldown();
 

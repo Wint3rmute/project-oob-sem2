@@ -29,4 +29,6 @@
 #define PISTOL_COOLDOWN_TIME 4.5f
 #define TELEPORTATION_TRIGGER_OFFSET 20
 
+#define MATRIX_MULT_WRONG_SIZE "wrong matrixes size"
+
 #endif //PROJECT_CONSTANTS_H

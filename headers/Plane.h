@@ -22,12 +22,12 @@ class Plane : public GameObject {
 
 
 public:
-    float speed;
+    double speed;
     sf::ConvexShape shape;
     Gun *gun;
 
 public:
-    Plane (int pos_x, int pos_y, float rotation);
+    Plane (int pos_x, int pos_y, double rotation);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
@@ -39,7 +39,7 @@ public:
     void shoot();
 
     sf::Vector2f getPosition();
-    float getRotation();
+    double getRotation();
 
 };
 
