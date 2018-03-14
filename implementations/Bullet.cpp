@@ -6,9 +6,9 @@
 #include "../headers/Bullet.h"
 
 
-Bullet :: Bullet (float pos_x, float pos_y, float rotation) : shape(BULLET_SIZE) {
+Bullet :: Bullet (double pos_x, double pos_y, double rotation) : shape(BULLET_SIZE) {
 
-    float direction = rotation * DEG_2_RAD;
+    double direction = rotation * DEG_2_RAD;
     direction_x = cos(direction) * BULLET_SPEED;
     direction_y = sin(direction) * BULLET_SPEED;
 

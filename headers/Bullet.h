@@ -15,11 +15,11 @@ class Bullet : public GameObject {
 
 public:
     sf::CircleShape shape;
-    float direction_x; // will be set only once, not per each frame.. so we save it globally
-    float direction_y;
+    double direction_x; // will be set only once, not per each frame.. so we save it globally
+    double direction_y;
 
 public:
-    Bullet (float pos_x, float pos_y, float rotation);
+    Bullet (double pos_x, double pos_y, double rotation);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

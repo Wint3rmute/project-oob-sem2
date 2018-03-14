@@ -11,7 +11,7 @@ using namespace std;
 class Gun;
 
 
-Plane::Plane (int pos_x, int pos_y, float rotation) {
+Plane::Plane (int pos_x, int pos_y, double rotation) {
 
     speed = PLANE_SPEED;
     gun = new Gun();
@@ -42,7 +42,7 @@ void Plane :: draw(sf::RenderTarget& target, sf::RenderStates states) const {
 void Plane :: simulate() {
 
 
-    float angle_rad = shape.getRotation() * DEG_2_RAD;
+    double angle_rad = shape.getRotation() * DEG_2_RAD;
 
     shape.move(cos(angle_rad) * speed , sin(angle_rad) * speed);
 
@@ -83,6 +83,6 @@ sf::Vector2f Plane :: getPosition() {
     return shape.getPosition();
 }
 
-float Plane :: getRotation() {
+double Plane :: getRotation() {
     return shape.getRotation();
 }
