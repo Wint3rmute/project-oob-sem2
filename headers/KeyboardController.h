@@ -12,10 +12,10 @@
 
 class KeyboardController : public Controller {
 
-    Key turn_left_key;
-    Key turn_right_key;
-    Key shoot_key;
-    Key boost_key;
+    Key turnLeftKey;
+    Key turnRightKey;
+    Key shootKey;
+    Key boostKey;
 
 
 public:

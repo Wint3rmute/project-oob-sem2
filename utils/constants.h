@@ -30,4 +30,6 @@
 #define PISTOL_SHOOT_RATE 0.1f
 #define TELEPORTATION_TRIGGER_OFFSET 20
 
+#define MATRIX_MULT_WRONG_SIZE "wrong matrixes size"
+
 #endif //PROJECT_CONSTANTS_H

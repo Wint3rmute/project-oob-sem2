@@ -19,6 +19,7 @@ void Skill :: setCooldownTime(double t)
 bool Skill :: isOnCooldown()
 {
     return cooldown.getElapsedTime().asSeconds()<cooldownTime;
+
 }
 
 void Skill :: startCooldown()

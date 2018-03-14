@@ -19,6 +19,7 @@ private:
     double cooldownTime = PISTOL_SHOOT_RATE;
     int current_ammo = PISTOL_AMMO;
 
+
 public:
     void activate(Plane & plane);
 

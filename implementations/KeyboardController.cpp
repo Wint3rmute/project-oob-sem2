@@ -6,33 +6,33 @@
 
 
 KeyboardController::KeyboardController(Plane *plane) : Controller(plane) {
-    turn_left_key = sf::Keyboard::Left;
-    turn_right_key = sf::Keyboard::Right;
-    shoot_key = sf::Keyboard::Down;
-    boost_key = sf::Keyboard::Up;
+    turnLeftKey = sf::Keyboard::Left;
+    turnRightKey = sf::Keyboard::Right;
+    shootKey = sf::Keyboard::Down;
+    boostKey = sf::Keyboard::Up;
 }
 
 void KeyboardController::changeKeys(Key new_left, Key new_right, Key new_shoot, Key new_boost) {
-    turn_left_key = new_left;
-    turn_right_key = new_right;
-    shoot_key = new_shoot;
-    boost_key = new_boost;
+    turnLeftKey = new_left;
+    turnRightKey = new_right;
+    shootKey = new_shoot;
+    boostKey = new_boost;
 
 }
 
 void KeyboardController::control() {
 
-    if(isPressed(turn_left_key)) {
+    if(isPressed(turnLeftKey)) {
 
         controlledPlane->turn(LEFT);
 
-    } else if(isPressed(turn_right_key)) {
+    } else if(isPressed(turnRightKey)) {
 
         controlledPlane->turn(RIGHT);
 
     }
 
-    if(isPressed(shoot_key)) {
+    if(isPressed(shootKey)) {
 
         controlledPlane->shoot();
 

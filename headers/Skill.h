@@ -21,6 +21,7 @@ protected:
 public:
 
 
+
     double getCooldownTime();
 
 
