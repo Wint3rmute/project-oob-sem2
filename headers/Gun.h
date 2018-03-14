@@ -16,10 +16,14 @@ class Gun : public Skill {
 private:
 
     int ammunition = PISTOL_AMMO;
-    double cooldownTime = PISTOL_COOLDOWN_TIME;
+    double cooldownTime = PISTOL_SHOOT_RATE;
+    int current_ammo = PISTOL_AMMO;
+
 
 public:
     void activate(Plane & plane);
+
+    bool isOnCooldown();
 
 
 };

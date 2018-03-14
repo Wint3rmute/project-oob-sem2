@@ -15,15 +15,15 @@ protected:
 
 
     double cooldownTime;
-    clock_t actualCooldown;
+
+    sf::Clock cooldown;
 
 public:
 
+
+
     double getCooldownTime();
 
-    clock_t getActualCooldown();
-
-    void setActualCooldown(clock_t t);
 
     void setCooldownTime(double t);
 

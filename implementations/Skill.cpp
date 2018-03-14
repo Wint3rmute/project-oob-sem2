@@ -10,15 +10,6 @@ double Skill :: getCooldownTime()
     return  cooldownTime;
 }
 
-clock_t Skill :: getActualCooldown()
-{
-    return actualCooldown;
-}
-
-void Skill :: setActualCooldown(clock_t t)
-{
-    actualCooldown = t;
-}
 
 void Skill :: setCooldownTime(double t)
 {
@@ -27,13 +18,14 @@ void Skill :: setCooldownTime(double t)
 
 bool Skill :: isOnCooldown()
 {
-    return (((double) getActualCooldown() / CLOCKS_PER_SEC ) - getCooldownTime()) > 0;
+    return cooldown.getElapsedTime().asSeconds()<cooldownTime;
+
 }
 
 void Skill :: startCooldown()
 {
 
-    setActualCooldown(clock());
+    cooldown.restart();
 
 }
 
