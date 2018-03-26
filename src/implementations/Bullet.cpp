@@ -12,13 +12,14 @@ Bullet :: Bullet (double pos_x, double pos_y, double rotation) : GameObject(BULL
     double direction = rotation * DEG_2_RAD;
     direction_x = cos(direction) * BULLET_SPEED;
     direction_y = sin(direction) * BULLET_SPEED;
-
+    shape.setRadius(BULLET_SIZE);
     shape.setPosition(pos_x, pos_y);
 
 }
 
 
 void Bullet :: draw(sf::RenderTarget & target, sf::RenderStates states) const {
+    //std::cout << "drawing" << std::end;
     target.draw(shape, states);
 
 }
