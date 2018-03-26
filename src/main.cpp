@@ -33,22 +33,21 @@ int main()
 
     NetworkParams params;
 
-
-    params.length = 2;
+    params.length = 3;
     params.neuronCounts = new int [2];
     params.neuronCounts[0] = 2;
     params.neuronCounts[1] = 3;
+    params.neuronCounts[2] = 3;
 
-    NeuralNet a(params);
+    NeuralNet a(&params);
 
 
 
     double * data = new double[2];
-    data[0] = 10;
-    data[1] = 20;
-    cout << "umm lemme just" << data[1]<< endl;
+    data[0] = 0.12;
+    data[1] = -0.654;
+    data[2] = 0.61;
     a.process(data);
 
-    cout << "Working" << endl;
     return 0;
 }

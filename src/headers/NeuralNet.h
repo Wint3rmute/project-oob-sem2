@@ -15,6 +15,7 @@
 class NeuralNet {
 
     SynapseLayer ** weights;
+    NetworkParams * myParams;
 
     /*
      * Calling them matrices is kinda too much.. those are only 1 x n vectors
@@ -29,7 +30,7 @@ public:
     /*
      * Yes
      */
-    explicit NeuralNet(NetworkParams params);
+    explicit NeuralNet(NetworkParams * params);
 
     /*
      * Process the data, without checking the array length,
@@ -38,8 +39,13 @@ public:
     double process(double * data);
     void applyFunctionToResultMatrix(double (*function)(double));
 
+    NeuralNet operator* (float x);
+
     void copyResultToBuffer();
     void fillResultMatrixWith(double value);
+
+    void randomizeByPercent(double percent);
+
     ~NeuralNet();
 
 };

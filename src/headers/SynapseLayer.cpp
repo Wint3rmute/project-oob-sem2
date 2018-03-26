@@ -6,7 +6,15 @@
 
 #include <iostream>
 
+#include <random>
+#include <iostream>
+using namespace std;
+
 SynapseLayer::SynapseLayer(int columns, int rows) {
+
+    std::uniform_real_distribution<double> unif(-1.0, 1.0);
+    std::default_random_engine re;
+
     this->columns = columns;
     this->rows = rows;
 
@@ -16,7 +24,11 @@ SynapseLayer::SynapseLayer(int columns, int rows) {
         values[i] = new double[rows];
 
         for(int z = 0; z < rows; z++)
-            std::cin >> values[i][z];
+        {
+            values[i][z] = unif(re);
+            cout << values[i][z] << endl;
+        }
+
     }
 }
 

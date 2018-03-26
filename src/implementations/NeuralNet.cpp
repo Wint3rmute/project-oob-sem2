@@ -10,23 +10,26 @@ using namespace std;
 
 double sigmoid(double value)
 {
-    return 1.0 / 1.0 + exp(value);
+    //cout << 1.0 / ( 1.0 + exp(-value) ) << endl;
+    return 1.0 / ( 1.0 + exp(-value) );
 }
 
-NeuralNet::NeuralNet(NetworkParams params) {
+NeuralNet::NeuralNet(NetworkParams * params) {
     
-    weights = new SynapseLayer * [params.length - 1];
-    networkLength = params.length;
+    weights = new SynapseLayer * [params->length - 1];
+    networkLength = params->length;
 
-    for (int i = 0; i < params.length - 1; ++i) {
-        weights[i] = new SynapseLayer(params.neuronCounts[i], params.neuronCounts[i+1]);
+    myParams = params;
+
+    for (int i = 0; i < params->length - 1; ++i) {
+        weights[i] = new SynapseLayer(params->neuronCounts[i], params->neuronCounts[i+1]);
     }
 
 
-    multiplyMatricesLength = params.neuronCounts[0];
-    for (int j = 1; j < params.length; ++j) {
-        if(params.neuronCounts[j] > multiplyMatricesLength)
-            multiplyMatricesLength = params.neuronCounts[j];
+    multiplyMatricesLength = params->neuronCounts[0];
+    for (int j = 1; j < params->length; ++j) {
+        if(params->neuronCounts[j] > multiplyMatricesLength)
+            multiplyMatricesLength = params->neuronCounts[j];
     }
 
     resultMatrix = new double[multiplyMatricesLength];
@@ -65,9 +68,6 @@ double NeuralNet::process(double *data) {
     for (int i = 0; i < weights[0]->getColumns(); ++i) {
         bufferMatrix[i] = data[i];
     }
-    cout << endl << "MMMMMMM" << endl;
-
-    cout << "Will be done " << networkLength -1 << " times" << endl;
 
     for (int layerNumber = 0; layerNumber < networkLength - 1; ++layerNumber) {
 
@@ -76,11 +76,9 @@ double NeuralNet::process(double *data) {
          * seems like a good idea
          */
         fillResultMatrixWith(0);
-        cout << "in a loop!" << endl;
         for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
-        for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
+            for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
 
-                cout << resultMatrix[rowNumber] << " += " << bufferMatrix[columnNumber] << " * " << weights[layerNumber]->getElement(columnNumber, rowNumber) << endl;
                 resultMatrix[rowNumber] += bufferMatrix[columnNumber] * weights[layerNumber]->getElement(columnNumber, rowNumber);
 
             }
@@ -90,10 +88,14 @@ double NeuralNet::process(double *data) {
         applyFunctionToResultMatrix(sigmoid);
         copyResultToBuffer();
     }
-    cout << "AWAKE AWAKE" << endl;
+
+    //cout << "AWAKE AWAKE" << endl;
+
+    /*
     for(int i = 0; i < 3; i++)
         cout << resultMatrix[i] << ", ";
     cout << endl;
+    */
 
     return 0;
 }
@@ -118,5 +120,50 @@ void NeuralNet::fillResultMatrixWith(double value) {
     for (int i = 0; i < multiplyMatricesLength; ++i) {
         resultMatrix[i] = value;
     }
+
+}
+
+
+
+NeuralNet NeuralNet::operator*(float x) {
+    NeuralNet result(myParams);
+
+    /*
+     * Copying the weights contents
+     */
+
+    for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
+        for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
+            for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
+
+                result.weights[layerNumber]. weights[layerNumber]->getElement(columnNumber, rowNumber);
+
+            }
+
+        }
+
+
+
+        result.randomizeByPercent(x);
+
+    return result;
+}
+
+void NeuralNet::randomizeByPercent(double percent) {
+
+    for (int layerNumber = 0; layerNumber < networkLength - 1; ++layerNumber) {
+        for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
+            for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
+
+                resultMatrix[rowNumber] += bufferMatrix[columnNumber] * weights[layerNumber]->getElement(columnNumber, rowNumber);
+
+            }
+
+        }
+
+        applyFunctionToResultMatrix(sigmoid);
+        copyResultToBuffer();
+    }
+
 
 }
