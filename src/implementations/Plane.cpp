@@ -74,7 +74,6 @@ void Plane :: simulate() {
 void Plane :: turn(DIRECTION direction) {
     shape.rotate(direction * ROTATION_SPEED * speed);
 }
-
 void Plane :: shoot() {
     gun->activate(*this);
 }
