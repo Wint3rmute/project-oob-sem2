@@ -3,14 +3,14 @@
 #include "headers/Bullet.h"
 #include "headers/KeyboardController.h"
 #include "headers/DummyController.h"
-
+#include <iostream>
 int main()
 {
 
 
     //GameEngine engine;
     Plane *plane = new Plane(50, 50, 90);
-    Plane * plane2 = new Plane(50, 100, 90);
+    Plane * plane2 = new Plane(400, 100, 90);
 
     KeyboardController *keyboardController = new KeyboardController(plane);
     //KeyboardController *keyboardController2 = new KeyboardController(plane2);
@@ -21,6 +21,7 @@ int main()
     GameEngine::addController(dummyController);
     GameEngine::addObject(plane);
     GameEngine::addObject(plane2);
+    std::cout<<GameEngine::getDistance(plane, plane2);
     //GameEngine::removeObject(bullet);
     GameEngine::play();
     return 0;

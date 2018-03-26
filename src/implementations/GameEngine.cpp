@@ -96,7 +96,6 @@ void GameEngine :: play() {
 
         simulateAndRender(window);
         clearRemoveQueue();
-
         sf::sleep(FrameTime - gameClock.getElapsedTime());
         gameClock.restart();
 
@@ -106,4 +105,17 @@ void GameEngine :: play() {
 
 void GameEngine::addController(Controller *newController) {
     controllers.push_back(newController);
+}
+
+
+double GameEngine::getDistance(GameObject * object1, GameObject * object2) {
+
+    double deltaX = object1->shape->getPosition().x - object2->shape->getPosition().x;
+    double deltaY = object1->shape->getPosition().y - object2->shape->getPosition().y;
+
+    return sqrt( pow( deltaX, 2 ) + pow( deltaY, 2 ) );
+}
+
+bool GameEngine::checkColision(GameObject *object1, GameObject *object2) {
+    return getDistance(object1, object2) < object1->size + object2->size;
 }

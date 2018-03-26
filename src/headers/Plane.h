@@ -23,7 +23,6 @@ class Plane : public GameObject {
 
 public:
     double speed;
-    sf::ConvexShape shape;
     Gun *gun;
 
 public:
