@@ -14,6 +14,7 @@
 class Bullet : public GameObject {
 
 public:
+    sf::CircleShape shape;
     double direction_x; // will be set only once, not per each frame.. so we save it globally
     double direction_y;
 
@@ -24,6 +25,9 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     void simulate ();
+
+    sf::Vector2f getPosition();
+    double getRotation();
 
     ~Bullet();
 };

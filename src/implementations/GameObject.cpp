@@ -6,6 +6,6 @@
 
 GameObject::GameObject(float size)  {
     this->size=size;
-    std::size_t N = 30;
-    this->shape = new sf::CircleShape(size,N);
+    //std::size_t N = 30;
+    //this->shape = new sf::CircleShape(size,N);
 }

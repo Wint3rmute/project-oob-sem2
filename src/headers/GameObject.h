@@ -15,12 +15,13 @@ class GameObject : public sf::Drawable {
 public:
     bool wasRemoved = false;
     bool collisionsAffected = false;
-    sf::CircleShape * shape;
     float size;
     virtual void simulate() = 0;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
+    virtual sf::Vector2f getPosition() = 0;
+    virtual double getRotation() = 0;
 
-    GameObject(float size);
+    explicit GameObject(float size);
 
 };
 

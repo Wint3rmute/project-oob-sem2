@@ -64,8 +64,7 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 
 void GameEngine :: clearRemoveQueue () {
 
-
-    while (gameObjectsToRemove.size() != 0) {
+    while (not gameObjectsToRemove.empty()) {
         delete gameObjectsToRemove.back();
         gameObjectsToRemove.pop_back();
     }
@@ -110,8 +109,8 @@ void GameEngine::addController(Controller *newController) {
 
 double GameEngine::getDistance(GameObject * object1, GameObject * object2) {
 
-    double deltaX = object1->shape->getPosition().x - object2->shape->getPosition().x;
-    double deltaY = object1->shape->getPosition().y - object2->shape->getPosition().y;
+    double deltaX = object1->getPosition().x - object2->getPosition().x;
+    double deltaY = object1->getPosition().y - object2->getPosition().y;
 
     return sqrt( pow( deltaX, 2 ) + pow( deltaY, 2 ) );
 }
