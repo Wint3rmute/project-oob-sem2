@@ -13,7 +13,10 @@ Bullet :: Bullet (double pos_x, double pos_y, double rotation) : GameObject(BULL
     direction_x = cos(direction) * BULLET_SPEED;
     direction_y = sin(direction) * BULLET_SPEED;
     shape.setRadius(BULLET_SIZE);
-    shape.setPosition(pos_x, pos_y);
+    shape.setPosition(
+            pos_x + cos(direction) * BULLET_SPAWN_BEFORE_DISTANCE,
+            pos_y + sin(direction) * BULLET_SPAWN_BEFORE_DISTANCE
+    );
 
 }
 

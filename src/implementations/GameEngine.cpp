@@ -3,8 +3,6 @@
 //
 
 #include "../headers/GameEngine.h"
-#include "../headers/GameObject.h"
-#include "../utils/constants.h"
 
 #include <iostream>
 using namespace std;
@@ -38,7 +36,6 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 
     objectToRemove->wasRemoved = true;
 
-
 }
 
 
@@ -56,6 +53,17 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
         gameObject -> simulate();
         window.draw(*gameObject);
 
+
+        if(gameObject->collisionsAffected) {
+
+            for( auto possibleCollision : gameObjects)
+            {
+                if(not possibleCollision->collisionsAffected and checkColision(gameObject, possibleCollision)) {
+                    cout << "JA PIERDOLE" << endl;
+                }
+            }
+        }
+
     }
 
     window.display();
@@ -68,7 +76,6 @@ void GameEngine :: clearRemoveQueue () {
         delete gameObjectsToRemove.back();
         gameObjectsToRemove.pop_back();
     }
-
 
 }
 

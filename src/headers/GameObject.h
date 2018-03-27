@@ -5,7 +5,7 @@
 #ifndef PROJECT_GAMEOBJECT_H
 #define PROJECT_GAMEOBJECT_H
 
-
+#include <math.h>
 #include <SFML/Graphics.hpp>
 #include <cstdio>
 
