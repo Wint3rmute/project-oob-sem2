@@ -88,3 +88,15 @@ sf::Vector2f Plane :: getPosition() {
 double Plane :: getRotation() {
     return shape.getRotation();
 }
+
+void Plane::setController(Controller *controller) {
+    this->controller = controller;
+}
+
+Plane::~Plane() {
+    delete gun;
+}
+
+Controller *Plane::getController() {
+    return controller;
+}

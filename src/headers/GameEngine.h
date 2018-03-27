@@ -12,13 +12,18 @@
 #include "Controller.h"
 #include "Bullet.h"
 
+enum GameState {
+    IN_PROGRESS,
+    DONE
+};
 
-class GameEngine{
-
+class GameEngine {
+    
     static std::vector <GameObject *> gameObjects;
     static std::vector <GameObject *> gameObjectsToRemove;
     static std::vector <Controller *> controllers;
     static std::vector <Controller *> controllersToRemove;
+    static GameState gameState;
 
 public:
 
