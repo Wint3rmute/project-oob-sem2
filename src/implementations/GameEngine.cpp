@@ -59,7 +59,7 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
             for( auto possibleCollision : gameObjects)
             {
                 if(not possibleCollision->collisionsAffected and checkColision(gameObject, possibleCollision)) {
-                    cout << "JA PIERDOLE" << endl;
+                    cout << "Collision!" << endl;
                 }
             }
         }
