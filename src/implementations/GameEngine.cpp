@@ -3,8 +3,6 @@
 //
 
 #include "../headers/GameEngine.h"
-#include "../headers/GameObject.h"
-#include "../utils/constants.h"
 
 #include <iostream>
 using namespace std;
@@ -38,7 +36,6 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 
     objectToRemove->wasRemoved = true;
 
-
 }
 
 
@@ -56,6 +53,17 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
         gameObject -> simulate();
         window.draw(*gameObject);
 
+
+        if(gameObject->collisionsAffected) {
+
+            for( auto possibleCollision : gameObjects)
+            {
+                if(not possibleCollision->collisionsAffected and checkColision(gameObject, possibleCollision)) {
+                    cout << "Collision!" << endl;
+                }
+            }
+        }
+
     }
 
     window.display();
@@ -64,12 +72,10 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 
 void GameEngine :: clearRemoveQueue () {
 
-
-    while (gameObjectsToRemove.size() != 0) {
+    while (not gameObjectsToRemove.empty()) {
         delete gameObjectsToRemove.back();
         gameObjectsToRemove.pop_back();
     }
-
 
 }
 
@@ -96,7 +102,6 @@ void GameEngine :: play() {
 
         simulateAndRender(window);
         clearRemoveQueue();
-
         sf::sleep(FrameTime - gameClock.getElapsedTime());
         gameClock.restart();
 
@@ -106,4 +111,17 @@ void GameEngine :: play() {
 
 void GameEngine::addController(Controller *newController) {
     controllers.push_back(newController);
+}
+
+
+double GameEngine::getDistance(GameObject * object1, GameObject * object2) {
+
+    double deltaX = object1->getPosition().x - object2->getPosition().x;
+    double deltaY = object1->getPosition().y - object2->getPosition().y;
+
+    return sqrt( pow( deltaX, 2 ) + pow( deltaY, 2 ) );
+}
+
+bool GameEngine::checkColision(GameObject *object1, GameObject *object2) {
+    return getDistance(object1, object2) < object1->size + object2->size;
 }

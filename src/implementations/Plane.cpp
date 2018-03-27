@@ -3,6 +3,7 @@
 //
 
 #include <cmath>
+#include <iostream>
 #include "../headers/Plane.h"
 #include "../utils/constants.h"
 #include "../headers/Gun.h"
@@ -11,24 +12,26 @@ using namespace std;
 class Gun;
 
 
-Plane::Plane (int pos_x, int pos_y, double rotation) {
+Plane::Plane (int pos_x, int pos_y, double rotation) : GameObject(PLANE_COLLIDER_SIZE) {
+
+    collisionsAffected = true;
 
     speed = PLANE_SPEED;
     gun = new Gun();
     // resize shape to 5 points
-    shape.setPointCount(5);
+   shape.setPointCount(4);
 
     // define the shape points
-    shape.setPoint(0, sf::Vector2f(0, 0));
-    shape.setPoint(1, sf::Vector2f(30, 0));
-    shape.setPoint(2, sf::Vector2f(50, 7));
-    shape.setPoint(3, sf::Vector2f(30, 14));
-    shape.setPoint(4, sf::Vector2f(0, 14));
+    shape.setPoint(0, sf::Vector2f(12, 14));
+    shape.setPoint(1, sf::Vector2f(0, 0));
+    shape.setPoint(2, sf::Vector2f(34, 14));
+    shape.setPoint(3, sf::Vector2f(0, 28));
+    //shape.setPoint(4, sf::Vector2f(0, 14));
 
 
     shape.setPosition(pos_x, pos_y);
     shape.setRotation(rotation);
-    shape.setOrigin(25,10);
+    shape.setOrigin(12,14);
 
 }
 
@@ -49,6 +52,7 @@ void Plane :: simulate() {
     speed += sin(angle_rad) * ACCELERATION_MULTIPLIER;
 
     if ( shape.getPosition().y <= -TELEPORTATION_TRIGGER_OFFSET)
+        cout << "TP" << endl;
         shape.move(0, GAME_WINDOW_HEIGHT + TELEPORTATION_TRIGGER_OFFSET);
 
     if ( shape.getPosition().y >= GAME_WINDOW_HEIGHT + TELEPORTATION_TRIGGER_OFFSET)

@@ -7,8 +7,10 @@
 
 
 #include <vector>
+#include <cmath>
 #include "GameObject.h"
 #include "Controller.h"
+#include "Bullet.h"
 
 
 class GameEngine{
@@ -26,6 +28,10 @@ public:
     static void simulateAndRender (sf::RenderWindow & window);
     static void clearRemoveQueue();
     static void play();
+
+    static double getDistance(GameObject * object1, GameObject * object2);
+    static bool checkColision(GameObject * object1, GameObject * object2);
+
 
 };
 

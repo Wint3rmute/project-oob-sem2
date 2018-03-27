@@ -22,8 +22,8 @@ class Plane : public GameObject {
 
 
 public:
-    double speed;
     sf::ConvexShape shape;
+    double speed;
     Gun *gun;
 
 public:
@@ -32,8 +32,6 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     void simulate ();
-
-    void steer ();
 
     void turn (DIRECTION direction);
     void shoot();

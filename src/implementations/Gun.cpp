@@ -10,6 +10,7 @@
 
 void Gun :: activate(Plane & plane)
 {
+
     if(!isOnCooldown())
     {
         setCooldownTime(PISTOL_SHOOT_RATE);
@@ -19,8 +20,9 @@ void Gun :: activate(Plane & plane)
                     plane.getPosition().y,
                     plane.getRotation());
 
-            GameEngine::addObject(bullet);
+        GameEngine::addObject(bullet);
         current_ammo--;
+
         if(current_ammo==0)
         {
             setCooldownTime(PISTOL_COOLDOWN_TIME);
@@ -32,5 +34,6 @@ void Gun :: activate(Plane & plane)
 }
 bool Gun :: isOnCooldown()
 {
+    return false;
     return cooldown.getElapsedTime().asSeconds()<cooldownTime;
 }
