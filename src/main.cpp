@@ -14,7 +14,7 @@ int main()
 
     KeyboardController *keyboardController = new KeyboardController(plane);
     KeyboardController *keyboardController2 = new KeyboardController(plane2);
-    //DummyController *dummyController = new DummyController(plane2);
+    DummyController *dummyController = new DummyController(plane2);
     keyboardController->changeKeys(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W, sf::Keyboard::S);
 
     GameEngine::addController(keyboardController);

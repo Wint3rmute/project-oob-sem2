@@ -11,11 +11,29 @@ using namespace std;
 std::vector <GameObject *> GameEngine :: gameObjects;
 std::vector <GameObject *> GameEngine :: gameObjectsToRemove;
 std::vector <Controller *> GameEngine :: controllers;
+std::vector <Controller *> GameEngine :: controllersToRemove;
 
 
 void GameEngine :: addObject (GameObject * newObject) {
 
     gameObjects.push_back(newObject);
+
+}
+
+void GameEngine::removeController(Controller *controllerToRemove) {
+    if(controllerToRemove->wasRemoved)
+        return;
+
+    controllersToRemove.push_back(controllerToRemove);
+
+    controllers.erase(
+            std::remove(
+                    controllers.begin(),
+                    controllers.end(),
+                    controllerToRemove),
+            controllers.end());
+
+    controllerToRemove->wasRemoved = true;
 
 }
 
@@ -75,6 +93,11 @@ void GameEngine :: clearRemoveQueue () {
     while (not gameObjectsToRemove.empty()) {
         delete gameObjectsToRemove.back();
         gameObjectsToRemove.pop_back();
+    }
+
+    while(not controllersToRemove.empty()) {
+        delete controllersToRemove.back();
+        controllersToRemove.pop_back();
     }
 
 }

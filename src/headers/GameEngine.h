@@ -18,11 +18,13 @@ class GameEngine{
     static std::vector <GameObject *> gameObjects;
     static std::vector <GameObject *> gameObjectsToRemove;
     static std::vector <Controller *> controllers;
+    static std::vector <Controller *> controllersToRemove;
 
 public:
 
     static void addObject(GameObject * newObject);
     static void addController(Controller * newController);
+    static void removeController(Controller * controllerToRemove);
 
     static void removeObject (GameObject * objectToRemove);
     static void simulateAndRender (sf::RenderWindow & window);
