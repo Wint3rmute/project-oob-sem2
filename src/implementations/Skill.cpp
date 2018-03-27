@@ -3,7 +3,9 @@
 //
 
 #include <ctime>
+#include <iostream>
 #include "../headers/Skill.h"
+using namespace std;
 
 double Skill :: getCooldownTime()
 {
@@ -18,7 +20,7 @@ void Skill :: setCooldownTime(double t)
 
 bool Skill :: isOnCooldown()
 {
-    return cooldown.getElapsedTime().asSeconds()<cooldownTime;
+    return cooldown.getElapsedTime().asSeconds() < cooldownTime;
 
 }
 

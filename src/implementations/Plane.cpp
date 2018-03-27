@@ -52,7 +52,6 @@ void Plane :: simulate() {
     speed += sin(angle_rad) * ACCELERATION_MULTIPLIER;
 
     if ( shape.getPosition().y <= -TELEPORTATION_TRIGGER_OFFSET)
-        cout << "TP" << endl;
         shape.move(0, GAME_WINDOW_HEIGHT + TELEPORTATION_TRIGGER_OFFSET);
 
     if ( shape.getPosition().y >= GAME_WINDOW_HEIGHT + TELEPORTATION_TRIGGER_OFFSET)
