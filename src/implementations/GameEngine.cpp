@@ -12,6 +12,7 @@ std::vector <GameObject *> GameEngine :: gameObjects;
 std::vector <GameObject *> GameEngine :: gameObjectsToRemove;
 std::vector <Controller *> GameEngine :: controllers;
 std::vector <Controller *> GameEngine :: controllersToRemove;
+GameState GameEngine :: gameState;
 
 
 void GameEngine :: addObject (GameObject * newObject) {
@@ -77,7 +78,11 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
             for( auto possibleCollision : gameObjects)
             {
                 if(not possibleCollision->collisionsAffected and checkColision(gameObject, possibleCollision)) {
-                    cout << "Collision!" << endl;
+                    //cout << "Collision!" << endl;
+                    //gameState = DONE;
+
+                    GameEngine::removeController( static_cast<Plane *>(gameObject)->getController());
+                    GameEngine::removeObject(gameObject);
                 }
             }
         }
@@ -104,6 +109,7 @@ void GameEngine :: clearRemoveQueue () {
 
 void GameEngine :: play() {
 
+    gameState = IN_PROGRESS;
     sf::Time FrameTime = sf::seconds(FRAME_TIME);
     sf::Clock gameClock;
 
@@ -112,7 +118,7 @@ void GameEngine :: play() {
             "Hardcoded strings rock!");
 
 
-    while (window.isOpen())
+    while (window.isOpen() && gameState == IN_PROGRESS)
     {
 
         sf::Event event;

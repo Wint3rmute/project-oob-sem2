@@ -6,4 +6,5 @@
 
 Controller::Controller(Plane * plane) {
     controlledPlane = plane;
+    plane->setController(this);
 }
