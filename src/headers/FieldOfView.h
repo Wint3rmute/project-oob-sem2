@@ -7,20 +7,25 @@
 
 #include <SFML/Graphics/CircleShape.hpp>
 #include "GameObject.h"
-
-class Plane;
+#include "Plane.h"
 
 class FieldOfView : public GameObject {
 
     Plane * plane;
-    int visualCells;
-    sf::CircleShape * cells;
+    int visualCellsCount;
+    sf::CircleShape ** cells;
+    double * distances;
 
 public:
-    FieldOfView(Plane * plane);
+    FieldOfView(Plane * plane, int howManyCells);
 
+    void simulate() override;
 
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
+    sf::Vector2f getPosition() override;
+
+    double getRotation() override;
 };
 
 

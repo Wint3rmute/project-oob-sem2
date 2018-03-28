@@ -3,6 +3,7 @@
 #include "headers/Bullet.h"
 #include "headers/KeyboardController.h"
 #include "headers/DummyController.h"
+#include "headers/FieldOfView.h"
 #include <iostream>
 int main()
 {
@@ -12,11 +13,13 @@ int main()
     Plane *plane = new Plane(50, 50, 90);
     Plane * plane2 = new Plane(400, 100, 90);
 
+    FieldOfView * fov = new FieldOfView(plane, VISUAL_CELLS_COUNT);
+
     KeyboardController *keyboardController = new KeyboardController(plane);
-    KeyboardController *keyboardController2 = new KeyboardController(plane2);
-    DummyController *dummyController = new DummyController(plane2);
+    DummyController *keyboardController2 = new DummyController(plane2);
     keyboardController->changeKeys(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W, sf::Keyboard::S);
 
+    GameEngine::addObject(fov);
     GameEngine::addController(keyboardController);
     GameEngine::addController(keyboardController2);
     GameEngine::addObject(plane);

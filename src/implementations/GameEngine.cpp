@@ -77,11 +77,11 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 
             for( auto possibleCollision : gameObjects)
             {
-                if(possibleCollision->collisionMode == AFFECTOR and checkColision(gameObject, possibleCollision)) {
+                if(possibleCollision->collisionMode == AFFECTOR and checkCollision(gameObject, possibleCollision)) {
                     //cout << "Collision!" << endl;
                     //gameState = DONE;
 
-                    GameEngine::removeController( static_cast<Plane *>(gameObject)->getController());
+                    GameEngine::removeController(dynamic_cast <Plane *> (gameObject)->getController());
                     GameEngine::removeObject(gameObject);
 
                     GameEngine::removeObject(possibleCollision);
@@ -147,12 +147,17 @@ void GameEngine::addController(Controller *newController) {
 
 double GameEngine::getDistance(GameObject * object1, GameObject * object2) {
 
-    double deltaX = object1->getPosition().x - object2->getPosition().x;
-    double deltaY = object1->getPosition().y - object2->getPosition().y;
+    return getDistance(object1->getPosition(), object2->getPosition());
+ }
+
+double GameEngine::getDistance(const sf::Vector2f&  object1, const sf::Vector2f& object2) {
+
+    double deltaX = object1.x - object2.x;
+    double deltaY = object1.y - object2.y;
 
     return sqrt( pow( deltaX, 2 ) + pow( deltaY, 2 ) );
 }
 
-bool GameEngine::checkColision(GameObject *object1, GameObject *object2) {
+bool GameEngine::checkCollision(GameObject *object1, GameObject *object2) {
     return getDistance(object1, object2) < object1->size + object2->size;
 }

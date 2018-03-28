@@ -28,18 +28,26 @@ Plane::Plane (int pos_x, int pos_y, double rotation) : GameObject(PLANE_COLLIDER
     shape.setPoint(3, sf::Vector2f(0, 28));
     //shape.setPoint(4, sf::Vector2f(0, 14));
 
+    sf::FloatRect boundingBox = shape.getGlobalBounds();
+
 
     shape.setPosition(pos_x, pos_y);
     shape.setRotation(rotation);
-    shape.setOrigin(12,14);
+    shape.setOrigin(boundingBox.width / 2.0 , boundingBox.height / 2.0 );
 
 }
 
 
 void Plane :: draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
-    target.draw(shape, states);
+    sf::CircleShape s;
+    s.setRadius(1);
+    s.setFillColor(sf::Color::Red);
 
+
+    s.setPosition(shape.getPosition());
+    target.draw(shape, states);
+    target.draw(s, states);
 }
 
 void Plane :: simulate() {
