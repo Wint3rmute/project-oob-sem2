@@ -73,16 +73,18 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
         window.draw(*gameObject);
 
 
-        if(gameObject->collisionsAffected) {
+        if(gameObject->collisionMode == AFFECTED) {
 
             for( auto possibleCollision : gameObjects)
             {
-                if(not possibleCollision->collisionsAffected and checkColision(gameObject, possibleCollision)) {
+                if(possibleCollision->collisionMode == AFFECTOR and checkColision(gameObject, possibleCollision)) {
                     //cout << "Collision!" << endl;
                     //gameState = DONE;
 
                     GameEngine::removeController( static_cast<Plane *>(gameObject)->getController());
                     GameEngine::removeObject(gameObject);
+
+                    GameEngine::removeObject(possibleCollision);
                 }
             }
         }

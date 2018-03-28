@@ -9,6 +9,8 @@
 
 Bullet :: Bullet (double pos_x, double pos_y, double rotation) : GameObject(BULLET_SIZE) {
 
+    collisionMode = AFFECTOR;
+
     double direction = rotation * DEG_2_RAD;
     direction_x = cos(direction) * BULLET_SPEED;
     direction_y = sin(direction) * BULLET_SPEED;

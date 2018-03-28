@@ -14,7 +14,7 @@ class Gun;
 
 Plane::Plane (int pos_x, int pos_y, double rotation) : GameObject(PLANE_COLLIDER_SIZE) {
 
-    collisionsAffected = true;
+    collisionMode = AFFECTED;
 
     speed = PLANE_SPEED;
     gun = new Gun();
