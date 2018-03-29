@@ -7,12 +7,20 @@
 
 #include "SynapseLayer.h"
 #include "../utils/structs.h"
+#include "RandomGenerator.h"
+#include <cmath>
 
 
 /*
  * That's just a fancy name for a matrix multiplication algorithm
  */
 class NeuralNet {
+
+    /*
+     * Used for random weights generation
+     */
+    static std::uniform_real_distribution<double> uniform_real_distribution;
+    static std::default_random_engine random_engine;
 
     SynapseLayer ** weights;
     NetworkParams * myParams;
@@ -26,11 +34,13 @@ class NeuralNet {
     int networkLength;
     int multiplyMatricesLength;
 
+    RandomGenerator generator;
+
 public:
     /*
      * Yes
      */
-    explicit NeuralNet(NetworkParams * params);
+    explicit NeuralNet(NetworkParams * params) : generator(0.0, 1.0);//TODO FIX
 
     /*
      * Process the data, without checking the array length,

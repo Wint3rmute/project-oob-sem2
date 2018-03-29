@@ -63,6 +63,7 @@ int main()
     data[1] = -0.654;
     data[2] = 0.61;
     a.process(data);
+    a.randomizeByPercent(0.1);
 
     return 0;
 }

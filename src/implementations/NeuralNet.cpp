@@ -2,11 +2,13 @@
 // Created by wint3rmute on 3/16/18.
 //
 
-#include <cmath>
 #include "../headers/NeuralNet.h"
 
 #include <iostream>
 using namespace std;
+
+std::uniform_real_distribution<double> NeuralNet::uniform_real_distribution(0.0, 1.0);
+std::default_random_engine NeuralNet::random_engine;
 
 double sigmoid(double value)
 {
@@ -15,6 +17,8 @@ double sigmoid(double value)
 }
 
 NeuralNet::NeuralNet(NetworkParams * params) {
+
+
     
     weights = new SynapseLayer * [params->length - 1];
     networkLength = params->length;
@@ -162,8 +166,14 @@ void NeuralNet::randomizeByPercent(double percent) {
         for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
             for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
 
-
-                resultMatrix[rowNumber] += bufferMatrix[columnNumber] * weights[layerNumber]->getElement(columnNumber, rowNumber);
+                if(uniform_real_distribution(random_engine) < percent)
+                {
+                    /*
+                     * This mutates a random element
+                     */
+                    cout << "mutation" << layerNumber << " " << columnNumber << " " << rowNumber << endl;
+                    weights[layerNumber]->setElement(columnNumber, rowNumber, SynapseLayer::getRandomWeight());
+                }
 
             }
         }
