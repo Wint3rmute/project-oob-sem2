@@ -21,6 +21,7 @@ enum DIRECTION {
 
 class Plane : public GameObject {
 
+    static int howManyPlanes;
     sf::ConvexShape shape;
     double speed;
     Gun *gun;
