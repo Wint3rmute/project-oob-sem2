@@ -2,7 +2,7 @@
 // Created by wint3rmute on 3/16/18.
 //
 
-#include "../implementations/SynapseLayer.h"
+#include "../headers/SynapseLayer.h"
 
 #include <iostream>
 
@@ -10,10 +10,11 @@
 #include <iostream>
 using namespace std;
 
-SynapseLayer::SynapseLayer(int columns, int rows) {
+std::uniform_real_distribution<double> SynapseLayer::unif(-1.0, 1.0);
+std::default_random_engine SynapseLayer::re;
 
-    std::uniform_real_distribution<double> unif(-1.0, 1.0);
-    std::default_random_engine re;
+
+SynapseLayer::SynapseLayer(int columns, int rows) {
 
     this->columns = columns;
     this->rows = rows;
@@ -25,7 +26,7 @@ SynapseLayer::SynapseLayer(int columns, int rows) {
 
         for(int z = 0; z < rows; z++)
         {
-            values[i][z] = unif(re);
+            values[i][z] = getRandomWeight();
             cout << values[i][z] << endl;
         }
 
@@ -52,4 +53,12 @@ int SynapseLayer::getColumns() {
 
 int SynapseLayer::getRows() {
     return rows;
+}
+
+void SynapseLayer::setElement(const int &column, const int &row, const double &value) {
+    values[column][row] = value;
+}
+
+double SynapseLayer::getRandomWeight() {
+    return unif(re);
 }

@@ -6,10 +6,15 @@
 #define PROJECT_SYNAPSELAYER_H
 
 
+#include <random>
+
 class SynapseLayer {
 
     double ** values;
     int columns, rows;
+
+    static std::uniform_real_distribution<double> unif;
+    static std::default_random_engine re;
 
 
 public:
@@ -19,8 +24,11 @@ public:
      */
     SynapseLayer(int columns, int rows);
     double getElement(const int& column, const int& row);
+    void setElement(const int& column, const int& row, const double & value);
     int getColumns();
     int getRows();
+
+    static double getRandomWeight();
 
 
     ~SynapseLayer();

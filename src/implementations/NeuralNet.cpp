@@ -55,7 +55,7 @@ NeuralNet::~NeuralNet() {
  *
  * (and also lets write it in a reasonable time)
  */
-double NeuralNet::process(double *data) {
+const double * NeuralNet::process(const double *data) {
 
     /*
      * First we copy the input data to the buffer array,
@@ -89,15 +89,8 @@ double NeuralNet::process(double *data) {
         copyResultToBuffer();
     }
 
-    //cout << "AWAKE AWAKE" << endl;
 
-    /*
-    for(int i = 0; i < 3; i++)
-        cout << resultMatrix[i] << ", ";
-    cout << endl;
-    */
-
-    return 0;
+    return resultMatrix;
 }
 
 void NeuralNet::copyResultToBuffer(){
@@ -124,23 +117,34 @@ void NeuralNet::fillResultMatrixWith(double value) {
 }
 
 
-
+/*
+ * Network mutation
+ */
 NeuralNet NeuralNet::operator*(float x) {
     NeuralNet result(myParams);
 
     /*
      * Copying the weights contents
      */
-
     for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
         for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
             for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
 
-                result.weights[layerNumber]. weights[layerNumber]->getElement(columnNumber, rowNumber);
-
+                /*
+                 * I know it looks terrifying
+                 */
+                result.weights[layerNumber]->setElement(
+                        columnNumber,
+                        rowNumber,
+                        this->weights[layerNumber]->getElement(
+                                columnNumber,
+                                rowNumber
+                        )
+                );
             }
 
         }
+    }
 
 
 
@@ -148,6 +152,7 @@ NeuralNet NeuralNet::operator*(float x) {
 
     return result;
 }
+
 
 void NeuralNet::randomizeByPercent(double percent) {
 

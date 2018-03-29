@@ -5,7 +5,7 @@
 #ifndef PROJECT_NEURALNET_H
 #define PROJECT_NEURALNET_H
 
-#include "../implementations/SynapseLayer.h"
+#include "SynapseLayer.h"
 #include "../utils/structs.h"
 
 
@@ -36,7 +36,7 @@ public:
      * Process the data, without checking the array length,
      * who needs safety anyway
      */
-    double process(double * data);
+    const double * process(const double * data);
     void applyFunctionToResultMatrix(double (*function)(double));
 
     NeuralNet operator* (float x);

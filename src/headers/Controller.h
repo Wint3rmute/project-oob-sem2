@@ -13,6 +13,7 @@ protected:
     Plane * controlledPlane;
 
 public:
+    bool wasRemoved = false;
     explicit Controller(Plane * plane);
     virtual void control() = 0;
 };

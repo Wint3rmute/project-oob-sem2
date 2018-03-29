@@ -8,6 +8,7 @@
 
 #include "GameObject.h"
 
+class Controller;
 class Gun;
 
 enum DIRECTION {
@@ -20,26 +21,29 @@ enum DIRECTION {
 
 class Plane : public GameObject {
 
-
-public:
-    double speed;
+    static int howManyPlanes;
     sf::ConvexShape shape;
+    double speed;
     Gun *gun;
+    Controller * controller;
 
 public:
     Plane (int pos_x, int pos_y, double rotation);
 
+    void setController(Controller * controller);
+    Controller * getController();
+
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     void simulate ();
-
-    void steer ();
 
     void turn (DIRECTION direction);
     void shoot();
 
     sf::Vector2f getPosition();
     double getRotation();
+
+    ~Plane();
 
 };
 

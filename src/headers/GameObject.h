@@ -5,17 +5,33 @@
 #ifndef PROJECT_GAMEOBJECT_H
 #define PROJECT_GAMEOBJECT_H
 
-
+#include <cmath>
 #include <SFML/Graphics.hpp>
+#include <cstdio>
 
+/*
+ * Affected - collisions make an effect to him (example: plane is killed by a collision)
+ * Affector - causes collisions with AFFECTED objects
+ * Non colliding - does nothing with collisions
+ */
+enum CollisionMode {
+    AFFECTED,
+    AFFECTOR,
+    NON_COLLIDING
+};
 
 class GameObject : public sf::Drawable {
 
 public:
     bool wasRemoved = false;
-    bool collisionsAffected = false;
+    CollisionMode collisionMode = NON_COLLIDING;
+    float size;
     virtual void simulate() = 0;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
+    virtual sf::Vector2f getPosition() = 0;
+    virtual double getRotation() = 0;
+
+    explicit GameObject(float size);
 
 };
 
