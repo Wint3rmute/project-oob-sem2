@@ -10,8 +10,8 @@
 #include <iostream>
 using namespace std;
 
-std::uniform_real_distribution<double> SynapseLayer::unif(-1.0, 1.0);
-std::default_random_engine SynapseLayer::re;
+std::uniform_real_distribution<double> SynapseLayer::uniform_real_distribution(-1.0, 1.0);
+std::default_random_engine SynapseLayer::random_engine;
 
 
 SynapseLayer::SynapseLayer(int columns, int rows) {
@@ -60,5 +60,5 @@ void SynapseLayer::setElement(const int &column, const int &row, const double &v
 }
 
 double SynapseLayer::getRandomWeight() {
-    return unif(re);
+    return uniform_real_distribution(random_engine);
 }

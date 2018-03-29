@@ -132,6 +132,7 @@ NeuralNet NeuralNet::operator*(float x) {
 
                 /*
                  * I know it looks terrifying
+                 * But it's just copying each corresponding weight
                  */
                 result.weights[layerNumber]->setElement(
                         columnNumber,
@@ -141,8 +142,9 @@ NeuralNet NeuralNet::operator*(float x) {
                                 rowNumber
                         )
                 );
-            }
 
+
+            }
         }
     }
 
@@ -160,15 +162,13 @@ void NeuralNet::randomizeByPercent(double percent) {
         for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
             for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
 
+
                 resultMatrix[rowNumber] += bufferMatrix[columnNumber] * weights[layerNumber]->getElement(columnNumber, rowNumber);
 
             }
-
         }
 
         applyFunctionToResultMatrix(sigmoid);
         copyResultToBuffer();
     }
-
-
 }
