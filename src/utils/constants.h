@@ -12,6 +12,7 @@
 #define GAME_WINDOW_WIDTH 1000
 #define FRAME_TIME (1.0/60.0)
 #define TELEPORTATION_TRIGGER_OFFSET 20
+#define BACKGROUND_COLOR sf::Color(56,56,56)
 
 /*
  * Plane object related
@@ -41,7 +42,7 @@
 /*
  * FieldOfView object related
  */
-#define VISUAL_CELLS_COUNT 10
+#define VISUAL_CELLS_COUNT 30
 #define VISUAL_CELL_SIZE 4
 #define VISUAL_CELL_DISTANCE_FROM_PLANE 30
 

@@ -21,18 +21,20 @@ FieldOfView::FieldOfView(Plane *plane, int howManyCells) : GameObject(0)  {
         cells[i]->setOrigin(2,2);
     }
 
-    distances = new double [howManyCells];
-
-
-
+    distances_to_bullets = new double [howManyCells];
+    distances_to_planes = new double [howManyCells];
 
 
 }
 
 void FieldOfView::simulate() {
 
-    if(plane == NULL)
+    if(plane->wasRemoved) //
+    {
+        GameEngine::removeObject(this);
         return;
+    }
+
 
     for (int i = 0; i < visualCellsCount; ++i) {
         cells[i]->setPosition(plane->getPosition());
@@ -44,37 +46,56 @@ void FieldOfView::simulate() {
         );
     }
 
-    double smallestDistance = 1000;
-    int bestVisualCellNumber = 0;
+
+    double smallestDistanceBullet = 100000.0,
+            smallestDistancePlane = 100000.0;
+
+    int bestVisualCellNumberBullet = -1,
+            bestVisualCellNumberPlane = -1;
 
     for (int j = 0; j < visualCellsCount; ++j) {
-        distances[j] = 0.0;
+        distances_to_bullets[j] = 0.0;
+        distances_to_planes[j] = 0.0;
     }
+
 
     for(auto gameObject : GameEngine::gameObjects) {
 
-        if(gameObject->collisionMode == NON_COLLIDING ||gameObject == this->plane)
+        if(gameObject->collisionMode == NON_COLLIDING or gameObject == this->plane)
             continue;
 
         for (int i = 0; i < visualCellsCount; ++i) {
 
             double temporaryDistance = GameEngine::getDistance(gameObject->getPosition(), cells[i]->getPosition());
 
-            if (temporaryDistance < smallestDistance) {
-                smallestDistance = temporaryDistance;
-                bestVisualCellNumber = i;
-            }
+            if(gameObject->collisionMode == AFFECTOR) { //if we have a bullet TODO: this if fires too many times, this could be checked before the loop
+                if (temporaryDistance < smallestDistanceBullet) {
+                    smallestDistanceBullet = temporaryDistance;
+                    bestVisualCellNumberBullet = i;
+                }
 
+            } else {
+
+                if (temporaryDistance < smallestDistancePlane) { //if we have a plane
+                    smallestDistancePlane = temporaryDistance;
+                    bestVisualCellNumberPlane = i;
+                }
+            }
         }
 
-        distances[bestVisualCellNumber] = smallestDistance;
+        if(bestVisualCellNumberPlane != -1)
+            distances_to_planes[bestVisualCellNumberPlane] = smallestDistancePlane;
+
+
+        if(bestVisualCellNumberBullet != -1)
+            distances_to_bullets[bestVisualCellNumberBullet] = smallestDistanceBullet;
     }
 
     for (int i = 0; i < visualCellsCount; ++i) {
-        cells[i]->setFillColor(sf::Color( distances[i] * 100 , 0, 0));
+        cells[i]->setFillColor(sf::Color( 56 +distances_to_planes[i] * 100 , 56 + distances_to_bullets[i] * 100, 56));
     }
 
-    std::cout << distances[0] << std::endl;
+
 }
 
 void FieldOfView::draw(sf::RenderTarget &target, sf::RenderStates states) const {

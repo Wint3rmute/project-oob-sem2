@@ -14,7 +14,8 @@ class FieldOfView : public GameObject {
     Plane * plane;
     int visualCellsCount;
     sf::CircleShape ** cells;
-    double * distances;
+    double * distances_to_bullets;
+    double * distances_to_planes;
 
 public:
     FieldOfView(Plane * plane, int howManyCells);

@@ -60,7 +60,7 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 
 void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 
-    window.clear();
+    window.clear(BACKGROUND_COLOR);
 
     for (auto controller : controllers )
     {

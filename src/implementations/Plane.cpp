@@ -11,8 +11,11 @@
 using namespace std;
 class Gun;
 
+int Plane::howManyPlanes;
 
 Plane::Plane (int pos_x, int pos_y, double rotation) : GameObject(PLANE_COLLIDER_SIZE) {
+
+    howManyPlanes++;
 
     collisionMode = AFFECTED;
 
@@ -103,6 +106,8 @@ void Plane::setController(Controller *controller) {
 
 Plane::~Plane() {
     delete gun;
+    howManyPlanes--;
+    cout << howManyPlanes << endl;
 }
 
 Controller *Plane::getController() {
