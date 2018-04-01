@@ -4,14 +4,13 @@
 
 #include <iostream>
 #include "../headers/FieldOfView.h"
-#include "../utils/constants.h"
-#include "../headers/GameEngine.h"
 
 
 FieldOfView::FieldOfView(Plane *plane, int howManyCells) : GameObject(0)  {
 
     this->plane = plane;
     visualCellsCount = howManyCells;
+    objectType = HIDEO_KOJIMA;
 
     cells = new sf::CircleShape * [visualCellsCount];
 

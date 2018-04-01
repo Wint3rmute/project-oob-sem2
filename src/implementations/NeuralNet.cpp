@@ -59,7 +59,7 @@ NeuralNet::~NeuralNet() {
  *
  * (and also lets write it in a reasonable time)
  */
-const double * NeuralNet::process(const double *data) {
+double * NeuralNet::process(const double *data) {
 
     /*
      * First we copy the input data to the buffer array,

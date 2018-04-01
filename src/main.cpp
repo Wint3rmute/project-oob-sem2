@@ -4,6 +4,7 @@
 #include "headers/KeyboardController.h"
 #include "headers/DummyController.h"
 #include "headers/NeuralNet.h"
+#include "headers/NeuralController.h"
 
 #include <iostream>
 
@@ -13,57 +14,48 @@ using namespace std; //I'm going to hell for this
 int main()
 {
 
-/*
-=======
-#include "headers/FieldOfView.h"
-#include <iostream>
-
-using namespace std;
-
-int main()
-{
->>>>>>> 6ea3f5c4b1c1c52b9963b5a59e2de63cca928454
-    //GameEngine engine;
-    Plane *plane = new Plane(50, 50, 90);
-    Plane * plane2 = new Plane(400, 100, 90);
-
-    FieldOfView * fov = new FieldOfView(plane, VISUAL_CELLS_COUNT);
-
-    KeyboardController *keyboardController = new KeyboardController(plane);
-    DummyController *keyboardController2 = new DummyController(plane2);
-    keyboardController->changeKeys(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W, sf::Keyboard::S);
-
-    GameEngine::addController(keyboardController);
-    GameEngine::addController(keyboardController2);
-    GameEngine::addObject(plane);
-    GameEngine::addObject(plane2);
-    GameEngine::addObject(fov);
-    //std::cout<<GameEngine::getDistance(plane, plane2);
-    //GameEngine::removeObject(bullet);
-
-
-
-    GameEngine::play();
-    */
-
     NetworkParams params;
 
-    params.length = 3;
-    params.neuronCounts = new int [2];
-    params.neuronCounts[0] = 2;
-    params.neuronCounts[1] = 3;
-    params.neuronCounts[2] = 3;
+    params.length = 4;
+    params.neuronCounts = new int [4];
 
-    NeuralNet a(&params);
+    params.neuronCounts[0] = VISUAL_CELLS_COUNT * 2;
+    params.neuronCounts[1] = VISUAL_CELLS_COUNT * 3;
+    params.neuronCounts[2] = VISUAL_CELLS_COUNT;
+    params.neuronCounts[3] = 2;
 
+    Plane * plane1 = new Plane(100, 100, 0);
+    Plane * plane2 = new Plane(400, 100, 180);
+    Plane * plane3 = new Plane(400, 500, 0);
+    Plane * plane4 = new Plane(400, 500, 180);
 
+    FieldOfView * fov1 = new FieldOfView(plane1, VISUAL_CELLS_COUNT);
+    FieldOfView * fov2 = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
+    FieldOfView * fov3 = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
+    FieldOfView * fov4 = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
 
-    auto * data = new double[2];
-    data[0] = 0.12;
-    data[1] = -0.654;
-    data[2] = 0.61;
-    a.process(data);
-    a.randomizeByPercent(0.3);
+    NeuralController * controller1 = new NeuralController(&params, plane1, fov1);
+    NeuralController * controller2 = new NeuralController(&params, plane2, fov2);
+    NeuralController * controller3 = new NeuralController(&params, plane3, fov3);
+    NeuralController * controller4 = new NeuralController(&params, plane4, fov3);
+
+    GameEngine::addObject(plane1);
+    GameEngine::addObject(plane2);
+    GameEngine::addObject(plane3);
+    GameEngine::addObject(plane4);
+
+    GameEngine::addObject(fov1);
+    GameEngine::addObject(fov2);
+    GameEngine::addObject(fov3);
+    GameEngine::addObject(fov4);
+
+    GameEngine::addController(controller1);
+    GameEngine::addController(controller2);
+    GameEngine::addController(controller3);
+    GameEngine::addController(controller4);
+
+    GameEngine::play();
+
 
     return 0;
 }

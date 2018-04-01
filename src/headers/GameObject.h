@@ -20,11 +20,19 @@ enum CollisionMode {
     NON_COLLIDING
 };
 
+enum ObjectType {
+    UNDEFINED,
+    PLANE,
+    BULLET,
+    HIDEO_KOJIMA
+};
+
 class GameObject : public sf::Drawable {
 
 public:
     bool wasRemoved = false;
     CollisionMode collisionMode = NON_COLLIDING;
+    ObjectType objectType = UNDEFINED;
     float size;
     virtual void simulate() = 0;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;

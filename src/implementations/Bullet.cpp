@@ -10,6 +10,7 @@
 Bullet :: Bullet (double pos_x, double pos_y, double rotation) : GameObject(BULLET_SIZE) {
 
     collisionMode = AFFECTOR;
+    objectType = BULLET;
 
     double direction = rotation * DEG_2_RAD;
     direction_x = cos(direction) * BULLET_SPEED;

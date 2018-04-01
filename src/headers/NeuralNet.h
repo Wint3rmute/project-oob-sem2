@@ -46,9 +46,12 @@ public:
      * Process the data, without checking the array length,
      * who needs safety anyway
      */
-    const double * process(const double * data);
+    double * process(const double * data);
     void applyFunctionToResultMatrix(double (*function)(double));
 
+    /*
+     * This is used to mutate the networks, lol
+     */
     NeuralNet operator* (float x);
 
     void copyResultToBuffer();
