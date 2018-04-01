@@ -92,7 +92,10 @@ void FieldOfView::simulate() {
 
     for (int i = 0; i < visualCellsCount; ++i) {
         cells[i]->setFillColor(sf::Color( 56 +distances_to_planes[i] * 100 , 56 + distances_to_bullets[i] * 100, 56));
+        //std::cout << distances_to_planes[i] << std::endl;
     }
+
+
 
 
 }

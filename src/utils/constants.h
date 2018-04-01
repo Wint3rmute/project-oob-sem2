@@ -9,7 +9,7 @@
  * Game engine related
  */
 #define GAME_WINDOW_HEIGHT 1000
-#define GAME_WINDOW_WIDTH 1000
+#define GAME_WINDOW_WIDTH 1800
 #define FRAME_TIME (1.0/60.0)
 #define TELEPORTATION_TRIGGER_OFFSET 20
 #define BACKGROUND_COLOR sf::Color(56,56,56)

@@ -43,6 +43,8 @@ public:
     sf::Vector2f getPosition();
     double getRotation();
 
+    static int howManyPlanesAreThere();
+
     ~Plane();
 
 };

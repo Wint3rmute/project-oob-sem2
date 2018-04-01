@@ -20,7 +20,9 @@ class NeuralController : public Controller, NeuralNet {
 
 public:
     NeuralController(NetworkParams * params, Plane * plane, FieldOfView * fieldOfView);
+    NeuralController(NeuralController * parent, Plane * plane, FieldOfView * fieldOfView);
     void control();
+    void randomize(double percent);
 
     ~NeuralController();
 

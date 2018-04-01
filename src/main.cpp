@@ -31,13 +31,13 @@ int main()
 
     FieldOfView * fov1 = new FieldOfView(plane1, VISUAL_CELLS_COUNT);
     FieldOfView * fov2 = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
-    FieldOfView * fov3 = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
-    FieldOfView * fov4 = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
+    FieldOfView * fov3 = new FieldOfView(plane3, VISUAL_CELLS_COUNT);
+    FieldOfView * fov4 = new FieldOfView(plane4, VISUAL_CELLS_COUNT);
 
     NeuralController * controller1 = new NeuralController(&params, plane1, fov1);
     NeuralController * controller2 = new NeuralController(&params, plane2, fov2);
     NeuralController * controller3 = new NeuralController(&params, plane3, fov3);
-    NeuralController * controller4 = new NeuralController(&params, plane4, fov3);
+    NeuralController * controller4 = new NeuralController(&params, plane4, fov4);
 
     GameEngine::addObject(plane1);
     GameEngine::addObject(plane2);

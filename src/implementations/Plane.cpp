@@ -108,9 +108,13 @@ void Plane::setController(Controller *controller) {
 Plane::~Plane() {
     delete gun;
     howManyPlanes--;
-    cout << howManyPlanes << endl;
+    //cout << howManyPlanes << endl;
 }
 
 Controller *Plane::getController() {
     return controller;
+}
+
+int Plane::howManyPlanesAreThere() {
+    return howManyPlanes;
 }

@@ -13,7 +13,7 @@ std::default_random_engine NeuralNet::random_engine;
 double sigmoid(double value)
 {
     //cout << 1.0 / ( 1.0 + exp(-value) ) << endl;
-    return 1.0 / ( 1.0 + exp(-value) );
+    return 1.0 / ( 1.0 + exp(-value * 5.0) );
 }
 
 NeuralNet::NeuralNet(NetworkParams * params) : generator(0.0, 1.0) {
@@ -121,45 +121,6 @@ void NeuralNet::fillResultMatrixWith(double value) {
 }
 
 
-/*
- * Network mutation
- */
-NeuralNet NeuralNet::operator*(float x) {
-    NeuralNet result(myParams);
-
-    /*
-     * Copying the weights contents
-     */
-    for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
-        for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
-            for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
-
-                /*
-                 * I know it looks terrifying
-                 * But it's just copying each corresponding weight
-                 */
-                result.weights[layerNumber]->setElement(
-                        columnNumber,
-                        rowNumber,
-                        this->weights[layerNumber]->getElement(
-                                columnNumber,
-                                rowNumber
-                        )
-                );
-
-
-            }
-        }
-    }
-
-
-
-        result.randomizeByPercent(x);
-
-    return result;
-}
-
-
 void NeuralNet::randomizeByPercent(double percent) {
 
     for (int layerNumber = 0; layerNumber < networkLength - 1; ++layerNumber) {
@@ -179,5 +140,38 @@ void NeuralNet::randomizeByPercent(double percent) {
 
         applyFunctionToResultMatrix(sigmoid);
         copyResultToBuffer();
+    }
+}
+
+NeuralNet::NeuralNet(NeuralNet *parent) : generator(0.0, 1.0)  {
+
+    getWeightsFromParent(parent);
+}
+
+void NeuralNet::getWeightsFromParent(NeuralNet *parent) {
+
+    /*
+ * Copying the weights contents
+ */
+    for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
+        for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
+            for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
+
+                /*
+                 * I know it looks terrifying
+                 * But it's just copying each corresponding weight
+                 */
+                this->weights[layerNumber]->setElement(
+                        columnNumber,
+                        rowNumber,
+                        parent->weights[layerNumber]->getElement(
+                                columnNumber,
+                                rowNumber
+                        )
+                );
+
+
+            }
+        }
     }
 }

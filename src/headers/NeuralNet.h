@@ -41,6 +41,7 @@ public:
      * Yes
      */
     explicit NeuralNet(NetworkParams * params); //TODO FIX
+    NeuralNet(NeuralNet * parent);
 
     /*
      * Process the data, without checking the array length,
@@ -49,10 +50,8 @@ public:
     double * process(const double * data);
     void applyFunctionToResultMatrix(double (*function)(double));
 
-    /*
-     * This is used to mutate the networks, lol
-     */
-    NeuralNet operator* (float x);
+    void getWeightsFromParent(NeuralNet * parent);
+
 
     void copyResultToBuffer();
     void fillResultMatrixWith(double value);

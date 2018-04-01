@@ -22,7 +22,7 @@ SynapseLayer::SynapseLayer(int columns, int rows) {
         for(int z = 0; z < rows; z++)
         {
             values[i][z] = getRandomNetworkWeight();
-            cout << values[i][z] << endl;
+            //cout << values[i][z] << endl;
         }
 
     }

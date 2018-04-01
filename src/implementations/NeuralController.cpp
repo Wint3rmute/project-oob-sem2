@@ -16,11 +16,11 @@ void NeuralController::control() {
     int currentInputsIndex;
 
     for (currentInputsIndex = 0; currentInputsIndex < VISUAL_CELLS_COUNT; ++currentInputsIndex) {
-        inputs[currentInputsIndex] = fieldOfView->distances_to_planes[currentInputsIndex];
+        inputs[currentInputsIndex] = fieldOfView->distances_to_planes[currentInputsIndex] / sqrt(GAME_WINDOW_HEIGHT * GAME_WINDOW_HEIGHT + GAME_WINDOW_WIDTH + GAME_WINDOW_WIDTH);
     }
 
     for (int z = 0; z < VISUAL_CELLS_COUNT; ++z) {
-        inputs[currentInputsIndex]= fieldOfView->distances_to_bullets[z];
+        inputs[currentInputsIndex]= fieldOfView->distances_to_bullets[z] / sqrt(GAME_WINDOW_HEIGHT * GAME_WINDOW_HEIGHT + GAME_WINDOW_WIDTH + GAME_WINDOW_WIDTH);
 
         currentInputsIndex++;
     }
@@ -41,5 +41,14 @@ void NeuralController::control() {
 
 NeuralController::~NeuralController() {
     delete inputs;
+}
+
+NeuralController::NeuralController(NeuralController *parent, Plane *plane, FieldOfView *fieldOfView) : NeuralNet(parent), Controller(plane) {
+    this->fieldOfView = fieldOfView;
+    inputs = new double[VISUAL_CELLS_COUNT * 2];
+}
+
+void NeuralController::randomize(double percent) {
+    randomizeByPercent(percent);
 }
 
