@@ -3,15 +3,11 @@
 //
 
 #include "../headers/SynapseLayer.h"
-
 #include <iostream>
 
-#include <iostream>
 using namespace std;
 
-std::uniform_real_distribution<double> SynapseLayer::uniform_real_distribution(-1.0, 1.0);
-std::default_random_engine SynapseLayer::random_engine;
-
+RandomGenerator SynapseLayer::generator(-1.0, 1.0);
 
 SynapseLayer::SynapseLayer(int columns, int rows) {
 
@@ -25,7 +21,7 @@ SynapseLayer::SynapseLayer(int columns, int rows) {
 
         for(int z = 0; z < rows; z++)
         {
-            values[i][z] = getRandomWeight();
+            values[i][z] = getRandomNetworkWeight();
             cout << values[i][z] << endl;
         }
 
@@ -58,6 +54,6 @@ void SynapseLayer::setElement(const int &column, const int &row, const double &v
     values[column][row] = value;
 }
 
-double SynapseLayer::getRandomWeight() {
-    return uniform_real_distribution(random_engine);
+double SynapseLayer::getRandomNetworkWeight() {
+    generator.generate();
 }

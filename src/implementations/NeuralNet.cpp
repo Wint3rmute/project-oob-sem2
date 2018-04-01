@@ -16,7 +16,7 @@ double sigmoid(double value)
     return 1.0 / ( 1.0 + exp(-value) );
 }
 
-NeuralNet::NeuralNet(NetworkParams * params) {
+NeuralNet::NeuralNet(NetworkParams * params) : generator(0.0, 1.0) {
 
 
     
@@ -166,13 +166,12 @@ void NeuralNet::randomizeByPercent(double percent) {
         for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
             for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
 
-                if(uniform_real_distribution(random_engine) < percent)
-                {
+                if(generator.generate() < percent) {
                     /*
                      * This mutates a random element
                      */
                     cout << "mutation" << layerNumber << " " << columnNumber << " " << rowNumber << endl;
-                    weights[layerNumber]->setElement(columnNumber, rowNumber, SynapseLayer::getRandomWeight());
+                    weights[layerNumber]->setElement(columnNumber, rowNumber, SynapseLayer::getRandomNetworkWeight());
                 }
 
             }

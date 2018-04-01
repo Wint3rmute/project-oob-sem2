@@ -40,7 +40,7 @@ public:
     /*
      * Yes
      */
-    explicit NeuralNet(NetworkParams * params) : generator(0.0, 1.0);//TODO FIX
+    explicit NeuralNet(NetworkParams * params); //TODO FIX
 
     /*
      * Process the data, without checking the array length,

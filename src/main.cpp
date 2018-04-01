@@ -58,12 +58,12 @@ int main()
 
 
 
-    double * data = new double[2];
+    auto * data = new double[2];
     data[0] = 0.12;
     data[1] = -0.654;
     data[2] = 0.61;
     a.process(data);
-    a.randomizeByPercent(0.1);
+    a.randomizeByPercent(0.3);
 
     return 0;
 }

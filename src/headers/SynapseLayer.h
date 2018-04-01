@@ -7,6 +7,7 @@
 
 
 #include <random>
+#include "RandomGenerator.h"
 
 class SynapseLayer {
 
@@ -19,6 +20,7 @@ class SynapseLayer {
      * Saving the size of the matrix
      */
     int columns, rows;
+    static RandomGenerator generator;
 
     /*
      * Used for random weights generation
@@ -29,6 +31,10 @@ class SynapseLayer {
 
 public:
 
+    /*
+     * Get a random weight between -1.0 and 1.0
+     */
+    static double getRandomNetworkWeight();
     /*
      * Generates an empty matrix of a given size
      */
@@ -53,11 +59,6 @@ public:
      * Get amount of rows
      */
     int getRows();
-
-    /*
-     * Returns a number between -1.0 and 1.0
-     */
-    static double getRandomWeight();
 
 
     ~SynapseLayer();

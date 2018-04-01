@@ -5,7 +5,7 @@
 #ifndef PROJECT_RANDOMGENERATOR_H
 #define PROJECT_RANDOMGENERATOR_H
 
-
+#include <chrono>
 #include <random>
 
 /*
@@ -14,7 +14,8 @@
  */
 class RandomGenerator {
     double min,max;
-
+    std::default_random_engine rng;
+    std::uniform_real_distribution<double> dist;
 public:
     RandomGenerator(double min, double max);
     double generate();

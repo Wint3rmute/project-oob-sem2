@@ -4,21 +4,16 @@
 
 #include "../headers/RandomGenerator.h"
 
-RandomGenerator::RandomGenerator(double min, double max) {
-
-    this->min = min;
-    this->max = max;
-
-}
+RandomGenerator::RandomGenerator(double min, double max)
+        : rng(static_cast<unsigned long>(
+                      std::chrono::system_clock::now().time_since_epoch().count()
+              )),
+          dist(min,max){}
 
 /*
  * TODO: ACTUALLY UNDERSTAND THIS CODE FROM STACKOVERFLOW
  */
 double RandomGenerator::generate() {
-    std::random_device rd;  //Will be used to obtain a seed for the random number engine
-    std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
-    std::uniform_real_distribution<double> dis(min, max);
 
-    return dis(gen) ; //Each call to dis(gen) generates a new random double
-
+    return dist(rng);
 }
