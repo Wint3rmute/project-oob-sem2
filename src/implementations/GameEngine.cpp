@@ -22,6 +22,10 @@ void GameEngine :: addObject (GameObject * newObject) {
 }
 
 void GameEngine::removeController(Controller *controllerToRemove) {
+
+    if(controllerToRemove == nullptr)
+        return;
+
     if(controllerToRemove->wasRemoved)
         return;
 

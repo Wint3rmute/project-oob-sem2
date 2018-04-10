@@ -28,9 +28,9 @@
 /*
  * Bullet object related
  */
-#define BULLET_SPEED 9
+#define BULLET_SPEED 10
 #define BULLET_SIZE 3.f
-#define BULLET_SPAWN_BEFORE_DISTANCE 20
+#define BULLET_SPAWN_BEFORE_DISTANCE 25
 
 /*
  * Gun object related
