@@ -11,6 +11,7 @@
 #include "GameObject.h"
 #include "Controller.h"
 #include "Bullet.h"
+#include "Boost.h"
 
 enum GameState {
     IN_PROGRESS,
