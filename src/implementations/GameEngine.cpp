@@ -23,7 +23,7 @@ void GameEngine :: addObject (GameObject * newObject) {
 
 void GameEngine::removeController(Controller *controllerToRemove) {
 
-    if(controllerToRemove == nullptr)
+    if(controllerToRemove == nullptr) //THE ULTIMATE SANITY CHECK
         return;
 
     if(controllerToRemove->wasRemoved)
