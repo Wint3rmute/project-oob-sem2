@@ -2,6 +2,7 @@
 // Created by wint3rmute on 4/1/18.
 //
 
+#include <iostream>
 #include "../headers/NeuralController.h"
 
 NeuralController::NeuralController(NetworkParams *params, Plane *plane, FieldOfView * fieldOfView)
@@ -27,15 +28,19 @@ void NeuralController::control() {
 
     outputs = process(inputs);
 
-    if(outputs[0] > 0.5){
+    if(outputs[0] > 0.6){
         controlledPlane->turn(LEFT);
-    }else{
+        //std::cout << "left" << std::endl;
+    }else if (outputs[0] < 0.4){
         controlledPlane->turn(RIGHT);
+        //std::cout << "right" << std::endl;
     }
 
     if(outputs[1] > 0.5){
         controlledPlane->shoot();
     }
+
+
 
 }
 

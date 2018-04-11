@@ -13,10 +13,10 @@ std::default_random_engine NeuralNet::random_engine;
 double sigmoid(double value)
 {
     //cout << 1.0 / ( 1.0 + exp(-value) ) << endl;
-    return 1.0 / ( 1.0 + exp(-value * 5.0) );
+    return 1.0 / ( 1.0 + exp(-value) );
 }
 
-NeuralNet::NeuralNet(NetworkParams * params) : generator(0.0, 1.0) {
+NeuralNet::NeuralNet(NetworkParams * params) : generator(0, 1.0) {
 
 
     
@@ -131,7 +131,7 @@ void NeuralNet::randomizeByPercent(double percent) {
                     /*
                      * This mutates a random element
                      */
-                    cout << "mutation" << layerNumber << " " << columnNumber << " " << rowNumber << endl;
+                    //cout << "mutation" << layerNumber << " " << columnNumber << " " << rowNumber << endl;
                     weights[layerNumber]->setElement(columnNumber, rowNumber, SynapseLayer::getRandomNetworkWeight());
                 }
 
@@ -143,7 +143,12 @@ void NeuralNet::randomizeByPercent(double percent) {
     }
 }
 
-NeuralNet::NeuralNet(NeuralNet *parent) : generator(0.0, 1.0)  {
+NeuralNet::NeuralNet(NeuralNet *parent) :  NeuralNet(parent->myParams) {
+
+    /*
+    this->myParams = parent->myParams;
+    this->networkLength = parent->myParams->length;
+     */
 
     getWeightsFromParent(parent);
 }
@@ -153,6 +158,7 @@ void NeuralNet::getWeightsFromParent(NeuralNet *parent) {
     /*
  * Copying the weights contents
  */
+    //cout << "GETTING WEIGHTS FROM PARENT" << endl;
     for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
         for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
             for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
@@ -169,9 +175,11 @@ void NeuralNet::getWeightsFromParent(NeuralNet *parent) {
                                 rowNumber
                         )
                 );
+                //cout << layerNumber << " " << rowNumber << " " << columnNumber << endl;
 
 
             }
         }
     }
+    //cout << "WEIGHTS COPIED" << endl;
 }

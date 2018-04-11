@@ -13,6 +13,7 @@
 #define FRAME_TIME (1.0/60.0)
 #define TELEPORTATION_TRIGGER_OFFSET 20
 #define BACKGROUND_COLOR sf::Color(56,56,56)
+#define HOW_MANY_PLANES_ON_MAP_WHILE_TRAINING 3
 
 /*
  * Plane object related
@@ -28,9 +29,9 @@
 /*
  * Bullet object related
  */
-#define BULLET_SPEED 9
+#define BULLET_SPEED 10
 #define BULLET_SIZE 3.f
-#define BULLET_SPAWN_BEFORE_DISTANCE 20
+#define BULLET_SPAWN_BEFORE_DISTANCE 21
 
 /*
  * Gun object related

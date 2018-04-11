@@ -66,9 +66,16 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
 
 
-    if(Plane::howManyPlanesAreThere() < 5){
+    if(Plane::howManyPlanesAreThere() < HOW_MANY_PLANES_ON_MAP_WHILE_TRAINING){
         spawnNewPlaneBasedOnTheDNAOfAnotherPlane();
-        cout << "DONE" << endl;
+
+        for(auto gameObject : GameEngine::gameObjects) {
+            if(gameObject->objectType == BULLET)
+                GameEngine::removeObject(gameObject);
+        }
+
+        GameEngine::clearRemoveQueue();
+        //cout << "DONE" << endl;
     }
 
     window.clear(BACKGROUND_COLOR);
@@ -175,6 +182,8 @@ bool GameEngine::checkCollision(GameObject *object1, GameObject *object2) {
 
 void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
 
+    // C++ was a mistake - Hideo Kojima, 2018
+    /*
     NetworkParams params;
 
     params.length = 4;
@@ -202,22 +211,31 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
     GameEngine::addController(controller1);
 
     return;
+     */
     for(auto object : gameObjects){
         if(object->objectType == PLANE){
-            cout << "1" << endl;
+
+            //cout << "1" << endl;
 
             auto * plane = dynamic_cast<Plane *>(object);
             auto * controller = dynamic_cast<NeuralController *>(plane->getController());
 
-            cout << "2" << endl;
-            auto newPlane = new Plane(400, 100, 0);
+            if(plane == nullptr or controller == nullptr)
+                cout << "Shit handled" << endl;
+
+            //cout << "2" << endl;
+            auto newPlane = new Plane(xPositionGenerator.generate(),
+                                      yPositionGenerator.generate(),
+                                      planeRotationGenerator.generate());
+
             auto newFOV = new FieldOfView(newPlane, VISUAL_CELLS_COUNT);
 
-            cout << "3" << endl;
+            //cout << "3" << endl;
             auto newController = new NeuralController(controller, newPlane, newFOV);
+            //cout << "4" << endl;
             newController->randomize(0.1);
 
-            cout << "4" << endl;
+            //cout << "5" << endl;
             GameEngine::addObject(newPlane);
             GameEngine::addObject(newFOV);
 

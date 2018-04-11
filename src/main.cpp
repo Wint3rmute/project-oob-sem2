@@ -26,33 +26,27 @@ int main()
 
     Plane * plane1 = new Plane(100, 100, 0);
     Plane * plane2 = new Plane(400, 100, 180);
-    Plane * plane3 = new Plane(400, 500, 0);
-    Plane * plane4 = new Plane(400, 500, 180);
+
 
     FieldOfView * fov1 = new FieldOfView(plane1, VISUAL_CELLS_COUNT);
     FieldOfView * fov2 = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
-    FieldOfView * fov3 = new FieldOfView(plane3, VISUAL_CELLS_COUNT);
-    FieldOfView * fov4 = new FieldOfView(plane4, VISUAL_CELLS_COUNT);
+
 
     NeuralController * controller1 = new NeuralController(&params, plane1, fov1);
     NeuralController * controller2 = new NeuralController(&params, plane2, fov2);
-    NeuralController * controller3 = new NeuralController(&params, plane3, fov3);
-    NeuralController * controller4 = new NeuralController(&params, plane4, fov4);
+
 
     GameEngine::addObject(plane1);
     GameEngine::addObject(plane2);
-    GameEngine::addObject(plane3);
-    GameEngine::addObject(plane4);
+
 
     GameEngine::addObject(fov1);
     GameEngine::addObject(fov2);
-    GameEngine::addObject(fov3);
-    GameEngine::addObject(fov4);
+
 
     GameEngine::addController(controller1);
     GameEngine::addController(controller2);
-    GameEngine::addController(controller3);
-    GameEngine::addController(controller4);
+
 
     GameEngine::play();
 
