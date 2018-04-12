@@ -46,6 +46,10 @@ void NeuralController::control() {
 
 NeuralController::~NeuralController() {
     delete inputs;
+
+    //theoretically those shouldnt get removed since the reference to outputs is held by the parent object and returned
+    //with the process() function
+    //delete outputs;
 }
 
 NeuralController::NeuralController(NeuralController *parent, Plane *plane, FieldOfView *fieldOfView) : NeuralNet(parent), Controller(plane) {

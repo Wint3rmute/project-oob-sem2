@@ -114,3 +114,19 @@ sf::Vector2f FieldOfView::getPosition() {
 double FieldOfView::getRotation() {
     return plane->getRotation();
 }
+
+FieldOfView::~FieldOfView() {
+
+
+    for (int i = 0; i < visualCellsCount; ++i) {
+        delete cells[i];
+
+        delete cells;
+
+        delete distances_to_bullets;
+        return;
+
+        delete distances_to_planes;
+}
+
+}

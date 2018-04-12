@@ -20,8 +20,8 @@ int main()
     params.neuronCounts = new int [4];
 
     params.neuronCounts[0] = VISUAL_CELLS_COUNT * 2;
-    params.neuronCounts[1] = VISUAL_CELLS_COUNT * 3;
-    params.neuronCounts[2] = VISUAL_CELLS_COUNT;
+    params.neuronCounts[1] = VISUAL_CELLS_COUNT * 1;
+    params.neuronCounts[2] = VISUAL_CELLS_COUNT * 0.5f;
     params.neuronCounts[3] = 2;
 
     Plane * plane1 = new Plane(100, 100, 0);

@@ -146,6 +146,10 @@ void GameEngine :: play() {
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+
+            if (event.type == sf::Event::KeyPressed) {
+                cout << GameEngine::gameObjects.size() << endl;
+            }
         }
 
 

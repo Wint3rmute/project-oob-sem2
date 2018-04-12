@@ -52,6 +52,8 @@ public:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     sf::Vector2f getPosition() override;
     double getRotation() override;
+
+    ~FieldOfView();
 };
 
 
