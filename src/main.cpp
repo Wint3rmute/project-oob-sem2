@@ -18,11 +18,10 @@ int main(int argc, char* argv[])
 
 
     GameManager gm;
-
     gm.runTheGame(argc, argv);
+    //gm.playGame2Players();
 
-    return 0;
-
+    //gm.trainVisible();
 
 
 

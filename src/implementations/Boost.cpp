@@ -7,7 +7,7 @@ void Boost::activate(Plane &plane) {
 
     if(!isOnCooldown()) {
         if (boostTimeRemaining > 0) {
-            plane.setSpeed(plane.getSpeed()+BOOST_SPEED);
+            plane.setSpeed(MAX_SPEED);
             boostTimeRemaining -= FRAME_TIME;
             setCooldownTime(FRAME_TIME);
 

@@ -19,7 +19,6 @@ class NeuralController : public Controller, public NeuralNet {
 
 public:
 
-    FieldOfView * fieldOfView; //TODO: MAKE THIS PRIVATE
 
     NeuralController(NetworkParams * params, Plane * plane, FieldOfView * fieldOfView);
     NeuralController(NeuralController * parent, Plane * plane, FieldOfView * fieldOfView);

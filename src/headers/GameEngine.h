@@ -22,6 +22,7 @@ enum GameState {
 
 class GameEngine {
 
+    static sf::RenderWindow * window;
     static std::vector <GameObject *> gameObjectsToRemove;
     static std::vector <Controller *> controllers;
     static std::vector <Controller *> controllersToRemove;
@@ -29,8 +30,17 @@ class GameEngine {
 
     static void nothing();
 
+    /*
+     * This measures the ticks in the GameEngine
+     *
+     * this it NOT a normal clock
+     */
+    static long matchClock;
+    static bool graphicsEnabled;
+
 
 public:
+
 
     inline static void (*beforeFrame)();
     inline static void (*afterFrame)();
@@ -54,7 +64,11 @@ public:
     static void removeController(Controller * controllerToRemove);
 
     static void removeObject (GameObject * objectToRemove);
-    static void simulateAndRender (sf::RenderWindow & window);
+
+    static void simulate();
+    static void render(sf::RenderWindow & window);
+
+
     static void clearRemoveQueue();
     static void play();
 
@@ -63,6 +77,10 @@ public:
 
     static bool checkCollision(GameObject * object1, GameObject * object2);
 
+    static void mutateRandomPlane();
+
+    static void setVisibility(bool value);
+
 
     /*
      * This is where i keep my ridiculous function names
@@ -70,6 +88,7 @@ public:
     static void spawnNewPlaneBasedOnTheDNAOfAnotherPlane();
     static void checkPlanesCountAndSpawnNewPlaneAccordingly();
     static void spawnNewRandomAIControlledPlaneInARandomPlace(NetworkParams * params);
+    static void checkMatchTimeAndMutateRandomPlaneIfNothingIsHappening();
 
 
 };

@@ -40,12 +40,19 @@ void NeuralController::control() {
         controlledPlane->shoot();
     }
 
+    if(outputs[2] > 0.5) {
+        controlledPlane->boost();
+    }
 
 
 }
 
 NeuralController::~NeuralController() {
     delete inputs;
+
+    std::cout << "i got deleted!" << std::endl;
+
+    GameEngine::removeObject(fieldOfView);
 
     //theoretically those shouldnt get removed since the reference to outputs is held by the parent object and returned
     //with the process() function

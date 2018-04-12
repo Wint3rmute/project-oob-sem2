@@ -118,7 +118,7 @@ double FieldOfView::getRotation() {
 FieldOfView::~FieldOfView() {
 
 
-    for (int i = 0; i < visualCellsCount; ++i) {
+    for (int i = 0; i < visualCellsCount; i++) {
         delete cells[i];
 
         delete cells;
@@ -126,7 +126,6 @@ FieldOfView::~FieldOfView() {
         delete distances_to_bullets;
         return;
 
-        delete distances_to_planes;
-}
+    }
 
 }

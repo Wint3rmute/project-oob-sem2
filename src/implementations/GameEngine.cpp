@@ -14,7 +14,9 @@ std::vector <GameObject *> GameEngine :: gameObjectsToRemove;
 std::vector <Controller *> GameEngine :: controllers;
 std::vector <Controller *> GameEngine :: controllersToRemove;
 GameState GameEngine :: gameState;
-
+long GameEngine :: matchClock;
+sf::RenderWindow * GameEngine::window;
+bool GameEngine :: graphicsEnabled;
 
 
 RandomGenerator GameEngine::xPositionGenerator(50, GAME_WINDOW_WIDTH - 50);
@@ -93,47 +95,6 @@ void GameEngine :: checkPlanesCountAndSpawnNewPlaneAccordingly() {
 }
 
 
-void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
-
-
-    window.clear(BACKGROUND_COLOR);
-
-    for (auto controller : controllers )
-    {
-        controller->control();
-    }
-
-    for (auto gameObject : gameObjects) {
-
-        gameObject -> simulate();
-        window.draw(*gameObject);
-
-
-        if(gameObject->collisionMode == AFFECTED) {
-
-            for( auto possibleCollision : gameObjects)
-            {
-                if(possibleCollision->collisionMode == AFFECTOR and checkCollision(gameObject, possibleCollision)) {
-
-                    auto * plane = dynamic_cast<Plane *>(gameObject);
-                    auto * controller = dynamic_cast<NeuralController *>(plane->getController());
-                    auto * fieldOfView = controller->fieldOfView;
-
-
-                    GameEngine::removeObject(fieldOfView);
-                    GameEngine::removeController(controller);
-                    GameEngine::removeObject(plane);
-                    GameEngine::removeObject(possibleCollision);
-                }
-            }
-        }
-
-    }
-
-    window.display();
-
-}
-
 void GameEngine :: clearRemoveQueue () {
 
     while (not gameObjectsToRemove.empty()) {
@@ -150,39 +111,59 @@ void GameEngine :: clearRemoveQueue () {
 
 void GameEngine :: play() {
 
+    window = nullptr;
+
+    matchClock = 0;
+
     gameState = IN_PROGRESS;
     sf::Time FrameTime = sf::seconds(FRAME_TIME);
     sf::Clock gameClock;
 
-    sf::RenderWindow window(
+    if(graphicsEnabled)
+    window = new sf::RenderWindow(
             sf::VideoMode(GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT),
             "Hardcoded strings rock!");
 
+    sf::Event event;
 
-    while (window.isOpen() && gameState == IN_PROGRESS)
+    while ( !graphicsEnabled ||
+            (window->isOpen() && gameState == IN_PROGRESS))
     {
 
-        sf::Event event;
-        while (window.pollEvent(event))
+        if(graphicsEnabled)
+        while (window->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window.close();
+                window->close();
 
             if (event.type == sf::Event::KeyPressed) {
+                /*
+                 * JUST FOR DEBUGGING PURPOSES
+                 */
                 cout << GameEngine::gameObjects.size() << endl;
             }
         }
 
+
         beforeFrame();
 
-        simulateAndRender(window);
+
+        simulate();
+
+        if(graphicsEnabled)
+            render(*window);
+
         clearRemoveQueue();
+
 
         afterFrame();
 
-        sf::sleep(FrameTime - gameClock.getElapsedTime());
+        if(graphicsEnabled)
+            sf::sleep(FrameTime - gameClock.getElapsedTime());
+        
         gameClock.restart();
 
+        matchClock++;
     }
 
 }
@@ -282,5 +263,94 @@ void GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(NetworkParams * p
     GameEngine::addObject(newFOV);
 
     GameEngine::addController(newController);
+
+}
+
+void GameEngine::simulate() {
+
+
+    for (auto controller : controllers )
+    {
+        controller->control();
+    }
+
+    for (auto gameObject : gameObjects) {
+
+        gameObject -> simulate();
+
+
+        if(gameObject->collisionMode == AFFECTED) {
+
+            for( auto possibleCollision : gameObjects)
+            {
+                if(possibleCollision->collisionMode == AFFECTOR and checkCollision(gameObject, possibleCollision)) {
+
+                    auto * plane = dynamic_cast<Plane *>(gameObject);
+                    auto * controller = plane->getController();
+
+                    auto * fieldOfView = controller->fieldOfView;
+
+
+                    if(fieldOfView != nullptr)
+                        GameEngine::removeObject(fieldOfView);
+
+                    GameEngine::removeController(controller);
+                    GameEngine::removeObject(plane);
+                    GameEngine::removeObject(possibleCollision);
+
+                    cout << "SCORE" << endl;
+                }
+            }
+        }
+
+    }
+
+
+}
+
+void GameEngine::render(sf::RenderWindow &window) {
+    window.clear(BACKGROUND_COLOR);
+
+
+    for (auto gameObject : gameObjects) {
+
+        window.draw(*gameObject);
+    }
+
+
+    window.display();
+
+
+}
+
+void GameEngine::checkMatchTimeAndMutateRandomPlaneIfNothingIsHappening() {
+
+    if(matchClock > TRAINING_MATCH_MAX_TIME) {
+
+        cout << "Mutating one plane due to lack of anything" << endl;
+        mutateRandomPlane();
+        matchClock = 0;
+    }
+
+}
+
+void GameEngine::mutateRandomPlane() {
+
+
+    for (auto object : gameObjects) {
+        if (object->objectType == PLANE) {
+
+
+            auto *plane = dynamic_cast<Plane *>(object);
+            auto *controller = dynamic_cast<NeuralController *>(plane->getController());
+
+            controller->randomize(0.1);
+
+        }
+    }
+}
+
+void GameEngine::setVisibility(bool value) {
+    graphicsEnabled = value;
 
 }

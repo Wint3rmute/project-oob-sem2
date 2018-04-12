@@ -6,6 +6,7 @@
 #include "../headers/GameManager.h"
 #include "../headers/GameEngine.h"
 #include "../headers/NeuralController.h"
+#include "../headers/KeyboardController.h"
 
 GameManager::GameManager() {
 
@@ -23,7 +24,7 @@ GameManager::GameManager() {
 
     params.neuronCounts[0] = VISUAL_CELLS_COUNT * 2;
     params.neuronCounts[1] = VISUAL_CELLS_COUNT;
-    params.neuronCounts[2] = 2;
+    params.neuronCounts[2] = 3;
 
 
 }
@@ -81,8 +82,23 @@ void GameManager::showHelpMessage() {
 }
 
 void GameManager::playGame2Players() {
-    std::cout << "Playing Human vs Human" << std::endl;
 
+    auto plane1 = new Plane(100, 100, 0);
+    auto plane2 = new Plane(800, 100, 180);
+
+    auto keyboardController1 = new KeyboardController(plane1);
+    auto keyboardController2 = new KeyboardController(plane2);
+
+    keyboardController2->changeKeys(Key::A, Key::D, Key::S, Key::W);
+
+    GameEngine::addObject(plane1);
+    GameEngine::addObject(plane2);
+
+    GameEngine::addController(keyboardController1);
+    GameEngine::addController(keyboardController2);
+
+    GameEngine::init();
+    GameEngine::play();
 }
 
 void GameManager::playVsBestAI() {
@@ -97,9 +113,14 @@ void GameManager::trainVisible() {
     GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
 
     GameEngine::init();
+    GameEngine::setVisibility(true);
     GameEngine::setBeforeFrameFunction(
             GameEngine::checkPlanesCountAndSpawnNewPlaneAccordingly
     );
+
+    GameEngine::setAfterFrameFunction(
+            GameEngine::checkMatchTimeAndMutateRandomPlaneIfNothingIsHappening
+            );
 
     GameEngine::play();
 
@@ -107,7 +128,22 @@ void GameManager::trainVisible() {
 }
 
 void GameManager::trainInvisible() {
-    std::cout << "Training AI ASAP without graphics" << std::endl;
+
+    GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
+    GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
+
+    GameEngine::init();
+    GameEngine::setVisibility(false);
+    GameEngine::setBeforeFrameFunction(
+            GameEngine::checkPlanesCountAndSpawnNewPlaneAccordingly
+    );
+
+    GameEngine::setAfterFrameFunction(
+            GameEngine::checkMatchTimeAndMutateRandomPlaneIfNothingIsHappening
+    );
+
+    GameEngine::play();
+
 }
 
 void GameManager::playVsLoadedAI() {
