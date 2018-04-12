@@ -32,6 +32,12 @@ void KeyboardController::control() {
 
     }
 
+    if (isPressed(boostKey)) {
+
+        controlledPlane->boost();
+
+    }
+
     if(isPressed(shootKey)) {
 
         controlledPlane->shoot();

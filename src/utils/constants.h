@@ -40,6 +40,13 @@
 #define PISTOL_SHOOT_RATE 0.07f
 
 /*
+ * Boost object related
+ */
+#define BOOST_DURATION 0.3f
+#define BOOST_COOLDOWN 3.0f
+#define BOOST_SPEED 3
+
+/*
  * FieldOfView object related
  */
 #define VISUAL_CELLS_COUNT 30

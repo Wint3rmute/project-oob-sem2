@@ -7,6 +7,7 @@
 #include "../headers/Plane.h"
 #include "../utils/constants.h"
 #include "../headers/Gun.h"
+#include "../headers/Boost.h"
 
 using namespace std;
 class Gun;
@@ -21,6 +22,7 @@ Plane::Plane (int pos_x, int pos_y, double rotation) : GameObject(PLANE_COLLIDER
 
     speed = PLANE_SPEED;
     gun = new Gun();
+    booster = new Boost();
     // resize shape to 5 points
    shape.setPointCount(4);
 
@@ -88,8 +90,13 @@ void Plane :: simulate() {
 void Plane :: turn(DIRECTION direction) {
     shape.rotate(direction * ROTATION_SPEED * speed);
 }
+
 void Plane :: shoot() {
     gun->activate(*this);
+}
+
+void Plane::boost() {
+    booster -> activate(*this);
 }
 
 sf::Vector2f Plane :: getPosition() {
@@ -104,6 +111,11 @@ void Plane::setController(Controller *controller) {
     this->controller = controller;
 }
 
+void Plane::setSpeed(double speed) {
+    this->speed=speed;
+}
+
+
 Plane::~Plane() {
     delete gun;
     howManyPlanes--;
@@ -112,4 +124,8 @@ Plane::~Plane() {
 
 Controller *Plane::getController() {
     return controller;
+}
+
+double Plane::getSpeed() {
+    return speed;
 }
