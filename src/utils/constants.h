@@ -31,7 +31,7 @@
  */
 #define BULLET_SPEED 10
 #define BULLET_SIZE 3.f
-#define BULLET_SPAWN_BEFORE_DISTANCE 21
+#define BULLET_SPAWN_BEFORE_DISTANCE 25
 
 /*
  * Gun object related
@@ -39,6 +39,13 @@
 #define PISTOL_AMMO 15
 #define PISTOL_COOLDOWN_TIME 3.0f
 #define PISTOL_SHOOT_RATE 0.07f
+
+/*
+ * Boost object related
+ */
+#define BOOST_DURATION 0.3f
+#define BOOST_COOLDOWN 3.0f
+#define BOOST_SPEED 3
 
 /*
  * FieldOfView object related

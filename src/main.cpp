@@ -32,14 +32,16 @@ int main()
     FieldOfView * fov2 = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
 
 
+    KeyboardController *keyboardController = new KeyboardController(plane);
+    KeyboardController *keyboardController2 = new KeyboardController(plane2);
+    keyboardController->changeKeys(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::S, sf::Keyboard::W);
+
     NeuralController * controller1 = new NeuralController(&params, plane1, fov1);
     NeuralController * controller2 = new NeuralController(&params, plane2, fov2);
 
 
     GameEngine::addObject(plane1);
     GameEngine::addObject(plane2);
-
-
     GameEngine::addObject(fov1);
     GameEngine::addObject(fov2);
 

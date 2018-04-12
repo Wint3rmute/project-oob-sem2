@@ -12,6 +12,7 @@
 #include "Controller.h"
 #include "Bullet.h"
 #include "RandomGenerator.h"
+#include "Boost.h"
 
 enum GameState {
     IN_PROGRESS,
