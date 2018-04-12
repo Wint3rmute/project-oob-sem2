@@ -17,11 +17,11 @@ int main()
     FieldOfView * fov = new FieldOfView(plane, VISUAL_CELLS_COUNT);
 
     KeyboardController *keyboardController = new KeyboardController(plane);
-    //DummyController *keyboardController2 = new DummyController(plane2);
-    keyboardController->changeKeys(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W, sf::Keyboard::S);
+    KeyboardController *keyboardController2 = new KeyboardController(plane2);
+    keyboardController->changeKeys(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::S, sf::Keyboard::W);
 
     GameEngine::addController(keyboardController);
-    //GameEngine::addController(keyboardController2);
+    GameEngine::addController(keyboardController2);
     GameEngine::addObject(plane);
     GameEngine::addObject(plane2);
     //GameEngine::addObject(fov);
