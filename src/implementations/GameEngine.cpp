@@ -79,8 +79,6 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 
 void GameEngine :: checkPlanesCountAndSpawnNewPlaneAccordingly() {
 
-    cout << "checking" << endl;
-
     if(Plane::howManyPlanesAreThere() < HOW_MANY_PLANES_ON_MAP_WHILE_TRAINING) {
         spawnNewPlaneBasedOnTheDNAOfAnotherPlane();
 
