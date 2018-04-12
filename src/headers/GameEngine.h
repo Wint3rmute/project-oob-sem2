@@ -35,12 +35,14 @@ class GameEngine {
      *
      * this it NOT a normal clock
      */
-    static long matchClock;
+    static int matchClock;
     static bool graphicsEnabled;
 
 
 public:
 
+
+    static unsigned long totalGameTime;
 
     inline static void (*beforeFrame)();
     inline static void (*afterFrame)();

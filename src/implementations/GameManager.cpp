@@ -10,6 +10,8 @@
 
 GameManager::GameManager() {
 
+    enableSignalCatching();
+
     argument1 = "";
     argument2 = "";
 
@@ -23,7 +25,7 @@ GameManager::GameManager() {
     params.neuronCounts = new int [3];
 
     params.neuronCounts[0] = VISUAL_CELLS_COUNT * 2;
-    params.neuronCounts[1] = VISUAL_CELLS_COUNT;
+    params.neuronCounts[1] = VISUAL_CELLS_COUNT * 1.3;
     params.neuronCounts[2] = 3;
 
 
@@ -53,10 +55,10 @@ void GameManager::runTheGame(int argc, char **argv) {
         playVsBestAI();
 
     else if(argument1 == "--train-visible")
-        trainVisible();
+        trainVisible(false);
 
     else if(argument1 == "--train-invisible")
-        trainInvisible();
+        trainInvisible(false);
 
     else if(argument1 == "--play-ai-load")
         playVsLoadedAI();
@@ -74,9 +76,11 @@ void GameManager::showHelpMessage() {
                  "Usage: \n\n"
                  "\t--help - print this help message \n\n"
                  "\t--play2 - 2 planes, both controlled by keyboard, sort of a playground \n"
-                 "\t--play-ai - play against the best trained AI available \n\n"
                  "\t--train-visible - show the process of network training \n"
-                 "\t--train-invisible - train the networks ASAP, no graphics \n\n"
+                 "\t--train-visible-continue - same as above, but will use the best saved network as a starting point\n\n"
+                 "\t--train-invisible - train the networks ASAP, no graphics \n"
+                 "\t--train-invisible-continue - same as above, but will use the best saved network as a starting point\n\n"
+                 "\t--play-ai - play against the best trained AI available \n"
                  "\t--play-ai-load <filename> play against the AI from the <filename> \n\n";
 
 }
@@ -102,11 +106,33 @@ void GameManager::playGame2Players() {
 }
 
 void GameManager::playVsBestAI() {
-    std::cout << "Playing Human vs Best Avialable AI" << std::endl;
+    std::cout << "Playing against the best avialable AI" << std::endl;
+
+    auto plane1 = new Plane(100, 100, 0);
+    auto plane2 = new Plane(800, 100, 180);
+
+    auto keyboardController1 = new KeyboardController(plane1);
+
+    auto fov = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
+    auto neuralController = new NeuralController(&params, plane2, fov);
+    neuralController->loadFromFile("last_best.network");
+
+
+    GameEngine::addObject(plane1);
+    GameEngine::addObject(plane2);
+    GameEngine::addObject(fov);
+
+    GameEngine::addController(keyboardController1);
+    GameEngine::addController(neuralController);
+
+    GameEngine::init();
+    GameEngine::play();
+
+
 
 }
 
-void GameManager::trainVisible() {
+void GameManager::trainVisible(bool shouldContinue) {
     std::cout << "Training AI in a visible window" << std::endl;
 
     GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
@@ -127,7 +153,7 @@ void GameManager::trainVisible() {
 
 }
 
-void GameManager::trainInvisible() {
+void GameManager::trainInvisible(bool shouldContinue) {
 
     GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
     GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
@@ -148,4 +174,32 @@ void GameManager::trainInvisible() {
 
 void GameManager::playVsLoadedAI() {
     std::cout << "Loading AI from file " + argument2;
+}
+
+void signalHandler(int signal) {
+
+    int hours = GameEngine::totalGameTime / 60 / 60 / 60;
+    GameEngine::totalGameTime%= (60*60*60);
+
+    int minutes = GameEngine::totalGameTime / 60 / 60;
+    GameEngine::totalGameTime%= (60*60);
+
+    int seconds = GameEngine::totalGameTime / 60;
+
+    std::cout << std::endl << "Simulation runned for " << hours << "h " << minutes << "m " << seconds << "s ";
+    std::cout << std::endl << "In game-time" << std::endl;
+    exit(0);
+
+}
+
+void GameManager::enableSignalCatching() {
+
+    struct sigaction sigIntHandler;
+
+    sigIntHandler.sa_handler = signalHandler;
+    sigemptyset(&sigIntHandler.sa_mask);
+    sigIntHandler.sa_flags = 0;
+
+    sigaction(SIGINT, &sigIntHandler, NULL);
+
 }

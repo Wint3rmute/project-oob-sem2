@@ -7,11 +7,14 @@
 #include "headers/NeuralController.h"
 #include "headers/GameManager.h"
 
+#include <signal.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+
 #include <iostream>
 #include <ctime>
 
-
-using namespace std; //I'm going to hell for this
 
 int main(int argc, char* argv[])
 {

@@ -156,9 +156,9 @@ void NeuralNet::randomizeByPercent(double percent) {
             }
         }
 
-        applyFunctionToResultMatrix(sigmoid);
-        copyResultToBuffer();
     }
+
+    //cout << "weights randomized" << endl;
 }
 
 NeuralNet::NeuralNet(NeuralNet *parent) :  NeuralNet(parent->myParams) {
@@ -169,6 +169,9 @@ NeuralNet::NeuralNet(NeuralNet *parent) :  NeuralNet(parent->myParams) {
      */
 
     getWeightsFromParent(parent);
+
+
+    randomizeByPercent(0.1);
 }
 
 void NeuralNet::getWeightsFromParent(NeuralNet *parent) {

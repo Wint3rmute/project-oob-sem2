@@ -9,6 +9,12 @@
 #include "../utils/structs.h"
 #include "../utils/constants.h"
 
+#include <signal.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+
+
 class GameManager {
 
     std::string argument1;
@@ -19,14 +25,16 @@ class GameManager {
 public:
     GameManager();
 
+    void enableSignalCatching();
+
     void runTheGame(int argc, char* argv[]);
 
     void showHelpMessage();
 
     void playGame2Players();
     void playVsBestAI();
-    void trainVisible();
-    void trainInvisible();
+    void trainVisible(bool shoudContinue);
+    void trainInvisible(bool shoudContinue);
     void playVsLoadedAI();
 
 };

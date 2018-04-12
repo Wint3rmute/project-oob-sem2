@@ -14,7 +14,10 @@ std::vector <GameObject *> GameEngine :: gameObjectsToRemove;
 std::vector <Controller *> GameEngine :: controllers;
 std::vector <Controller *> GameEngine :: controllersToRemove;
 GameState GameEngine :: gameState;
-long GameEngine :: matchClock;
+
+int GameEngine :: matchClock;
+unsigned long GameEngine :: totalGameTime;
+
 sf::RenderWindow * GameEngine::window;
 bool GameEngine :: graphicsEnabled;
 
@@ -114,6 +117,7 @@ void GameEngine :: play() {
     window = nullptr;
 
     matchClock = 0;
+    totalGameTime = matchClock;
 
     gameState = IN_PROGRESS;
     sf::Time FrameTime = sf::seconds(FRAME_TIME);
@@ -200,7 +204,7 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
             auto * controller = dynamic_cast<NeuralController *>(plane->getController());
 
 
-            controller->saveToArchive();
+            //controller->saveToArchive();
             controller->saveToFile("last_best.network");
 
             if(plane == nullptr or controller == nullptr)
@@ -213,7 +217,7 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
             auto newFOV = new FieldOfView(newPlane, VISUAL_CELLS_COUNT);
 
             auto newController = new NeuralController(controller, newPlane, newFOV);
-            newController->randomize(0.1);
+            newController->randomize(MUTATION_RATE) ;
 
             GameEngine::addObject(newPlane);
             GameEngine::addObject(newFOV);
@@ -245,6 +249,8 @@ void GameEngine::resetBeforeAndAfterFrameFunctions() {
 }
 
 void GameEngine::init() {
+
+    graphicsEnabled = true;
     resetBeforeAndAfterFrameFunctions();
 
 }
@@ -299,6 +305,9 @@ void GameEngine::simulate() {
                     GameEngine::removeObject(possibleCollision);
 
                     cout << "SCORE" << endl;
+
+                    totalGameTime+=matchClock;
+                    matchClock = 0;
                 }
             }
         }
@@ -327,8 +336,9 @@ void GameEngine::checkMatchTimeAndMutateRandomPlaneIfNothingIsHappening() {
 
     if(matchClock > TRAINING_MATCH_MAX_TIME) {
 
-        cout << "Mutating one plane due to lack of anything" << endl;
+        cout << "Mutating planes due to lack of progress" << endl;
         mutateRandomPlane();
+        totalGameTime+=matchClock;
         matchClock = 0;
     }
 
@@ -344,7 +354,7 @@ void GameEngine::mutateRandomPlane() {
             auto *plane = dynamic_cast<Plane *>(object);
             auto *controller = dynamic_cast<NeuralController *>(plane->getController());
 
-            controller->randomize(0.1);
+            controller->randomize(MUTATION_RATE);
 
         }
     }
