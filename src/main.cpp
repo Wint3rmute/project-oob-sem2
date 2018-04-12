@@ -57,6 +57,7 @@ int main(int argc, char* argv[])
     GameEngine::addController(controller2);
 
 
+    GameEngine::init();
     GameEngine::play();
 
 

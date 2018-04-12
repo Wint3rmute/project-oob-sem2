@@ -15,10 +15,21 @@ std::vector <Controller *> GameEngine :: controllers;
 std::vector <Controller *> GameEngine :: controllersToRemove;
 GameState GameEngine :: gameState;
 
+
+
 RandomGenerator GameEngine::xPositionGenerator(50, GAME_WINDOW_WIDTH - 50);
 RandomGenerator GameEngine::yPositionGenerator(50, GAME_WINDOW_HEIGHT - 50);
 RandomGenerator GameEngine::planeRotationGenerator(0, 360);
 
+
+void GameEngine :: nothing() {
+    /*
+     * This function does nothing. That's it
+     */
+
+
+    //cout << "i do nothing" << endl;
+}
 
 void GameEngine :: addObject (GameObject * newObject) {
 
@@ -103,8 +114,16 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
                     //cout << "Collision!" << endl;
                     //gameState = DONE;
 
-                    GameEngine::removeController(dynamic_cast <Plane *> (gameObject)->getController());
-                    GameEngine::removeObject(gameObject);
+                    //TODO: REVIEW THIS HOTFIX
+                    auto * plane = dynamic_cast<Plane *>(gameObject);
+                    auto * controller = dynamic_cast<NeuralController *>(plane->getController());
+                    GameEngine::removeObject(controller->fieldOfView);
+
+
+
+
+                    GameEngine::removeController(controller);
+                    GameEngine::removeObject(plane);
 
                     GameEngine::removeObject(possibleCollision);
                 }
@@ -156,9 +175,13 @@ void GameEngine :: play() {
             }
         }
 
+        beforeFrame();
 
         simulateAndRender(window);
         clearRemoveQueue();
+
+        afterFrame();
+
         sf::sleep(FrameTime - gameClock.getElapsedTime());
         gameClock.restart();
 
@@ -198,6 +221,7 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
             auto * plane = dynamic_cast<Plane *>(object);
             auto * controller = dynamic_cast<NeuralController *>(plane->getController());
 
+
             controller->saveToArchive();
             controller->saveToFile("last_best.network");
 
@@ -225,5 +249,28 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
 
         }
     }
+
+}
+
+void GameEngine::setBeforeFrameFunction(void (*newBeforeFrame)(void)) {
+
+    //beforeFrame = newBeforeFrame;
+}
+
+void GameEngine::setAfterFrameFunction(void (*newAfterFrame)(void)) {
+
+    //afterFrame = newAfterFrame;
+}
+
+void GameEngine::resetBeforeAndAfterFrameFunctions() {
+
+    beforeFrame = GameEngine::nothing;
+    afterFrame = GameEngine::nothing;
+
+
+}
+
+void GameEngine::init() {
+    resetBeforeAndAfterFrameFunctions();
 
 }

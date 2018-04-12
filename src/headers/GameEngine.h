@@ -26,17 +26,27 @@ class GameEngine {
     static std::vector <Controller *> controllersToRemove;
     static GameState gameState;
 
+    static void nothing();
 
 
 public:
 
+    inline static void (*beforeFrame)();
+    inline static void (*afterFrame)();
 
     static RandomGenerator xPositionGenerator;
     static RandomGenerator yPositionGenerator;
     static RandomGenerator planeRotationGenerator;
 
+    static void setBeforeFrameFunction(void newBeforeFrame(void));
+    static void setAfterFrameFunction(void newAfterFrame(void));
+    static void resetBeforeAndAfterFrameFunctions();
+
+
     //TODO
     static std::vector <GameObject *> gameObjects;
+
+    static void init();
 
     static void addObject(GameObject * newObject);
     static void addController(Controller * newController);

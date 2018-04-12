@@ -13,12 +13,14 @@
 
 class NeuralController : public Controller, public NeuralNet {
 
-    FieldOfView * fieldOfView;
 
     double * inputs;
     double * outputs;
 
 public:
+
+    FieldOfView * fieldOfView; //TODO: MAKE THIS PRIVATE
+
     NeuralController(NetworkParams * params, Plane * plane, FieldOfView * fieldOfView);
     NeuralController(NeuralController * parent, Plane * plane, FieldOfView * fieldOfView);
     void control();
