@@ -111,20 +111,15 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
             for( auto possibleCollision : gameObjects)
             {
                 if(possibleCollision->collisionMode == AFFECTOR and checkCollision(gameObject, possibleCollision)) {
-                    //cout << "Collision!" << endl;
-                    //gameState = DONE;
 
-                    //TODO: REVIEW THIS HOTFIX
                     auto * plane = dynamic_cast<Plane *>(gameObject);
                     auto * controller = dynamic_cast<NeuralController *>(plane->getController());
-                    GameEngine::removeObject(controller->fieldOfView);
+                    auto * fieldOfView = controller->fieldOfView;
 
 
-
-
+                    GameEngine::removeObject(fieldOfView);
                     GameEngine::removeController(controller);
                     GameEngine::removeObject(plane);
-
                     GameEngine::removeObject(possibleCollision);
                 }
             }
