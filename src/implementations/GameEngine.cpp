@@ -214,7 +214,6 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
     for(auto object : gameObjects){
         if(object->objectType == PLANE){
 
-            //cout << "1" << endl;
 
             auto * plane = dynamic_cast<Plane *>(object);
             auto * controller = dynamic_cast<NeuralController *>(plane->getController());
@@ -224,21 +223,17 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
             controller->saveToFile("last_best.network");
 
             if(plane == nullptr or controller == nullptr)
-                cout << "Shit handled" << endl;
+                cout << "Weird stuff that never should happen handled" << endl;
 
-            //cout << "2" << endl;
             auto newPlane = new Plane(xPositionGenerator.generate(),
                                       yPositionGenerator.generate(),
                                       planeRotationGenerator.generate());
 
             auto newFOV = new FieldOfView(newPlane, VISUAL_CELLS_COUNT);
 
-            //cout << "3" << endl;
             auto newController = new NeuralController(controller, newPlane, newFOV);
-            //cout << "4" << endl;
             newController->randomize(0.1);
 
-            //cout << "5" << endl;
             GameEngine::addObject(newPlane);
             GameEngine::addObject(newFOV);
 
@@ -270,5 +265,22 @@ void GameEngine::resetBeforeAndAfterFrameFunctions() {
 
 void GameEngine::init() {
     resetBeforeAndAfterFrameFunctions();
+
+}
+
+void GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(NetworkParams * params) {
+
+    auto newPlane = new Plane(xPositionGenerator.generate(),
+                              yPositionGenerator.generate(),
+                              planeRotationGenerator.generate());
+
+    auto newFOV = new FieldOfView(newPlane, VISUAL_CELLS_COUNT);
+
+    auto newController = new NeuralController(params, newPlane, newFOV);
+
+    GameEngine::addObject(newPlane);
+    GameEngine::addObject(newFOV);
+
+    GameEngine::addController(newController);
 
 }

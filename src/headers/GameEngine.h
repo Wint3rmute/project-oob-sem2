@@ -13,6 +13,7 @@
 #include "Bullet.h"
 #include "RandomGenerator.h"
 #include "Boost.h"
+#include "../utils/structs.h"
 
 enum GameState {
     IN_PROGRESS,
@@ -68,6 +69,7 @@ public:
      */
     static void spawnNewPlaneBasedOnTheDNAOfAnotherPlane();
     static void checkPlanesCountAndSpawnNewPlaneAccordingly();
+    static void spawnNewRandomAIControlledPlaneInARandomPlace(NetworkParams * params);
 
 
 };

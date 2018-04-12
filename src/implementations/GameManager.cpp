@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include "../headers/GameManager.h"
+#include "../headers/GameEngine.h"
+#include "../headers/NeuralController.h"
 
 GameManager::GameManager() {
 
@@ -90,6 +92,17 @@ void GameManager::playVsBestAI() {
 
 void GameManager::trainVisible() {
     std::cout << "Training AI in a visible window" << std::endl;
+
+    GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
+    GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
+
+    GameEngine::init();
+    GameEngine::setBeforeFrameFunction(
+            GameEngine::checkPlanesCountAndSpawnNewPlaneAccordingly
+    );
+
+    GameEngine::play();
+
 
 }
 
