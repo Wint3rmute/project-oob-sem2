@@ -160,7 +160,7 @@ void GameEngine :: play() {
 
         if(graphicsEnabled)
             sf::sleep(FrameTime - gameClock.getElapsedTime());
-        
+
         gameClock.restart();
 
         matchClock++;
