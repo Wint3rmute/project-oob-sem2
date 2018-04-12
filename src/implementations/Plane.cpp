@@ -19,6 +19,7 @@ Plane::Plane (int pos_x, int pos_y, double rotation) : GameObject(PLANE_COLLIDER
     howManyPlanes++;
 
     collisionMode = AFFECTED;
+    objectType = PLANE;
 
     speed = PLANE_SPEED;
     gun = new Gun();
@@ -119,11 +120,15 @@ void Plane::setSpeed(double speed) {
 Plane::~Plane() {
     delete gun;
     howManyPlanes--;
-    cout << howManyPlanes << endl;
+    //cout << howManyPlanes << endl;
 }
 
 Controller *Plane::getController() {
     return controller;
+}
+
+int Plane::howManyPlanesAreThere() {
+    return howManyPlanes;
 }
 
 double Plane::getSpeed() {

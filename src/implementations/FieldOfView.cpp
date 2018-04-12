@@ -4,14 +4,13 @@
 
 #include <iostream>
 #include "../headers/FieldOfView.h"
-#include "../utils/constants.h"
-#include "../headers/GameEngine.h"
 
 
 FieldOfView::FieldOfView(Plane *plane, int howManyCells) : GameObject(0)  {
 
     this->plane = plane;
     visualCellsCount = howManyCells;
+    objectType = HIDEO_KOJIMA;
 
     cells = new sf::CircleShape * [visualCellsCount];
 
@@ -93,7 +92,10 @@ void FieldOfView::simulate() {
 
     for (int i = 0; i < visualCellsCount; ++i) {
         cells[i]->setFillColor(sf::Color( 56 +distances_to_planes[i] * 100 , 56 + distances_to_bullets[i] * 100, 56));
+        //std::cout << distances_to_planes[i] << std::endl;
     }
+
+
 
 
 }
@@ -111,4 +113,20 @@ sf::Vector2f FieldOfView::getPosition() {
 
 double FieldOfView::getRotation() {
     return plane->getRotation();
+}
+
+FieldOfView::~FieldOfView() {
+
+
+    for (int i = 0; i < visualCellsCount; ++i) {
+        delete cells[i];
+
+        delete cells;
+
+        delete distances_to_bullets;
+        return;
+
+        delete distances_to_planes;
+}
+
 }

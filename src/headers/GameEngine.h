@@ -11,6 +11,7 @@
 #include "GameObject.h"
 #include "Controller.h"
 #include "Bullet.h"
+#include "RandomGenerator.h"
 #include "Boost.h"
 
 enum GameState {
@@ -24,6 +25,11 @@ class GameEngine {
     static std::vector <Controller *> controllers;
     static std::vector <Controller *> controllersToRemove;
     static GameState gameState;
+
+    static RandomGenerator xPositionGenerator;
+    static RandomGenerator yPositionGenerator;
+    static RandomGenerator planeRotationGenerator;
+
 
 public:
     //TODO
@@ -42,6 +48,9 @@ public:
     static double getDistance(const sf::Vector2f&  object1, const sf::Vector2f& object2);
 
     static bool checkCollision(GameObject * object1, GameObject * object2);
+
+
+    static void spawnNewPlaneBasedOnTheDNAOfAnotherPlane();
 
 
 };

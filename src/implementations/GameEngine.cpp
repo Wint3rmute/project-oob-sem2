@@ -3,6 +3,7 @@
 //
 
 #include "../headers/GameEngine.h"
+#include "../headers/NeuralController.h"
 
 #include <iostream>
 using namespace std;
@@ -13,6 +14,10 @@ std::vector <GameObject *> GameEngine :: gameObjectsToRemove;
 std::vector <Controller *> GameEngine :: controllers;
 std::vector <Controller *> GameEngine :: controllersToRemove;
 GameState GameEngine :: gameState;
+
+RandomGenerator GameEngine::xPositionGenerator(50, GAME_WINDOW_WIDTH - 50);
+RandomGenerator GameEngine::yPositionGenerator(50, GAME_WINDOW_HEIGHT - 50);
+RandomGenerator GameEngine::planeRotationGenerator(0, 360);
 
 
 void GameEngine :: addObject (GameObject * newObject) {
@@ -63,6 +68,19 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 
 
 void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
+
+
+    if(Plane::howManyPlanesAreThere() < HOW_MANY_PLANES_ON_MAP_WHILE_TRAINING){
+        spawnNewPlaneBasedOnTheDNAOfAnotherPlane();
+
+        for(auto gameObject : GameEngine::gameObjects) {
+            if(gameObject->objectType == BULLET)
+                GameEngine::removeObject(gameObject);
+        }
+
+        GameEngine::clearRemoveQueue();
+        //cout << "DONE" << endl;
+    }
 
     window.clear(BACKGROUND_COLOR);
 
@@ -132,6 +150,10 @@ void GameEngine :: play() {
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+
+            if (event.type == sf::Event::KeyPressed) {
+                cout << GameEngine::gameObjects.size() << endl;
+            }
         }
 
 
@@ -164,4 +186,71 @@ double GameEngine::getDistance(const sf::Vector2f&  object1, const sf::Vector2f&
 
 bool GameEngine::checkCollision(GameObject *object1, GameObject *object2) {
     return getDistance(object1, object2) < object1->size + object2->size;
+}
+
+void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
+
+    // C++ was a mistake - Hideo Kojima, 2018
+    /*
+    NetworkParams params;
+
+    params.length = 4;
+    params.neuronCounts = new int [4];
+
+    params.neuronCounts[0] = VISUAL_CELLS_COUNT * 2;
+    params.neuronCounts[1] = VISUAL_CELLS_COUNT * 3;
+    params.neuronCounts[2] = VISUAL_CELLS_COUNT;
+    params.neuronCounts[3] = 2;
+
+    Plane * plane1 = new Plane(
+            xPositionGenerator.generate(),
+            yPositionGenerator.generate(),
+            planeRotationGenerator.generate());
+
+
+    FieldOfView * fov1 = new FieldOfView(plane1, VISUAL_CELLS_COUNT);
+
+    NeuralController * controller1 = new NeuralController(&params, plane1, fov1);
+
+    GameEngine::addObject(plane1);
+
+    GameEngine::addObject(fov1);
+
+    GameEngine::addController(controller1);
+
+    return;
+     */
+    for(auto object : gameObjects){
+        if(object->objectType == PLANE){
+
+            //cout << "1" << endl;
+
+            auto * plane = dynamic_cast<Plane *>(object);
+            auto * controller = dynamic_cast<NeuralController *>(plane->getController());
+
+            if(plane == nullptr or controller == nullptr)
+                cout << "Shit handled" << endl;
+
+            //cout << "2" << endl;
+            auto newPlane = new Plane(xPositionGenerator.generate(),
+                                      yPositionGenerator.generate(),
+                                      planeRotationGenerator.generate());
+
+            auto newFOV = new FieldOfView(newPlane, VISUAL_CELLS_COUNT);
+
+            //cout << "3" << endl;
+            auto newController = new NeuralController(controller, newPlane, newFOV);
+            //cout << "4" << endl;
+            newController->randomize(0.1);
+
+            //cout << "5" << endl;
+            GameEngine::addObject(newPlane);
+            GameEngine::addObject(newFOV);
+
+            GameEngine::addController(newController);
+            return;
+
+        }
+    }
+
 }

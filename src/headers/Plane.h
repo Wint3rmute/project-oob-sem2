@@ -49,6 +49,8 @@ public:
     double getRotation();
     double getSpeed();
 
+    static int howManyPlanesAreThere();
+
     ~Plane();
 
 };
