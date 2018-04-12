@@ -5,10 +5,10 @@
 #include "../headers/RandomGenerator.h"
 
 RandomGenerator::RandomGenerator(double min, double max)
-        : rng(static_cast<unsigned long>(
+        : dist(min,max),
+          rng(static_cast<double>(
                       std::chrono::system_clock::now().time_since_epoch().count()
-              )),
-          dist(min,max){}
+              )){}
 
 /*
  * TODO: ACTUALLY UNDERSTAND THIS CODE FROM STACKOVERFLOW

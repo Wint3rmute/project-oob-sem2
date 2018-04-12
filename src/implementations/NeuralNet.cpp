@@ -7,8 +7,6 @@
 #include <iostream>
 using namespace std;
 
-std::uniform_real_distribution<double> NeuralNet::uniform_real_distribution(0.0, 1.0);
-std::default_random_engine NeuralNet::random_engine;
 
 double sigmoid(double value)
 {
@@ -26,7 +24,7 @@ NeuralNet::NeuralNet(NetworkParams * params) : generator(0, 1.0) {
     myParams = params;
 
     for (int i = 0; i < params->length - 1; ++i) {
-        weights[i] = new SynapseLayer(params->neuronCounts[i], params->neuronCounts[i+1]);
+        weights[i] = new SynapseLayer(params->neuronCounts[i], params->neuronCounts[i + 1]);
     }
 
 
@@ -90,10 +88,11 @@ double * NeuralNet::process(const double *data) {
         }
 
         applyFunctionToResultMatrix(sigmoid);
+        //cout << resultMatrix[0] << endl;
         copyResultToBuffer();
     }
 
-
+    //cout << resultMatrix[0] << endl;
     return resultMatrix;
 }
 
@@ -182,4 +181,48 @@ void NeuralNet::getWeightsFromParent(NeuralNet *parent) {
         }
     }
     //cout << "WEIGHTS COPIED" << endl;
+}
+
+void NeuralNet::saveToFile(std::string filename) {
+
+    fstream outFile;
+    outFile.open(filename, std::ios::out);
+
+    if(outFile.good() != true)
+        exit(2137);
+
+        for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
+            for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
+                for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
+
+                    outFile << this->weights[layerNumber]->getElement(columnNumber, rowNumber) << endl;
+                }
+            }
+        }
+
+    outFile.close();
+}
+
+void NeuralNet::loadFromFile(std::string filename) {
+
+    fstream inFile;
+    inFile.open(filename, std::ios::in);
+
+    double valueReadFromFile = 0;
+
+    if(inFile.good() != true)
+        exit(1337);
+
+        for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
+            for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
+                for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
+
+                    inFile >> valueReadFromFile;
+                    this->weights[layerNumber]->setElement(columnNumber, rowNumber, valueReadFromFile);
+                }
+            }
+        }
+
+        inFile.close();
+
 }

@@ -22,11 +22,6 @@ class SynapseLayer {
     int columns, rows;
     static RandomGenerator generator;
 
-    /*
-     * Used for random weights generation
-     */
-    static std::uniform_real_distribution<double> uniform_real_distribution;
-    static std::default_random_engine random_engine;
 
 
 public:

@@ -11,7 +11,7 @@
 #include "FieldOfView.h"
 #include "../utils/constants.h"
 
-class NeuralController : public Controller, NeuralNet {
+class NeuralController : public Controller, public NeuralNet {
 
     FieldOfView * fieldOfView;
 

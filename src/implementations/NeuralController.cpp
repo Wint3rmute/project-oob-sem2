@@ -28,10 +28,10 @@ void NeuralController::control() {
 
     outputs = process(inputs);
 
-    if(outputs[0] > 0.6){
+    if(outputs[0] > 0.55){
         controlledPlane->turn(LEFT);
         //std::cout << "left" << std::endl;
-    }else if (outputs[0] < 0.4){
+    }else if (outputs[0] < 0.45){
         controlledPlane->turn(RIGHT);
         //std::cout << "right" << std::endl;
     }

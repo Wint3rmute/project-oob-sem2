@@ -26,12 +26,15 @@ class GameEngine {
     static std::vector <Controller *> controllersToRemove;
     static GameState gameState;
 
+
+
+public:
+
+
     static RandomGenerator xPositionGenerator;
     static RandomGenerator yPositionGenerator;
     static RandomGenerator planeRotationGenerator;
 
-
-public:
     //TODO
     static std::vector <GameObject *> gameObjects;
 

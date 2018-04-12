@@ -9,18 +9,13 @@
 #include "../utils/structs.h"
 #include "RandomGenerator.h"
 #include <cmath>
-
+#include <fstream>
 
 /*
  * That's just a fancy name for a matrix multiplication algorithm
  */
 class NeuralNet {
 
-    /*
-     * Used for random weights generation
-     */
-    static std::uniform_real_distribution<double> uniform_real_distribution;
-    static std::default_random_engine random_engine;
 
     SynapseLayer ** weights;
     NetworkParams * myParams;
@@ -57,6 +52,9 @@ public:
     void fillResultMatrixWith(double value);
 
     void randomizeByPercent(double percent);
+
+    void saveToFile(std::string filename);
+    void loadFromFile(std::string filename);
 
     ~NeuralNet();
 
