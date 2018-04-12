@@ -56,6 +56,8 @@ public:
     void saveToFile(std::string filename);
     void loadFromFile(std::string filename);
 
+    void saveToArchive();
+
     ~NeuralNet();
 
 };

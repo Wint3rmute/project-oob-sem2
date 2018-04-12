@@ -190,36 +190,6 @@ bool GameEngine::checkCollision(GameObject *object1, GameObject *object2) {
 
 void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
 
-    // C++ was a mistake - Hideo Kojima, 2018
-    /*
-    NetworkParams params;
-
-    params.length = 4;
-    params.neuronCounts = new int [4];
-
-    params.neuronCounts[0] = VISUAL_CELLS_COUNT * 2;
-    params.neuronCounts[1] = VISUAL_CELLS_COUNT * 3;
-    params.neuronCounts[2] = VISUAL_CELLS_COUNT;
-    params.neuronCounts[3] = 2;
-
-    Plane * plane1 = new Plane(
-            xPositionGenerator.generate(),
-            yPositionGenerator.generate(),
-            planeRotationGenerator.generate());
-
-
-    FieldOfView * fov1 = new FieldOfView(plane1, VISUAL_CELLS_COUNT);
-
-    NeuralController * controller1 = new NeuralController(&params, plane1, fov1);
-
-    GameEngine::addObject(plane1);
-
-    GameEngine::addObject(fov1);
-
-    GameEngine::addController(controller1);
-
-    return;
-     */
     for(auto object : gameObjects){
         if(object->objectType == PLANE){
 
@@ -227,6 +197,9 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
 
             auto * plane = dynamic_cast<Plane *>(object);
             auto * controller = dynamic_cast<NeuralController *>(plane->getController());
+
+            controller->saveToArchive();
+            controller->saveToFile("last_best.network");
 
             if(plane == nullptr or controller == nullptr)
                 cout << "Shit handled" << endl;

@@ -14,6 +14,25 @@ double sigmoid(double value)
     return 1.0 / ( 1.0 + exp(-value) );
 }
 
+
+/*
+ * A little helper - this value is used as a timestamp for saving into the network archive
+ */
+string getCurrentTime() {
+
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer[80];
+
+    time (&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer,sizeof(buffer),"%d_%m___%I_%M_%S",timeinfo);
+    std::string str(buffer);
+
+    return str;
+}
+
 NeuralNet::NeuralNet(NetworkParams * params) : generator(0, 1.0) {
 
 
@@ -225,4 +244,11 @@ void NeuralNet::loadFromFile(std::string filename) {
 
         inFile.close();
 
+}
+
+void NeuralNet::saveToArchive() {
+
+    string filename = "archive/" + getCurrentTime() + ".network";
+
+    this->saveToFile(filename);
 }
