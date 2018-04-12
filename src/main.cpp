@@ -58,6 +58,10 @@ int main(int argc, char* argv[])
 
 
     GameEngine::init();
+    GameEngine::setBeforeFrameFunction(
+            GameEngine::checkPlanesCountAndSpawnNewPlaneAccordingly
+    );
+
     GameEngine::play();
 
 

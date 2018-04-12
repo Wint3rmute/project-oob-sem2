@@ -77,11 +77,11 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 
 }
 
+void GameEngine :: checkPlanesCountAndSpawnNewPlaneAccordingly() {
 
-void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
+    cout << "checking" << endl;
 
-
-    if(Plane::howManyPlanesAreThere() < HOW_MANY_PLANES_ON_MAP_WHILE_TRAINING){
+    if(Plane::howManyPlanesAreThere() < HOW_MANY_PLANES_ON_MAP_WHILE_TRAINING) {
         spawnNewPlaneBasedOnTheDNAOfAnotherPlane();
 
         for(auto gameObject : GameEngine::gameObjects) {
@@ -92,6 +92,11 @@ void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
         GameEngine::clearRemoveQueue();
         //cout << "DONE" << endl;
     }
+}
+
+
+void GameEngine :: simulateAndRender (sf::RenderWindow & window) {
+
 
     window.clear(BACKGROUND_COLOR);
 
@@ -249,12 +254,12 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
 
 void GameEngine::setBeforeFrameFunction(void (*newBeforeFrame)(void)) {
 
-    //beforeFrame = newBeforeFrame;
+    beforeFrame = newBeforeFrame;
 }
 
 void GameEngine::setAfterFrameFunction(void (*newAfterFrame)(void)) {
 
-    //afterFrame = newAfterFrame;
+    afterFrame = newAfterFrame;
 }
 
 void GameEngine::resetBeforeAndAfterFrameFunctions() {

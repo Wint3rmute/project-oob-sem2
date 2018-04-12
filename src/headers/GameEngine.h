@@ -63,7 +63,11 @@ public:
     static bool checkCollision(GameObject * object1, GameObject * object2);
 
 
+    /*
+     * This is where i keep my ridiculous function names
+     */
     static void spawnNewPlaneBasedOnTheDNAOfAnotherPlane();
+    static void checkPlanesCountAndSpawnNewPlaneAccordingly();
 
 
 };
