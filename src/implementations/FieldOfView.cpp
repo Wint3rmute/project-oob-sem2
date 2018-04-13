@@ -28,7 +28,7 @@ FieldOfView::FieldOfView(Plane *plane, int howManyCells) : GameObject(0)  {
 
 void FieldOfView::simulate() {
 
-    if(plane->wasRemoved) //
+    if(plane->wasRemoved) //sanity check
     {
         GameEngine::removeObject(this);
         return;
@@ -67,7 +67,7 @@ void FieldOfView::simulate() {
 
             double temporaryDistance = GameEngine::getDistance(gameObject->getPosition(), cells[i]->getPosition());
 
-            if(gameObject->collisionMode == AFFECTOR) { //if we have a bullet TODO: this if fires too many times, this could be checked before the loop
+            if(gameObject->collisionMode == AFFECTOR) { //if we have a bullet
                 if (temporaryDistance < smallestDistanceBullet) {
                     smallestDistanceBullet = temporaryDistance;
                     bestVisualCellNumberBullet = i;
@@ -90,9 +90,11 @@ void FieldOfView::simulate() {
             distances_to_bullets[bestVisualCellNumberBullet] = smallestDistanceBullet;
     }
 
+    /*
+     * filling the circles with colors for a nice looking visualisation
+     */
     for (int i = 0; i < visualCellsCount; ++i) {
         cells[i]->setFillColor(sf::Color( 56 +distances_to_planes[i] * 100 , 56 + distances_to_bullets[i] * 100, 56));
-        //std::cout << distances_to_planes[i] << std::endl;
     }
 
 
