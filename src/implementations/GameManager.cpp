@@ -94,7 +94,7 @@ void GameManager::showHelpMessage() {
 void GameManager::playGame2Players() {
 
     auto plane1 = new Plane(100, 100, 0);
-    auto plane2 = new Plane(800, 100, 180);
+    auto plane2 = new Plane(1600, 100, 180);
 
     auto keyboardController1 = new KeyboardController(plane1);
     auto keyboardController2 = new KeyboardController(plane2);
@@ -115,7 +115,7 @@ void GameManager::playVsBestAI() {
     std::cout << "Playing against the best avialable AI" << std::endl;
 
     auto plane1 = new Plane(100, 100, 0);
-    auto plane2 = new Plane(800, 100, 180);
+    auto plane2 = new Plane(1600, 100, 180);
 
     auto keyboardController1 = new KeyboardController(plane1);
 
@@ -210,16 +210,7 @@ void GameManager::trainInvisible() {
 
 void signalHandler(int signal) {
 
-    int hours = GameEngine::totalGameTime / 60 / 60 / 60;
-    GameEngine::totalGameTime%= (60*60*60);
-
-    int minutes = GameEngine::totalGameTime / 60 / 60;
-    GameEngine::totalGameTime%= (60*60);
-
-    int seconds = GameEngine::totalGameTime / 60;
-
-    std::cout << std::endl << "Simulation runned for " << hours << "h " << minutes << "m " << seconds << "s ";
-    std::cout << std::endl << "In game-time" << std::endl;
+    GameEngine::printTotalGameTime();
     exit(0);
 
 }

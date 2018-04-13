@@ -368,3 +368,19 @@ void GameEngine::setVisibility(bool value) {
     graphicsEnabled = value;
 
 }
+
+void GameEngine::printTotalGameTime() {
+
+    int hours = GameEngine::totalGameTime / 60 / 60 / 60;
+    GameEngine::totalGameTime%= (60*60*60);
+
+    int minutes = GameEngine::totalGameTime / 60 / 60;
+    GameEngine::totalGameTime%= (60*60);
+
+    int seconds = GameEngine::totalGameTime / 60;
+
+    std::cout << std::endl << "Simulation runned for " << hours << "h " << minutes << "m " << seconds << "s ";
+    std::cout << std::endl << "In game-time" << std::endl;
+
+
+}

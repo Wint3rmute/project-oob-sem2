@@ -47,6 +47,8 @@ public:
     inline static void (*beforeFrame)();
     inline static void (*afterFrame)();
 
+    static void printTotalGameTime();
+
     static RandomGenerator xPositionGenerator;
     static RandomGenerator yPositionGenerator;
     static RandomGenerator planeRotationGenerator;
