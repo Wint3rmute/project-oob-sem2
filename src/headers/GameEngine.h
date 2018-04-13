@@ -63,31 +63,57 @@ public:
 
     static void init();
 
+    /*
+     * functions for adding objects and controllers to the scene
+     */
     static void addObject(GameObject * newObject);
     static void addController(Controller * newController);
-    static void removeController(Controller * controllerToRemove);
 
+    /*
+     * functions for removing objects and controllers from the scene
+     */
+    static void removeController(Controller * controllerToRemove);
     static void removeObject (GameObject * objectToRemove);
 
+    /*
+     * functions for simulating and rendering a simgle frame
+     */
     static void simulate();
     static void render(sf::RenderWindow & window);
 
 
-    static void clearRemoveQueue();
-    static void play();
-
-    static double getDistance(GameObject * object1, GameObject * object2);
-    static double getDistance(const sf::Vector2f&  object1, const sf::Vector2f& object2);
-
-    static bool checkCollision(GameObject * object1, GameObject * object2);
-
-    static void mutateRandomPlane();
-
     static void setVisibility(bool value);
+
+    /*
+     * a helper for object removing
+     */
+    static void clearRemoveQueue();
 
 
     /*
-     * This is where i keep my ridiculous function names
+     * this function starts the GameEngine after everything was loaded into the scene
+     */
+    static void play();
+
+    /*
+     * helper functions for collision detection
+     */
+    static double getDistance(GameObject * object1, GameObject * object2);
+    static double getDistance(const sf::Vector2f&  object1, const sf::Vector2f& object2);
+    static bool checkCollision(GameObject * object1, GameObject * object2);
+
+    /*
+     * This function is used when nothing happens at the game scene for a long time,
+     * prevents endless loops of planes doing nothing
+     */
+    static void mutateRandomPlane();
+
+
+
+    /*
+     * Ridiculous function names
+     * 
+     * Their names are very self-explanatory
      */
     static void spawnNewPlaneBasedOnTheDNAOfAnotherPlane();
     static void checkPlanesCountAndSpawnNewPlaneAccordingly();

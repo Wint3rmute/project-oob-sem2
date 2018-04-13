@@ -15,10 +15,6 @@
 
 class FieldOfView : public GameObject {
 
-    /*
-     * Yup, you need to know what plane you are first
-     * to even start thinking about its field of view
-     */
     Plane * plane;
 
     /*
@@ -38,7 +34,7 @@ public:
     /*
      * Those two arrays are the inputs for the bot
      *
-     * They are public, because this is the simplest way
+     * They are public, because this is the simplest way to deal with them
      */
     double * distances_to_bullets;
     double * distances_to_planes;
