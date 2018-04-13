@@ -8,7 +8,11 @@
 #include "../headers/Bullet.h"
 
 using namespace std;
-
+/*
+*On activation creates new Bullet instanes with plane properties. 
+*
+*Bullets are spawned untill ammunition is gone.
+*/
 void Gun :: activate(Plane & plane)
 {
 
