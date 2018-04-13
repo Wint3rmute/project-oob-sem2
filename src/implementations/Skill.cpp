@@ -33,9 +33,3 @@ void Skill :: startCooldown()
 
 }
 
-void Skill :: resetCooldown()
-{
-
-
-
-}
