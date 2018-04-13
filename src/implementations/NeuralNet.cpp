@@ -227,8 +227,10 @@ void NeuralNet::loadFromFile(std::string filename) {
 
     double valueReadFromFile = 0;
 
-    if(inFile.good() != true)
+    if(inFile.good() != true) {
+        cout << "Loading failed! Exiting.." << endl;
         exit(1);
+    }
 
         for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
             for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {

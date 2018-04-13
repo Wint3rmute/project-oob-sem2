@@ -24,15 +24,15 @@ void KeyboardController::control() {
 
     if(isPressed(turnLeftKey)) {
 
-        //controlledPlane++;
-        //controlledPlane->turn(LEFT);
+        /*
+         * THIS IS WHERE THE OPERATOR OVERLOAD IS USED
+         */
+
         *(controlledPlane)+LEFT;
 
     } else if(isPressed(turnRightKey)) {
 
         *(controlledPlane)+RIGHT;
-        //controlledPlane--;
-        //controlledPlane->turn(RIGHT);
 
     }
 

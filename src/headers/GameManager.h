@@ -17,17 +17,38 @@
 
 class GameManager {
 
+    /*
+     * command line arguments,
+     * will be used to launch the game with certain objects and options
+     */
     std::string argument1;
     std::string argument2;
+
+    /*
+     * NetworkParams for all the neural nets in the game
+     */
     NetworkParams params;
 
 
 public:
     GameManager();
 
+    /*
+     * Lets the program react to a ctrl+c signal
+     * display an info message before exiting
+     */
     void enableSignalCatching();
 
+    /*
+     * takes the command arguments and runs the game accordingly
+     */
     void runTheGame(int argc, char* argv[]);
+
+    /*
+     * The functions below are used for launching various game modes that can be chosen by command line arguments
+     *
+     * their names are self-explanatory
+     */
 
     void showHelpMessage();
 

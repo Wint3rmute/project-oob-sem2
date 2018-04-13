@@ -15,12 +15,7 @@ GameManager::GameManager() {
     argument1 = "";
     argument2 = "";
 
-    /*
-     * This is a global setting
-     *
-     * Do. Not. Touch.
-     * DON'T.
-     */
+
     params.length = 3;
     params.neuronCounts = new int [3];
 
