@@ -32,9 +32,15 @@ public:
     void showHelpMessage();
 
     void playGame2Players();
+
     void playVsBestAI();
-    void trainVisible(bool shoudContinue);
-    void trainInvisible(bool shoudContinue);
+
+    void trainVisible();
+    void trainInvisible();
+
+    void trainVisibleContinue();
+    void trainInvisibleContinue();
+
     void playVsLoadedAI();
 
 };

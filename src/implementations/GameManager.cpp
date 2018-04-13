@@ -21,12 +21,14 @@ GameManager::GameManager() {
      * Do. Not. Touch.
      * DON'T.
      */
-    params.length = 3;
-    params.neuronCounts = new int [3];
+    params.length = 5;
+    params.neuronCounts = new int [5];
 
     params.neuronCounts[0] = VISUAL_CELLS_COUNT * 2;
-    params.neuronCounts[1] = VISUAL_CELLS_COUNT * 1.3;
-    params.neuronCounts[2] = 3;
+    params.neuronCounts[1] = VISUAL_CELLS_COUNT * 1.5;
+    params.neuronCounts[2] = VISUAL_CELLS_COUNT * 1.3;
+    params.neuronCounts[3] = VISUAL_CELLS_COUNT * 0.7;
+    params.neuronCounts[4] = 3;
 
 
 }
@@ -55,10 +57,16 @@ void GameManager::runTheGame(int argc, char **argv) {
         playVsBestAI();
 
     else if(argument1 == "--train-visible")
-        trainVisible(false);
+        trainVisible();
 
     else if(argument1 == "--train-invisible")
-        trainInvisible(false);
+        trainInvisible();
+
+    else if(argument1 == "--train-visible-continue")
+        trainVisibleContinue();
+
+    else if(argument1 == "--train-invisible-continue")
+        trainInvisibleContinue();
 
     else if(argument1 == "--play-ai-load")
         playVsLoadedAI();
@@ -115,7 +123,7 @@ void GameManager::playVsBestAI() {
 
     auto fov = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
     auto neuralController = new NeuralController(&params, plane2, fov);
-    neuralController->loadFromFile("last_best.network");
+    neuralController->loadFromFile(BEST_NETWORK_FILENAME);
 
 
     GameEngine::addObject(plane1);
@@ -132,7 +140,7 @@ void GameManager::playVsBestAI() {
 
 }
 
-void GameManager::trainVisible(bool shouldContinue) {
+void GameManager::trainVisible() {
     std::cout << "Training AI in a visible window" << std::endl;
 
     GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
@@ -153,7 +161,7 @@ void GameManager::trainVisible(bool shouldContinue) {
 
 }
 
-void GameManager::trainInvisible(bool shouldContinue) {
+void GameManager::trainInvisible() {
 
     GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
     GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
@@ -202,4 +210,95 @@ void GameManager::enableSignalCatching() {
 
     sigaction(SIGINT, &sigIntHandler, NULL);
 
+}
+
+void GameManager::trainVisibleContinue() {
+
+
+    //PLANE 1
+    auto newPlane = new Plane(GameEngine::xPositionGenerator.generate(),
+                              GameEngine::yPositionGenerator.generate(),
+                              GameEngine::planeRotationGenerator.generate());
+
+    auto newFOV = new FieldOfView(newPlane, VISUAL_CELLS_COUNT);
+
+    auto newController = new NeuralController(&params, newPlane, newFOV);
+    newController->loadFromFile(BEST_NETWORK_FILENAME);
+
+    GameEngine::addObject(newPlane);
+    GameEngine::addObject(newFOV);
+    GameEngine::addController(newController);
+
+    //PLANE 2
+    auto newPlane2 = new Plane(GameEngine::xPositionGenerator.generate(),
+                              GameEngine::yPositionGenerator.generate(),
+                              GameEngine::planeRotationGenerator.generate());
+
+    auto newFOV2 = new FieldOfView(newPlane2, VISUAL_CELLS_COUNT);
+
+    auto newController2 = new NeuralController(&params, newPlane2, newFOV2);
+    newController2->loadFromFile(BEST_NETWORK_FILENAME);
+
+    GameEngine::addObject(newPlane2);
+    GameEngine::addObject(newFOV2);
+    GameEngine::addController(newController2);
+
+
+
+    GameEngine::init();
+    GameEngine::setVisibility(true);
+    GameEngine::setBeforeFrameFunction(
+            GameEngine::checkPlanesCountAndSpawnNewPlaneAccordingly
+    );
+
+    GameEngine::setAfterFrameFunction(
+            GameEngine::checkMatchTimeAndMutateRandomPlaneIfNothingIsHappening
+    );
+
+    GameEngine::play();
+
+}
+
+void GameManager::trainInvisibleContinue() {
+    //PLANE 1
+    auto newPlane = new Plane(GameEngine::xPositionGenerator.generate(),
+                              GameEngine::yPositionGenerator.generate(),
+                              GameEngine::planeRotationGenerator.generate());
+
+    auto newFOV = new FieldOfView(newPlane, VISUAL_CELLS_COUNT);
+
+    auto newController = new NeuralController(&params, newPlane, newFOV);
+    newController->loadFromFile(BEST_NETWORK_FILENAME);
+
+    GameEngine::addObject(newPlane);
+    GameEngine::addObject(newFOV);
+    GameEngine::addController(newController);
+
+    //PLANE 2
+    auto newPlane2 = new Plane(GameEngine::xPositionGenerator.generate(),
+                               GameEngine::yPositionGenerator.generate(),
+                               GameEngine::planeRotationGenerator.generate());
+
+    auto newFOV2 = new FieldOfView(newPlane2, VISUAL_CELLS_COUNT);
+
+    auto newController2 = new NeuralController(&params, newPlane2, newFOV2);
+    newController2->loadFromFile(BEST_NETWORK_FILENAME);
+
+    GameEngine::addObject(newPlane2);
+    GameEngine::addObject(newFOV2);
+    GameEngine::addController(newController2);
+
+
+
+    GameEngine::init();
+    GameEngine::setVisibility(false);
+    GameEngine::setBeforeFrameFunction(
+            GameEngine::checkPlanesCountAndSpawnNewPlaneAccordingly
+    );
+
+    GameEngine::setAfterFrameFunction(
+            GameEngine::checkMatchTimeAndMutateRandomPlaneIfNothingIsHappening
+    );
+
+    GameEngine::play();
 }
