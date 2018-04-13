@@ -4,6 +4,7 @@
 
 #include "../headers/GameEngine.h"
 #include "../headers/NeuralController.h"
+#include "../headers/KeyboardController.h"
 
 #include <iostream>
 using namespace std;
@@ -144,7 +145,7 @@ void GameEngine :: play() {
                 /*
                  * JUST FOR DEBUGGING PURPOSES
                  */
-                cout << GameEngine::gameObjects.size() << endl;
+                //cout << GameEngine::gameObjects.size() << endl;
             }
         }
 
@@ -201,11 +202,15 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
 
 
             auto * plane = dynamic_cast<Plane *>(object);
+
+            if (typeid(*plane->getController()) == typeid(KeyboardController)) {
+                continue;
+            }
             auto * controller = dynamic_cast<NeuralController *>(plane->getController());
 
 
             //controller->saveToArchive();
-            controller->saveToFile("last_best.network");
+            controller->saveToFile(BEST_NETWORK_FILENAME);
 
             if(plane == nullptr or controller == nullptr)
                 cout << "Weird stuff that never should happen handled" << endl;

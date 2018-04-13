@@ -21,14 +21,12 @@ GameManager::GameManager() {
      * Do. Not. Touch.
      * DON'T.
      */
-    params.length = 5;
-    params.neuronCounts = new int [5];
+    params.length = 3;
+    params.neuronCounts = new int [3];
 
     params.neuronCounts[0] = VISUAL_CELLS_COUNT * 2;
-    params.neuronCounts[1] = VISUAL_CELLS_COUNT * 1.5;
-    params.neuronCounts[2] = VISUAL_CELLS_COUNT * 1.3;
-    params.neuronCounts[3] = VISUAL_CELLS_COUNT * 0.7;
-    params.neuronCounts[4] = 3;
+    params.neuronCounts[1] = VISUAL_CELLS_COUNT * 0.5;
+    params.neuronCounts[2] = 3;
 
 
 }
@@ -136,12 +134,42 @@ void GameManager::playVsBestAI() {
     GameEngine::init();
     GameEngine::play();
 
+}
 
+
+void GameManager::playVsLoadedAI() {
+    std::cout << "Loading AI from file " + argument2 << std::endl;
+
+    auto plane1 = new Plane(100, 100, 0);
+    auto plane2 = new Plane(800, 100, 180);
+
+    auto keyboardController1 = new KeyboardController(plane1);
+
+    auto fov = new FieldOfView(plane2, VISUAL_CELLS_COUNT);
+    auto neuralController = new NeuralController(&params, plane2, fov);
+    neuralController->loadFromFile(argument2);
+
+
+    GameEngine::addObject(plane1);
+    GameEngine::addObject(plane2);
+    GameEngine::addObject(fov);
+
+    GameEngine::addController(keyboardController1);
+    GameEngine::addController(neuralController);
+
+    GameEngine::init();
+    GameEngine::play();
 
 }
 
 void GameManager::trainVisible() {
     std::cout << "Training AI in a visible window" << std::endl;
+
+    auto myPlane = new Plane(100, 100, 0);
+    auto myController = new KeyboardController(myPlane);
+
+    GameEngine::addObject(myPlane);
+    GameEngine::addController(myController);
 
     GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
     GameEngine::spawnNewRandomAIControlledPlaneInARandomPlace(&params);
@@ -180,10 +208,6 @@ void GameManager::trainInvisible() {
 
 }
 
-void GameManager::playVsLoadedAI() {
-    std::cout << "Loading AI from file " + argument2;
-}
-
 void signalHandler(int signal) {
 
     int hours = GameEngine::totalGameTime / 60 / 60 / 60;
@@ -213,6 +237,13 @@ void GameManager::enableSignalCatching() {
 }
 
 void GameManager::trainVisibleContinue() {
+
+    auto myPlane = new Plane(100, 100, 0);
+    auto myController = new KeyboardController(myPlane);
+
+    GameEngine::addObject(myPlane);
+    GameEngine::addController(myController);
+
 
 
     //PLANE 1
