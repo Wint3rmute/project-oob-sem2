@@ -140,9 +140,9 @@ double Plane::getSpeed() {
  *
  * Dziękujemy za wyrozumiałość :)
  */
-int Plane::operator+(DIRECTION direcion) {
+int Plane::operator+(DIRECTION direction) {
 
-    this->turn(direcion);
+    this->turn(direction);
 
 
     return 0;

@@ -25,7 +25,6 @@ Bullet :: Bullet (double pos_x, double pos_y, double rotation) : GameObject(BULL
 
 
 void Bullet :: draw(sf::RenderTarget & target, sf::RenderStates states) const {
-    //std::cout << "drawing" << std::end;
     target.draw(shape, states);
 
 }
@@ -39,7 +38,6 @@ void Bullet :: simulate() {
             shape.getPosition().y < 0
             ) {
         GameEngine::removeObject(this);
-        //delete this;
         return;
     }
 
