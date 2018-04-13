@@ -44,6 +44,10 @@ public:
 
     static unsigned long totalGameTime;
 
+    /*
+     * functions that can be runned by the GameEngine
+     * before or after each simulation frame
+     */
     inline static void (*beforeFrame)();
     inline static void (*afterFrame)();
 
@@ -82,6 +86,14 @@ public:
     static void render(sf::RenderWindow & window);
 
 
+    /*
+     * if true - window is shown
+     *
+     * if false - game goes on 100x faster than normally,
+     * used for faster training
+     *
+     * needs to be set BEFORE GameEngine::play()
+     */
     static void setVisibility(bool value);
 
     /*
@@ -112,7 +124,7 @@ public:
 
     /*
      * Ridiculous function names
-     * 
+     *
      * Their names are very self-explanatory
      */
     static void spawnNewPlaneBasedOnTheDNAOfAnotherPlane();

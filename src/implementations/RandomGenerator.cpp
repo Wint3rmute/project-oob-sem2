@@ -6,13 +6,10 @@
 
 RandomGenerator::RandomGenerator(double min, double max)
         : dist(min,max),
-          rng(static_cast<double>(
-                      std::chrono::system_clock::now().time_since_epoch().count()
-              )){}
+          rng(static_cast<unsigned long>(
+                                std::chrono::system_clock::now().time_since_epoch().count()
+                        )){}
 
-/*
- * TODO: ACTUALLY UNDERSTAND THIS CODE FROM STACKOVERFLOW
- */
 double RandomGenerator::generate() {
 
     return dist(rng);

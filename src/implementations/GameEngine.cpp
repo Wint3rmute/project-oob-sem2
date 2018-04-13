@@ -22,7 +22,9 @@ unsigned long GameEngine :: totalGameTime;
 sf::RenderWindow * GameEngine::window;
 bool GameEngine :: graphicsEnabled;
 
-
+/*
+ * used for spawning new planes into the scene
+ */
 RandomGenerator GameEngine::xPositionGenerator(50, GAME_WINDOW_WIDTH - 50);
 RandomGenerator GameEngine::yPositionGenerator(50, GAME_WINDOW_HEIGHT - 50);
 RandomGenerator GameEngine::planeRotationGenerator(0, 360);
@@ -33,8 +35,6 @@ void GameEngine :: nothing() {
      * This function does nothing. That's it
      */
 
-
-    //cout << "i do nothing" << endl;
 }
 
 void GameEngine :: addObject (GameObject * newObject) {
@@ -71,7 +71,6 @@ void GameEngine :: removeObject (GameObject * objectToRemove) {
 
     gameObjectsToRemove.push_back(objectToRemove);
 
-    //delete objectToRemove;
     gameObjects.erase(
             std::remove(
                     gameObjects.begin(),
@@ -94,7 +93,6 @@ void GameEngine :: checkPlanesCountAndSpawnNewPlaneAccordingly() {
         }
 
         GameEngine::clearRemoveQueue();
-        //cout << "DONE" << endl;
     }
 }
 
@@ -141,12 +139,7 @@ void GameEngine :: play() {
             if (event.type == sf::Event::Closed)
                 window->close();
 
-            if (event.type == sf::Event::KeyPressed) {
-                /*
-                 * JUST FOR DEBUGGING PURPOSES
-                 */
-                //cout << GameEngine::gameObjects.size() << endl;
-            }
+
         }
 
 
@@ -196,6 +189,11 @@ bool GameEngine::checkCollision(GameObject *object1, GameObject *object2) {
     return getDistance(object1, object2) < object1->size + object2->size;
 }
 
+/*
+ * finds a plane inside gameObjects
+ *
+ * and makes a new one based on the weights of the old plane
+ */
 void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
 
     for(auto object : gameObjects){
@@ -210,7 +208,6 @@ void GameEngine::spawnNewPlaneBasedOnTheDNAOfAnotherPlane() {
             auto * controller = dynamic_cast<NeuralController *>(plane->getController());
 
 
-            //controller->saveToArchive();
             controller->saveToFile(BEST_NETWORK_FILENAME);
 
             if(plane == nullptr or controller == nullptr)

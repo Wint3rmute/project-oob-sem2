@@ -9,11 +9,11 @@
 #include <random>
 
 /*
- * TODO: MAKE THIS EFFICIENT
- * not shamelessly copied
+ * helper class for generating random numbers,
+ *
+ * used all across the code
  */
 class RandomGenerator {
-    double min,max;
     std::default_random_engine rng;
     std::uniform_real_distribution<double> dist;
 public:
