@@ -24,11 +24,15 @@ void KeyboardController::control() {
 
     if(isPressed(turnLeftKey)) {
 
-        controlledPlane->turn(LEFT);
+        //controlledPlane++;
+        //controlledPlane->turn(LEFT);
+        *(controlledPlane)+LEFT;
 
     } else if(isPressed(turnRightKey)) {
 
-        controlledPlane->turn(RIGHT);
+        *(controlledPlane)+RIGHT;
+        //controlledPlane--;
+        //controlledPlane->turn(RIGHT);
 
     }
 

@@ -51,6 +51,8 @@ public:
 
     static int howManyPlanesAreThere();
 
+    int operator+(DIRECTION direcion);
+
     ~Plane();
 
 };

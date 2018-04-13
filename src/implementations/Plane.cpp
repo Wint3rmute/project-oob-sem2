@@ -134,3 +134,18 @@ int Plane::howManyPlanesAreThere() {
 double Plane::getSpeed() {
     return speed;
 }
+
+/*
+ * To nie ma sensu, ale musieliśmy go przeciążyć,
+ * bo takie były kryteria oceny
+ *
+ * Dziękujemy za wyrozumiałość :)
+ */
+int Plane::operator+(DIRECTION direcion) {
+
+    this->turn(direcion);
+
+
+    return 0;
+}
+

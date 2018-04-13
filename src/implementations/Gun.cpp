@@ -35,3 +35,4 @@ void Gun :: activate(Plane & plane)
 
     }
 }
+
