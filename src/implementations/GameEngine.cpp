@@ -171,6 +171,7 @@ void GameEngine :: play() {
         matchClock++;
     }
 
+    GameEngine::printTotalGameTime();
 }
 
 void GameEngine::addController(Controller *newController) {
@@ -380,7 +381,7 @@ void GameEngine::printTotalGameTime() {
     int seconds = GameEngine::totalGameTime / 60;
 
     std::cout << std::endl << "Simulation runned for " << hours << "h " << minutes << "m " << seconds << "s ";
-    std::cout << std::endl << "In game-time" << std::endl;
+    std::cout << "in game-time" << std::endl;
 
 
 }
