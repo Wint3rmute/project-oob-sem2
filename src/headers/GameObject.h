@@ -27,6 +27,9 @@ enum ObjectType {
     HIDEO_KOJIMA
 };
 
+/*
+ * Base class for all objects used by the GameEngine
+ */
 class GameObject : public sf::Drawable {
 
 public:

@@ -9,6 +9,9 @@
 #include "Plane.h"
 class Plane;
 
+/*
+ * Base class for every plane ability such as boost and gun
+ */
 class Skill {
 
 protected:

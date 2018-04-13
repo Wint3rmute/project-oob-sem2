@@ -9,6 +9,9 @@
 #include <random>
 #include "RandomGenerator.h"
 
+/*
+ * A single weights matrix between network layers
+ */
 class SynapseLayer {
 
     /*

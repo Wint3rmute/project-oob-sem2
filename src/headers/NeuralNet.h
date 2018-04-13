@@ -13,6 +13,8 @@
 
 /*
  * A fancy name for a matrix multiplication algorithm
+ *
+ * Also, controller for planes
  */
 class NeuralNet {
 

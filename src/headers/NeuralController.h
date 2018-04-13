@@ -11,6 +11,9 @@
 #include "FieldOfView.h"
 #include "../utils/constants.h"
 
+/*
+ * Uses a neural network to move the plane around
+ */
 class NeuralController : public Controller, public NeuralNet {
 
 

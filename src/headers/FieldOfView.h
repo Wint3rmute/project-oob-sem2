@@ -12,7 +12,9 @@
 #include "../utils/constants.h"
 #include "../headers/GameEngine.h"
 
-
+/*
+ * A component that serves as the sense of sight for the AI plane
+ */
 class FieldOfView : public GameObject {
 
     Plane * plane;

@@ -11,7 +11,9 @@ class Plane;
 #include "Skill.h"
 #include "../utils/constants.h"
 
-
+/*
+ * A skill that allows to shoot bullets
+ */
 class Gun : public Skill {
 private:
 

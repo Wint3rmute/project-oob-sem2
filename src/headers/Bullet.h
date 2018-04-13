@@ -10,7 +10,9 @@
 #include "GameEngine.h"
 #include "GameObject.h"
 
-
+/*
+ * gameObject representing a bullet - planes shoot them and get killed by them
+ */
 class Bullet : public GameObject {
 
     sf::CircleShape shape;

@@ -20,6 +20,11 @@ enum GameState {
     DONE
 };
 
+/*
+ * The main game engine,
+ *
+ * Controls the flow of the game
+ */
 class GameEngine {
 
     static sf::RenderWindow * window;

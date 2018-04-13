@@ -10,6 +10,9 @@
 #define Key sf::Keyboard::Key
 #define isPressed sf::Keyboard::isKeyPressed
 
+/*
+ * Uses a keyboard input to move the plane around
+ */
 class KeyboardController : public Controller {
 
     Key turnLeftKey;

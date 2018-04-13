@@ -14,7 +14,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
+/*
+ * Sets parameters for the GameEngine and runs the game accordingly to the users input parameters
+ */
 class GameManager {
 
     /*
