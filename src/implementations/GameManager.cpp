@@ -141,7 +141,7 @@ void GameManager::playVsLoadedAI() {
     std::cout << "Loading AI from file " + argument2 << std::endl;
 
     auto plane1 = new Plane(100, 100, 0);
-    auto plane2 = new Plane(800, 100, 180);
+    auto plane2 = new Plane(1600, 100, 180);
 
     auto keyboardController1 = new KeyboardController(plane1);
 

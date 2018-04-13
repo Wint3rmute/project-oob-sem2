@@ -6,5 +6,6 @@
 
 Controller::Controller(Plane * plane) {
     controlledPlane = plane;
+    fieldOfView = nullptr;
     plane->setController(this);
 }

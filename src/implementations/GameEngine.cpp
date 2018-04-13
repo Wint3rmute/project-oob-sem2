@@ -301,7 +301,6 @@ void GameEngine::simulate() {
 
                     auto * fieldOfView = controller->fieldOfView;
 
-
                     if(fieldOfView != nullptr)
                         GameEngine::removeObject(fieldOfView);
 
