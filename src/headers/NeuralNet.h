@@ -12,46 +12,75 @@
 #include <fstream>
 
 /*
- * That's just a fancy name for a matrix multiplication algorithm
+ * A fancy name for a matrix multiplication algorithm
  */
 class NeuralNet {
 
-
+    /*
+     * All the network weights are stored there
+     */
     SynapseLayer ** weights;
+
+    /*
+     * NetworkParams describe the structure of the network:
+     * depth and number of neurons inside each layer
+     */
     NetworkParams * myParams;
 
     /*
-     * Calling them matrices is kinda too much.. those are only 1 x n vectors
-     * (But cmon, buzzwords)
+     * resultMatrix and bufferMatrix are used for matrix multiplication.
      */
     double * resultMatrix;
     double * bufferMatrix;
-    int networkLength;
-    int multiplyMatricesLength;
 
+    int multiplyMatricesLength;
+    int networkLength;
+
+    /*
+     * Generator used for generating random events when given a probability
+     *
+     * used for random network mutations
+     */
     RandomGenerator generator;
 
+
 public:
-    /*
-     * Yes
-     */
-    explicit NeuralNet(NetworkParams * params); //TODO FIX
+    explicit NeuralNet(NetworkParams * params);
     NeuralNet(NeuralNet * parent);
 
     /*
-     * Process the data, without checking the array length,
-     * who needs safety anyway
+     * Process given data
      */
     double * process(const double * data);
+
+    /*
+     * sigmoid activation function will be applied
+     */
     void applyFunctionToResultMatrix(double (*function)(double));
 
+    /*
+     * Used for copying a network weights into another network
+     *
+     * 'breeding' nets
+     */
     void getWeightsFromParent(NeuralNet * parent);
 
-
+private:
+    /*
+     * Helpers for the matrix multiplication algorithm
+     */
     void copyResultToBuffer();
     void fillResultMatrixWith(double value);
 
+
+public:
+
+
+    /*
+     * The mutator function
+     */
     void randomizeByPercent(double percent);
+
 
     void saveToFile(std::string filename);
     void loadFromFile(std::string filename);

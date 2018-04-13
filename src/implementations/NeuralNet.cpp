@@ -10,7 +10,6 @@ using namespace std;
 
 double sigmoid(double value)
 {
-    //cout << 1.0 / ( 1.0 + exp(-value) ) << endl;
     return 1.0 / ( 1.0 + exp(-value) );
 }
 
@@ -33,10 +32,9 @@ string getCurrentTime() {
     return str;
 }
 
-NeuralNet::NeuralNet(NetworkParams * params) : generator(0, 1.0) {
+NeuralNet::NeuralNet(NetworkParams * params) : generator(0.0, 1.0) {
 
 
-    
     weights = new SynapseLayer * [params->length - 1];
     networkLength = params->length;
 
@@ -47,6 +45,10 @@ NeuralNet::NeuralNet(NetworkParams * params) : generator(0, 1.0) {
     }
 
 
+    /*
+     * multiplyMatricesLength is the length of the longest array,
+     * that will be needed in the matrix multiplication
+     */
     multiplyMatricesLength = params->neuronCounts[0];
     for (int j = 1; j < params->length; ++j) {
         if(params->neuronCounts[j] > multiplyMatricesLength)
@@ -72,9 +74,7 @@ NeuralNet::~NeuralNet() {
 
 /*
  * The processing algorithm is the hardest thing here,
- * so let's make it as simple and as efficient as possible
- *
- * (and also lets write it in a reasonable time)
+ * but it's really just matrix multiplications
  */
 double * NeuralNet::process(const double *data) {
 
@@ -93,8 +93,8 @@ double * NeuralNet::process(const double *data) {
     for (int layerNumber = 0; layerNumber < networkLength - 1; ++layerNumber) {
 
         /*
-         * Yup, making the result matrix an empty matrix
-         * seems like a good idea
+         * Then we empty the resultMatrix,
+         * there probably is some old data inside
          */
         fillResultMatrixWith(0);
         for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
@@ -107,11 +107,13 @@ double * NeuralNet::process(const double *data) {
         }
 
         applyFunctionToResultMatrix(sigmoid);
-        //cout << resultMatrix[0] << endl;
+
+        /*
+         * result is copied to buffer and used as input for next layer
+         */
         copyResultToBuffer();
     }
 
-    //cout << resultMatrix[0] << endl;
     return resultMatrix;
 }
 
@@ -146,10 +148,10 @@ void NeuralNet::randomizeByPercent(double percent) {
             for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
 
                 if(generator.generate() < percent) {
+
                     /*
                      * This mutates a random element
                      */
-                    //cout << "mutation" << layerNumber << " " << columnNumber << " " << rowNumber << endl;
                     weights[layerNumber]->setElement(columnNumber, rowNumber, SynapseLayer::getRandomNetworkWeight());
                 }
 
@@ -158,35 +160,29 @@ void NeuralNet::randomizeByPercent(double percent) {
 
     }
 
-    //cout << "weights randomized" << endl;
-}
+ }
 
 NeuralNet::NeuralNet(NeuralNet *parent) :  NeuralNet(parent->myParams) {
 
-    /*
-    this->myParams = parent->myParams;
-    this->networkLength = parent->myParams->length;
-     */
 
     getWeightsFromParent(parent);
 
-
-    randomizeByPercent(0.1);
 }
 
 void NeuralNet::getWeightsFromParent(NeuralNet *parent) {
 
     /*
- * Copying the weights contents
- */
-    //cout << "GETTING WEIGHTS FROM PARENT" << endl;
+     * Copying the weights contents
+     */
+
     for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
         for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
             for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
 
                 /*
-                 * I know it looks terrifying
+                 * This part looks pretty ugly,
                  * But it's just copying each corresponding weight
+                 * to the other network
                  */
                 this->weights[layerNumber]->setElement(
                         columnNumber,
@@ -196,13 +192,12 @@ void NeuralNet::getWeightsFromParent(NeuralNet *parent) {
                                 rowNumber
                         )
                 );
-                //cout << layerNumber << " " << rowNumber << " " << columnNumber << endl;
+
 
 
             }
         }
     }
-    //cout << "WEIGHTS COPIED" << endl;
 }
 
 void NeuralNet::saveToFile(std::string filename) {
@@ -211,7 +206,7 @@ void NeuralNet::saveToFile(std::string filename) {
     outFile.open(filename, std::ios::out);
 
     if(outFile.good() != true)
-        exit(2137);
+        exit(1);
 
         for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
             for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
@@ -233,7 +228,7 @@ void NeuralNet::loadFromFile(std::string filename) {
     double valueReadFromFile = 0;
 
     if(inFile.good() != true)
-        exit(1337);
+        exit(1);
 
         for (int layerNumber = 0; layerNumber < networkLength - 1; layerNumber++) {
             for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
