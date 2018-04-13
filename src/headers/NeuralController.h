@@ -20,9 +20,20 @@ class NeuralController : public Controller, public NeuralNet {
 public:
 
 
+    /*
+     * This creates a new, random neural network
+     */
     NeuralController(NetworkParams * params, Plane * plane, FieldOfView * fieldOfView);
+
+    /*
+     * This creates a controller with weights copied from another network - the parent
+     */
     NeuralController(NeuralController * parent, Plane * plane, FieldOfView * fieldOfView);
     void control();
+
+    /*
+     * Mutates a random percent of the network weights
+     */
     void randomize(double percent);
 
     ~NeuralController();
