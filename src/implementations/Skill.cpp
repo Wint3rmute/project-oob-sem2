@@ -6,7 +6,9 @@
 #include <iostream>
 #include "../headers/Skill.h"
 using namespace std;
-
+/*
+*Class that handles cooldown time of abilities. 
+*/
 double Skill :: getCooldownTime()
 {
     return  cooldownTime;
@@ -31,9 +33,3 @@ void Skill :: startCooldown()
 
 }
 
-void Skill :: resetCooldown()
-{
-
-
-
-}
