@@ -120,7 +120,6 @@ void Plane::setSpeed(double speed) {
 Plane::~Plane() {
     delete gun;
     howManyPlanes--;
-    //cout << howManyPlanes << endl;
 }
 
 Controller *Plane::getController() {
