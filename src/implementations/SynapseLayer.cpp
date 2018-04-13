@@ -7,7 +7,7 @@
 
 using namespace std;
 
-RandomGenerator SynapseLayer::generator(-10.0, 10.0);
+RandomGenerator SynapseLayer::generator(-5.0, 5.0);
 
 SynapseLayer::SynapseLayer(int columns, int rows) {
 
