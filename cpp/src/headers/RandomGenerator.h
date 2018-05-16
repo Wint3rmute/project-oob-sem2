@@ -8,7 +8,7 @@
 #include <chrono>
 #include <random>
 
-/*
+/**
  * helper class for generating random numbers,
  *
  * used all across the code

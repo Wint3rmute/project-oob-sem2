@@ -9,7 +9,7 @@ class Plane;
 
 #include "Skill.h"
 #include "../utils/constants.h"
-/*
+/**
  * a skill that allows the plane to increase it's speed for a short period of time
  */
 class Boost : public Skill {

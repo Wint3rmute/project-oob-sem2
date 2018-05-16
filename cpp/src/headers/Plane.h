@@ -20,7 +20,7 @@ enum DIRECTION {
 
 };
 
-/*
+/**
  * Plane object, can be controlled by a controller object:
  * that could be a player or a neural network
  *
@@ -36,7 +36,7 @@ class Plane : public GameObject {
     Controller * controller;
 
 public:
-    /*
+    /**
      * for creating a plane object ready to be added into GameEngine scene
      */
     Plane (int pos_x, int pos_y, double rotation);
@@ -49,7 +49,7 @@ public:
 
     void simulate ();
 
-    /*
+    /**
      * an interface to control the plane
      *
      * allows for turning, shooting and boosting
@@ -63,7 +63,7 @@ public:
     double getRotation();
     double getSpeed();
 
-    /*
+    /**
      * return the static variable showing how many planes exist currently
      *
      * used for network training - monitoring the number of networks currently on scene

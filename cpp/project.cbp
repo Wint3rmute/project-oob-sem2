@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="project"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/wint3rmute/code/cpp/project-oob-sem2/cpp"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/wint3rmute/code/cpp/project-oob-sem2/cpp"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="project">
+				<Option output="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/wint3rmute/code/cpp/project-oob-sem2/cpp"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 project"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="project/fast">
+				<Option output="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/wint3rmute/code/cpp/project-oob-sem2/cpp"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 project/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/wint3rmute/code/cpp/project-oob-sem2/cpp"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/wint3rmute/code/cpp/project-oob-sem2/cpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/Boost.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/Bullet.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/Controller.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/DummyController.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/FieldOfView.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/GameEngine.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/GameManager.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/GameObject.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/Gun.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/KeyboardController.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/NeuralController.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/NeuralNet.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/Plane.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/RandomGenerator.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/Skill.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/headers/SynapseLayer.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/Boost.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/Bullet.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/Controller.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/DummyController.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/FieldOfView.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/GameEngine.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/GameManager.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/GameObject.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/Gun.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/KeyboardController.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/NeuralController.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/NeuralNet.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/Plane.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/RandomGenerator.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/Skill.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/implementations/SynapseLayer.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/main.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/utils/constants.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/utils/functions.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/src/utils/structs.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/wint3rmute/code/cpp/project-oob-sem2/cpp/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -90,7 +90,7 @@ void FieldOfView::simulate() {
             distances_to_bullets[bestVisualCellNumberBullet] = smallestDistanceBullet;
     }
 
-    /*
+    /**
      * filling the circles with colors for a nice looking visualisation
      */
     for (int i = 0; i < visualCellsCount; ++i) {

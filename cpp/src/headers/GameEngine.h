@@ -20,7 +20,7 @@ enum GameState {
     DONE
 };
 
-/*
+/**
  * The main game engine,
  *
  * Controls the flow of the game
@@ -35,7 +35,7 @@ class GameEngine {
 
     static void nothing();
 
-    /*
+    /**
      * This measures the ticks in the GameEngine
      *
      * this it NOT a normal clock
@@ -49,7 +49,7 @@ public:
 
     static unsigned long totalGameTime;
 
-    /*
+    /**
      * functions that can be runned by the GameEngine
      * before or after each simulation frame
      */
@@ -72,26 +72,26 @@ public:
 
     static void init();
 
-    /*
+    /**
      * functions for adding objects and controllers to the scene
      */
     static void addObject(GameObject * newObject);
     static void addController(Controller * newController);
 
-    /*
+    /**
      * functions for removing objects and controllers from the scene
      */
     static void removeController(Controller * controllerToRemove);
     static void removeObject (GameObject * objectToRemove);
 
-    /*
+    /**
      * functions for simulating and rendering a simgle frame
      */
     static void simulate();
     static void render(sf::RenderWindow & window);
 
 
-    /*
+    /**
      * if true - window is shown
      *
      * if false - game goes on 100x faster than normally,
@@ -101,25 +101,25 @@ public:
      */
     static void setVisibility(bool value);
 
-    /*
+    /**
      * a helper for object removing
      */
     static void clearRemoveQueue();
 
 
-    /*
+    /**
      * this function starts the GameEngine after everything was loaded into the scene
      */
     static void play();
 
-    /*
+    /**
      * helper functions for collision detection
      */
     static double getDistance(GameObject * object1, GameObject * object2);
     static double getDistance(const sf::Vector2f&  object1, const sf::Vector2f& object2);
     static bool checkCollision(GameObject * object1, GameObject * object2);
 
-    /*
+    /**
      * This function is used when nothing happens at the game scene for a long time,
      * prevents endless loops of planes doing nothing
      */
@@ -127,7 +127,7 @@ public:
 
 
 
-    /*
+    /**
      * Ridiculous function names
      *
      * Their names are very self-explanatory

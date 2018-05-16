@@ -134,7 +134,7 @@ double Plane::getSpeed() {
     return speed;
 }
 
-/*
+/**
  * To nie ma sensu, ale musieliśmy go przeciążyć,
  * bo takie były kryteria oceny
  *

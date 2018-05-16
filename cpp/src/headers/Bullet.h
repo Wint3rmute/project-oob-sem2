@@ -10,7 +10,7 @@
 #include "GameEngine.h"
 #include "GameObject.h"
 
-/*
+/**
  * gameObject representing a bullet - planes shoot them and get killed by them
  */
 class Bullet : public GameObject {
@@ -24,7 +24,11 @@ public:
     Bullet (double pos_x, double pos_y, double rotation);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
+    /**
+     * \brief Move the bullet along it's trajectory
+     *
+     * Advanced physics do not apply
+     */
     void simulate ();
 
     sf::Vector2f getPosition();

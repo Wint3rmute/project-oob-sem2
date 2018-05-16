@@ -2,4 +2,7 @@
 cmake-build-debug/
 */out
 build/*
-
+cpp/src/html/
+cpp/src/latex/
+*.cpb
+cpp/CMakeFiles/

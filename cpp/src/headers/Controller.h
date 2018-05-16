@@ -10,7 +10,7 @@
 #include "FieldOfView.h"
 class FieldOfView;
 
-/*
+/**
  * Base class for classes controlling planes:
  *
  * KeyboardController, NeuralNetController

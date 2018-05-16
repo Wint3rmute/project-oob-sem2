@@ -22,7 +22,7 @@ unsigned long GameEngine :: totalGameTime;
 sf::RenderWindow * GameEngine::window;
 bool GameEngine :: graphicsEnabled;
 
-/*
+/**
  * used for spawning new planes into the scene
  */
 RandomGenerator GameEngine::xPositionGenerator(50, GAME_WINDOW_WIDTH - 50);
@@ -31,7 +31,7 @@ RandomGenerator GameEngine::planeRotationGenerator(0, 360);
 
 
 void GameEngine :: nothing() {
-    /*
+    /**
      * This function does nothing. That's it
      */
 
@@ -189,7 +189,7 @@ bool GameEngine::checkCollision(GameObject *object1, GameObject *object2) {
     return getDistance(object1, object2) < object1->size + object2->size;
 }
 
-/*
+/**
  * finds a plane inside gameObjects
  *
  * and makes a new one based on the weights of the old plane

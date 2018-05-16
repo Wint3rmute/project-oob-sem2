@@ -2,7 +2,7 @@
 // Created by shiro on 11.04.18.
 //
 #include "../headers/Boost.h"
-/*
+/**
 *On activation boosts plane speed for a short time.
 *
 */

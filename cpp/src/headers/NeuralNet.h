@@ -11,25 +11,25 @@
 #include <cmath>
 #include <fstream>
 
-/*
+/**
  * A fancy name for a matrix multiplication algorithm
  *
  * Also, controller for planes
  */
 class NeuralNet {
 
-    /*
+    /**
      * All the network weights are stored there
      */
     SynapseLayer ** weights;
 
-    /*
+    /**
      * NetworkParams describe the structure of the network:
      * depth and number of neurons inside each layer
      */
     NetworkParams * myParams;
 
-    /*
+    /**
      * resultMatrix and bufferMatrix are used for matrix multiplication.
      */
     double * resultMatrix;
@@ -38,7 +38,7 @@ class NeuralNet {
     int multiplyMatricesLength;
     int networkLength;
 
-    /*
+    /**
      * Generator used for generating random events when given a probability
      *
      * used for random network mutations
@@ -50,17 +50,17 @@ public:
     explicit NeuralNet(NetworkParams * params);
     NeuralNet(NeuralNet * parent);
 
-    /*
+    /**
      * Process given data
      */
     double * process(const double * data);
 
-    /*
+    /**
      * sigmoid activation function will be applied
      */
     void applyFunctionToResultMatrix(double (*function)(double));
 
-    /*
+    /**
      * Used for copying a network weights into another network
      *
      * 'breeding' nets
@@ -68,7 +68,7 @@ public:
     void getWeightsFromParent(NeuralNet * parent);
 
 private:
-    /*
+    /**
      * Helpers for the matrix multiplication algorithm
      */
     void copyResultToBuffer();
@@ -78,7 +78,7 @@ private:
 public:
 
 
-    /*
+    /**
      * The mutator function
      */
     void randomizeByPercent(double percent);

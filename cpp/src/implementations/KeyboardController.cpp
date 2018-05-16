@@ -24,7 +24,7 @@ void KeyboardController::control() {
 
     if(isPressed(turnLeftKey)) {
 
-        /*
+        /**
          * THIS IS WHERE THE OPERATOR OVERLOAD IS USED
          */
 
