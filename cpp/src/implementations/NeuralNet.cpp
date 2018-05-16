@@ -45,7 +45,7 @@ NeuralNet::NeuralNet(NetworkParams * params) : generator(0.0, 1.0) {
     }
 
 
-    /**
+    /*
      * multiplyMatricesLength is the length of the longest array,
      * that will be needed in the matrix multiplication
      */
@@ -72,13 +72,13 @@ NeuralNet::~NeuralNet() {
 
 }
 
-/**
+/*
  * The processing algorithm is the hardest thing here,
  * but it's really just matrix multiplications
  */
 double * NeuralNet::process(const double *data) {
 
-    /**
+    /*
      * First we copy the input data to the buffer array,
      * so we can write a single loop that uses:
      * weights, bufferMatrix and resultMatrix
@@ -92,7 +92,7 @@ double * NeuralNet::process(const double *data) {
 
     for (int layerNumber = 0; layerNumber < networkLength - 1; ++layerNumber) {
 
-        /**
+        /*
          * Then we empty the resultMatrix,
          * there probably is some old data inside
          */
@@ -108,7 +108,7 @@ double * NeuralNet::process(const double *data) {
 
         applyFunctionToResultMatrix(sigmoid);
 
-        /**
+        /*
          * result is copied to buffer and used as input for next layer
          */
         copyResultToBuffer();
@@ -149,7 +149,7 @@ void NeuralNet::randomizeByPercent(double percent) {
 
                 if(generator.generate() < percent) {
 
-                    /**
+                    /*
                      * This mutates a random element
                      */
                     weights[layerNumber]->setElement(columnNumber, rowNumber, SynapseLayer::getRandomNetworkWeight());
@@ -171,7 +171,7 @@ NeuralNet::NeuralNet(NeuralNet *parent) :  NeuralNet(parent->myParams) {
 
 void NeuralNet::getWeightsFromParent(NeuralNet *parent) {
 
-    /**
+    /*
      * Copying the weights contents
      */
 
@@ -179,7 +179,7 @@ void NeuralNet::getWeightsFromParent(NeuralNet *parent) {
         for (int rowNumber = 0; rowNumber < weights[layerNumber]->getRows(); ++rowNumber) {
             for (int columnNumber = 0; columnNumber < weights[layerNumber]->getColumns(); ++columnNumber) {
 
-                /**
+                /*
                  * This part looks pretty ugly,
                  * But it's just copying each corresponding weight
                  * to the other network
