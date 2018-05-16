@@ -10,19 +10,37 @@
 #include "RandomGenerator.h"
 
 /**
- * A single weights matrix between network layers
+ * @brief A single weights matrix between network layers
+ *
+ * The class handles storage of the network weights inside RAM,
+ * as well as generation of new random synapse weights.
+ *
  */
 class SynapseLayer {
 
+
     /**
-     * 2dimensional array of doubles, stores the matrix values
+     * @brief 2dimentional array storing the weights
      */
     double ** values;
 
+
     /**
-     * Saving the size of the matrix
+     * @brief how many columns in the matrix
      */
-    int columns, rows;
+    int columns;
+
+    /**
+     * @brief how many rows in the matrix
+     */
+    int rows;
+
+    /**
+     * @brief generator for the weight values
+     *
+     * Generates numbers between -1 and 1
+     *
+     */
     static RandomGenerator generator;
 
 
@@ -35,7 +53,10 @@ public:
     static double getRandomNetworkWeight();
     /**
      * Generates an empty matrix of a given size
-     */
+
+      * @param columns amount of columns
+      * @param rows amount of rows
+      */
     SynapseLayer(int columns, int rows);
 
     /**

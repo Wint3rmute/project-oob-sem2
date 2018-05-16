@@ -9,15 +9,23 @@
 #include <random>
 
 /**
- * helper class for generating random numbers,
+ * @brief helper class for generating random numbers,
  *
- * used all across the code
+ * used all across the code to (no surprise) generate random numbers
  */
 class RandomGenerator {
     std::default_random_engine rng;
     std::uniform_real_distribution<double> dist;
 public:
+    /**
+     * @brief Creates a random generator with given the maximum and minimum value
+     */
     RandomGenerator(double min, double max);
+
+    /**
+     * @brief Get a random number
+     * @return the random number generated
+     */
     double generate();
 };
 

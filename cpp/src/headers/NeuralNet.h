@@ -12,82 +12,120 @@
 #include <fstream>
 
 /**
- * A fancy name for a matrix multiplication algorithm
+ * @brief A fancy name for a matrix multiplication algorithm
  *
  * Also, controller for planes
  */
 class NeuralNet {
 
     /**
-     * All the network weights are stored there
+     * @brief All the network weights are stored there
      */
     SynapseLayer ** weights;
 
     /**
-     * NetworkParams describe the structure of the network:
+     * @brief NetworkParams describe the structure of the network:
      * depth and number of neurons inside each layer
      */
     NetworkParams * myParams;
 
     /**
+     * @name Properties used for calculating the network output
      * resultMatrix and bufferMatrix are used for matrix multiplication.
      */
+     ///@{
     double * resultMatrix;
     double * bufferMatrix;
-
     int multiplyMatricesLength;
     int networkLength;
-
+    ///@}
     /**
-     * Generator used for generating random events when given a probability
+     * @brief Generator used for generating random events when given a probability
      *
      * used for random network mutations
+     * generates numbers from 0 to 1
      */
     RandomGenerator generator;
 
 
 public:
+    /**
+     * @brief Constructs a neural network given the parameters
+     * @param params @see NetworkParams
+     */
     explicit NeuralNet(NetworkParams * params);
+
+    /**
+     * @brief Constructs a neural network given its parent
+     */
     NeuralNet(NeuralNet * parent);
 
     /**
-     * Process given data
+     * @Process given input data
+     *
+     * @param data - must be the lenght of the first network layer - the input layer
      */
     double * process(const double * data);
 
+private:
+
     /**
-     * sigmoid activation function will be applied
+     * @brief applies a given function to the result matrix
      */
     void applyFunctionToResultMatrix(double (*function)(double));
 
+
     /**
-     * Used for copying a network weights into another network
+     * @name Helpers for the matrix multiplication algorithm
+     */
+     ///@{
+
+    /**
+     * @brief Used for copying a network weights into another network
      *
-     * 'breeding' nets
      */
     void getWeightsFromParent(NeuralNet * parent);
 
-private:
     /**
-     * Helpers for the matrix multiplication algorithm
+     * @brief Copies the resultMatrix to the bufferMatrix
      */
     void copyResultToBuffer();
+    /**
+     * @brief Fills the result matrix with a given value
+     * @param value value to fill the result matrix with
+     */
     void fillResultMatrixWith(double value);
-
+    ///@}
 
 public:
 
 
     /**
-     * The mutator function
+     * @brief Method for mutating the network
+     *
+     * @param percent the percentage of the network that will be changed
      */
     void randomizeByPercent(double percent);
 
-
+    /**
+     * @name Functions for to save/load network from the hard drive
+     */
+    ///@{
     void saveToFile(std::string filename);
     void loadFromFile(std::string filename);
 
+    /**
+     * @brief saves the network to ./archive folder
+     *
+     * Network is saved with the timestamp <"%d_%m___%I_%M_%S">
+     * and extension .network
+     *
+     * For example:
+     * 0205__143412.network
+     * indicates, that a network was saved at the 2nd of May at 14:34 and 12 seconds
+     */
     void saveToArchive();
+    ///@}
 
     ~NeuralNet();
 
