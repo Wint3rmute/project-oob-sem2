@@ -11,12 +11,22 @@
 #include "../headers/FieldOfView.h"
 #include "../utils/constants.h"
 #include "../headers/GameEngine.h"
+/**
+ * @file FieldOfView.h
+ * File contains field of view declaration and sight cells definition.
+ */
 
 /**
- * A component that serves as the sense of sight for the AI plane
+ * @brief A component that serves as the sense of sight for the AI plane
+ * Creates sight cells around the plane. Distance between them and objects in game
+ * is calculated to determine their direction in reference to plane.
+ * Info from this class is delivered as info for bots.
  */
 class FieldOfView : public GameObject {
 
+    /**
+     * Plane to witch field belongs
+     */
     Plane * plane;
 
     /**

@@ -11,34 +11,57 @@
 #include "GameObject.h"
 
 /**
- * \file Bullet.h
- * beka w chuj
+ * @file Bullet.h
+ * File containing Bullet class declaration
  */
 
 /**
+ * @brief Bullet class
  * gameObject representing a bullet - planes shoot them and get killed by them
  */
 class Bullet : public GameObject {
-
+    /**
+     * SFML Shape of the bullet
+     */
     sf::CircleShape shape;
-    double direction_x; // will be set only once, not per each frame.. so we save it as the class property
+    /**
+     * Direction of movement on the x axis
+     */
+    double direction_x;
+    /**
+     * Direction of movement on the y axis
+    */
     double direction_y;
 
 
 public:
+    /**
+     * @brief Bullet constructor
+     * Used to spawn new bullet object
+     * @param pos_x First coordinate of bullet position
+     * @param pos_y Second coordinate of bullet position
+     * @param rotation Rotation of the bullet from horizontal orientation in degrees
+     */
     Bullet (double pos_x, double pos_y, double rotation);
-
+    /**
+     * SFML Function responsible for showing shapes on screen
+     */
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     /**
-     * \brief Move the bullet along it's trajectory
-     *
-     * Advanced physics do not apply
+     * @brief Moves bullet
+     * Moves bullet along specified axis
      */
     void simulate ();
-
+    /**
+     * Returns current position of bullet
+     * @return Vector with coordinates of bullet
+     */
     sf::Vector2f getPosition();
+    /**
+     * Returns current rotation of bullet
+     * @return Rotation in degrees
+     */
     double getRotation();
-
     ~Bullet();
 };
 
