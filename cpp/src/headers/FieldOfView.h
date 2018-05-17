@@ -44,17 +44,23 @@ class FieldOfView : public GameObject {
 public:
 
     /**
-     * Those two arrays are the inputs for the bot
-     *
-     * They are public, because this is the simplest way to deal with them
+     * Input for the bots, distance to Bullets
      */
     double * distances_to_bullets;
+    /**
+     * Input for the bots, distance to Planes
+     */
     double * distances_to_planes;
-
+    /**
+     * @brief FoV constructor
+     * Creates new field of view instance in plane
+     * @param plane To witch field of view belongs
+     * @param howManyCells Sight cells count
+     */
     FieldOfView(Plane * plane, int howManyCells);
 
     /**
-     * Methods required from the base object
+     * @name Methods required from the base object
      */
     void simulate() override;
     void draw(sf::RenderTarget &target, sf::RenderStates states) const;
