@@ -21,7 +21,7 @@ void NeuralController::control() {
 
     int currentInputsIndex;
 
-    /**
+    /*
      * the part
      *
      *  / sqrt(GAME_WINDOW_HEIGHT * GAME_WINDOW_HEIGHT + GAME_WINDOW_WIDTH + GAME_WINDOW_WIDTH)
@@ -39,12 +39,12 @@ void NeuralController::control() {
         currentInputsIndex++;
     }
 
-    /**
+    /*
      * neural network output is calculated here
      */
     outputs = process(inputs);
 
-    /**
+    /*
      * the outputs are used to control the plane
      */
     if(outputs[0] > 0.55){

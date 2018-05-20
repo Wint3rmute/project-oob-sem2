@@ -12,26 +12,37 @@
 #include "../utils/constants.h"
 
 /**
- * Uses a neural network to move the plane around
+ * @brief Uses a neural network to move the plane around
  */
 class NeuralController : public Controller, public NeuralNet {
 
-
+    /**
+     * @brief the input data for the neural net
+     */
     double * inputs;
+    /**
+     * @brief the output data from the neural net
+     *
+     * this data steers the plane
+     */
     double * outputs;
 
 public:
 
 
     /**
-     * This creates a new, random neural network
+     * @brief Creates a new, random neural controller
      */
     NeuralController(NetworkParams * params, Plane * plane, FieldOfView * fieldOfView);
 
     /**
-     * This creates a controller with weights copied from another network - the parent
+     * @brief Creates a controller with weights copied from another network - the parent
      */
     NeuralController(NeuralController * parent, Plane * plane, FieldOfView * fieldOfView);
+
+    /**
+     * @brief @see Controller
+     */
     void control();
 
     /**

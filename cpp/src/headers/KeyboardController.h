@@ -11,15 +11,19 @@
 #define isPressed sf::Keyboard::isKeyPressed
 
 /**
- * Uses a keyboard input to move the plane around
+ * @brief Uses a keyboard input to move the plane around
  */
 class KeyboardController : public Controller {
 
+    /**
+     * @name 
+     */
+    ///@{
     Key turnLeftKey;
     Key turnRightKey;
     Key shootKey;
     Key boostKey;
-
+    ///@}
 
 public:
     explicit KeyboardController(Plane *plane);
