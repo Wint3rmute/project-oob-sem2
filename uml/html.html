@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><center>
+	<h2>
+		Programowanie obiektowe <br>
+		INEW0003P <br>
+		Projekt
+	</h2>
+</center>
+<table>
+<thead>
+<tr>
+<th align="left">Wydział elektroniki</th>
+<th align="right">Kierunek: informatyka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Grupa zajęciowa: Pt 17:05       &nbsp;</td>
+<td align="right">Semestr: 2017/2018 Lato</td>
+</tr>
+<tr>
+<td align="left">Nazwisko i Imię: Bączek Mateusz  	&nbsp;</td>
+<td align="right">Nr indeksu: 241330</td>
+</tr>
+<tr>
+<td align="left">Nazwisko i Imię: Szymon Filipiak &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td align="right">Nr indeksu: 241309</td>
+</tr>
+<tr>
+<td align="left">Nr grupy projektowej:</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td align="left">Prowadzący:</td>
+<td align="right">mgr inż. Adam Włodarczyk</td>
+</tr>
+</tbody>
+</table>
+<h2 id="temat-trenowanie-sieci-neuronowych-w-grze-zręcznościowej">Temat: Trenowanie sieci neuronowych w grze zręcznościowej</h2>
+<h4>
+Ocena:<br>
+Punkty:<br>
+Data: <br>
+</h4>
+<h2 id="założenia-i-opis-funkcjonalny-programu">Założenia i opis funkcjonalny programu</h2>
+<h4 id="założenia">Założenia</h4>
+<p>Program demonstruje możliwości uczenia sztucznych sieci neuronowych w symulowanym środowisku gry zręcznościowej - bitwy samolotów. Aplikacja umożliwia wytrenowanie samolotów do walki między sobą, walkę sztucznej inteligencji z człowiekiem i zapis stanu wytrenowanej sieci do pliku w celu późniejszego kontynuowania treningu lub wczytania w celu gry z człowiekiem.</p>
+<h4 id="dodatkowe-funkcje">Dodatkowe funkcje</h4>
+<p>Program posiada funkcję trenowania sieci w tempie przyspieszonym, bez uruchomionej graficznej warstwy aplikacji, można w ten sposób zainstalować go na zdalnym serwerze i przeprowadzać na nim przyspieszoną symulację.</p>
+<h4 id="mechanika-gry">Mechanika gry</h4>
+<p>Gracz kontroluje jeden z kilku samolotów na planszy. Samoloty poruszają się do przodu przez cały czas, ale ich prędkość maleje wraz z wznoszeniem się, a rośnie podczas spadania. Gracz odpowiada za skręcanie samolotem, zwiększanie prędkości poprzez użycie specjalnej umiejętności (boost) oraz strzelanie. Samoloty ulegają zniszczeniu jeżeli wejdą w kolizję z innym obiektem (pociskiem lub innym samolotem). Gdy samolot doleci do krawędzi ekranu, pojawia się z jego drugiej strony. Przyśpieszenie oraz karabin mają swoje czasy przeładowania.</p>
+<h4 id="sztuczna-inteligencja">Sztuczna inteligencja</h4>
+<p>Samolot może być kontrolowany nie tylko przez człowieka, ale także przez bota - sztuczną sieć neuronową. Każdy bot jest wyposażony komórki wzrokowe odpowiedzialne za pozyskiwanie kierunku i odległości innych obiektów gry od samolotu, którym bot kieruje. Te informacje są przekazywane jako argumenty wejścia dla sieci neuronowej. Zależnie od danych wyjściowych sieci neuronowej, samolot wykonuje odpowiednie akcje<br>
+(np  skręty, strzelanie).</p>
+<h2 id="diagramy">Diagramy</h2>
+<h4 id="use-case">Use case</h4>
+<p><img src="https://raw.githubusercontent.com/Wint3rmute/project-oob-sem2/master/uml/Use%20case%20PPO.png" alt="UseCase"></p>
+<h4 id="klasy">Klasy</h4>
+<p><img src="https://raw.githubusercontent.com/Wint3rmute/project-oob-sem2/master/uml/schemat.png" alt="classDiagram"></p>
+<h2 id="opis-użytkowy-programu">Opis użytkowy programu</h2>
+<p><img src="https://raw.githubusercontent.com/Wint3rmute/project-oob-sem2/master/uml/screenshots/help_screen.png" alt="mainMenu"></p>
+<p>Program posiada standardowy unixowy interfejs konsolowy, po uruchomieniu bez wpisaniu argumentów użytkownikowi zostaje zaprezentowany ekran możliwych opcji wywołania programu.</p>
+<h4 id="opis-funkcji">Opis funkcji:</h4>
+<ul>
+<li><code>--help</code> - wyświetla taki sam ekran pomocy jak w przypadku wywołania programu bez argumentów</li>
+<li><code>--play2</code> - Uruchamia grę z dwoma samolotami sterowanymi przez ludzkich graczy, pierwszy steruje za pomocą strzałek, drugi za pomocą klawiszy WSAD</li>
+<li><code>--train-visible</code> - uruchamia proces trenowania z aktywną warstwą graficzną programu, użytkownik może obserwować postęp trenowania botów na ekranie</li>
+<li><code>--train-visible-continue</code> - kontynuuje proces trenowania ostatniej zapisanej sieci (sieci zapisywane są automatycznie co każdą iterację trenowania)</li>
+<li><code>--train-invisible</code> - rozpoczyna proces trenowania bez uruchomionej warstwy graficznej programu, w najszybszym możliwym tempie (na nowoczesnym procesorze i7 pozwala to na przyspieszenie symulacji około 450-500 razy)<br>
+Podczas trenowania w trybie niewidzialnym wyświetlany jest log symulacji, a po przerwaniu działania programu (za pomocą ctrl-c) wyświetlany jest czas, przez jaki symulacja działała (tj., ile czasu upłynęło wewnątrz symulacji)</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Wint3rmute/project-oob-sem2/master/uml/screenshots/invisible-training.png" alt="mainMenu"></p>
+<p>Przykładowe wyjście programu w przypadku przerwania symulacji w trybie przyspieszonym</p>
+<ul>
+<li><code>--train-invisible-continue</code> - to samo co <code>--train-visible-continue</code>, tylko w trybie przyspieszonym</li>
+<li><code>--play-ai</code> - pierwszy samolot jest ostatnią trenowaną sztuczną inteligencją, drugi jest sterowany przez gracza</li>
+<li><code>--play-ai-load &lt;filename&gt;</code> - to samo co powyżej, dodatkowo wymagany jest parametr wskazujący na nazwę pliku z zapisaną siecią, która zostanie załadowana jako pierwszy gracz</li>
+</ul>
+<h2 id="wnioski">Wnioski</h2>
+<p>Dzięki zrealizowaniu projektu  poszerzyliśmy wiedzę związaną z C++ i Pythonem. Udało nam się zaimplementować i wytrenować sieć neuronową (do pewnego stopnia skuteczności).</p>
+<p>Programując ten sam projekt w dwóch róznych językach programowania, zauważyliśmy różnice między C++em a Pythonem, najważniejsze z nich to:</p>
+<ul>
+<li>Znacznie łatwiejsze instalowanie bibliotek w Pythonie</li>
+<li>Większa dostępność łatwych do uruchomienia bibliotek do symulacji fizycznej i do grafiki (także w Pythonie)</li>
+<li>Zdecydowaną przewagę w wydajności programu napisanego w C++ (Chociaż Python pozwala na zwiększenie wydajności obliczeniowej za pomocą bibliotek natywnych, na przykład Numpy, z której też korzystaliśmy)</li>
+<li>Mniej wyraźny styl zarządzania pamięcią w Pythonie, utrudnione ręczne zarządzanie wyzwalaniem RAMu, język więcej rzeczy robi za programistę</li>
+<li>Wirtualne środowisko w Pythonie (virtualenv) ułatwia zarządzanie zainstalowanymi modułami, brak podobnie prostego w obsłudze narzędzia w C++</li>
+</ul>
+<p>Implementacja czujników sieci neuronowej uświadomiła nam, że jest bardzo wiele sposobów, w jaki możliwe jest dobranie danych wejściowych dla sieci, co potencjalnie mogłoby pozytywnie wpłynąć na ich skuteczność w grze.</p>
+<h4 id="dokumentacja-kodu-źródłowego-umieszczona-jest-w-załączniku-do-maila">Dokumentacja kodu źródłowego umieszczona jest w załączniku do maila</h4>
+<h4 id="link-do-repozytorium-projektu">Link do repozytorium projektu:</h4>
+<p><a href="https://github.com/Wint3rmute/project-oob-sem2">https://github.com/Wint3rmute/project-oob-sem2</a></p>
+</div>
+</body>
+
+</html>
