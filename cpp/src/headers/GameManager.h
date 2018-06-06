@@ -54,16 +54,39 @@ public:
 
     void showHelpMessage();
 
+    /**
+     * Run the game in 2 human players mode
+     */
     void playGame2Players();
 
+    /**
+     * Run the game with one human player and the currently best AI
+     */
     void playVsBestAI();
 
+    /**
+     * Train AI agents with graphics enabled
+     */
     void trainVisible();
+
+    /**
+     * Train AI agents without GUI, in full speed
+     */
     void trainInvisible();
 
+    /**
+     * load the last best AI agent and continue it's training with graphics enabled
+     */
     void trainVisibleContinue();
+
+    /**
+     * load the last best AI agent and continue it's training with graphics disabled
+     */
     void trainInvisibleContinue();
 
+    /**
+     * run the game with one human player and one chosen AI, the AI is loaded from the command line parameters
+     */
     void playVsLoadedAI();
 
 };

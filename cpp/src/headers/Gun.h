@@ -21,6 +21,11 @@ private:
 
 
 public:
+    /**
+     * @brief Gun activation function
+     * Gun activation function. Spawns bullets as long as there is ammo in the gun, then starts cooldown.
+     * @param plane Plane in front of which bullets appear
+     */
     void activate(Plane & plane);
 
 
