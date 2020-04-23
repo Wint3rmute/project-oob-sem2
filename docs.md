@@ -58,7 +58,7 @@ Program posiada standardowy unixowy interfejs konsolowy, po uruchomieniu bez wpi
 - `--train-invisible` - rozpoczyna proces trenowania bez uruchomionej warstwy graficznej programu, w najszybszym możliwym tempie (na nowoczesnym procesorze i7 pozwala to na przyspieszenie symulacji około 450-500 razy)
 Podczas trenowania w trybie niewidzialnym wyświetlany jest log symulacji, a po przerwaniu działania programu (za pomocą ctrl-c) wyświetlany jest czas, przez jaki symulacja działała (tj., ile czasu upłynęło wewnątrz symulacji)
 
-![mainMenu](https://raw.githubusercontent.com/Wint3rmute/project-oob-sem2/master/uml/screenshots/invisible-training.png)
+![mainMenu](uml/screenshots/invisible-training.png)
 
 Przykładowe wyjście programu w przypadku przerwania symulacji w trybie przyspieszonym
 
