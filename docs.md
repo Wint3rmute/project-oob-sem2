@@ -39,14 +39,14 @@ Samolot może być kontrolowany nie tylko przez człowieka, ale także przez bot
 
 ## Diagramy
 #### Use case
-![UseCase](https://raw.githubusercontent.com/Wint3rmute/project-oob-sem2/master/uml/Use%20case%20PPO.png)
+![UseCase](uml/Use%20case%20PPO.png)
 
 
 #### Klasy
-![classDiagram](https://raw.githubusercontent.com/Wint3rmute/project-oob-sem2/master/uml/schemat.png)
+![classDiagram](uml/schemat.png)
  
  ## Opis użytkowy programu
-![mainMenu](https://raw.githubusercontent.com/Wint3rmute/project-oob-sem2/master/uml/screenshots/help_screen.png)
+![mainMenu](uml/screenshots/help_screen.png)
 
 Program posiada standardowy unixowy interfejs konsolowy, po uruchomieniu bez wpisaniu argumentów użytkownikowi zostaje zaprezentowany ekran możliwych opcji wywołania programu.
 
